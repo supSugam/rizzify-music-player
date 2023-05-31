@@ -8,6 +8,9 @@ module.exports = {
 				indigo: "#3730a3",
 				violet: "#845ef7",
 			},
+			backgroundImage: {
+				"primary-gradient": "linear-gradient(30deg,rgba(55, 48, 163, 1)0%,rgba(132, 94, 247, 1) 100%)",
+			},
 			animation: {
 				slideup: "slideup 1s ease-in-out",
 				slidedown: "slidedown 1s ease-in-out",

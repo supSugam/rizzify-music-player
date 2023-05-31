@@ -13,12 +13,12 @@
 	box-sizing: border-box;
 	font-weight: 500;
 	color: #fff;
+	/* font-size: 62.5%; */
 
 	font-family: "Circular", sans-serif;
 	--primary-black: #111111;
 	--primary-indigo: #3730a3;
 	--primary-violet: #845ef7;
-	--linear-gradient: rgb(132, 94, 247);
 
 	--gradient: linear-gradient(
 		30deg,
@@ -26,7 +26,6 @@
 		rgba(132, 94, 247, 1) 100%
 	);
 }
-
 
   .btn::after {
 	content: '';
@@ -41,15 +40,28 @@
 	border-radius: 6px;
 	transition: opacity 0.3s ease-in-out;
   }
-  
-  .btn:hover:after {
+
+  .btn:hover::after,.btn:active::after, .genre-dropdown-active .btn::after {
 	opacity: 1;
 	z-index: -1;
   }
 
-  .btn:hover{
+  .btn:hover,.btn:active,.btn:focus,  .genre-dropdown-active .btn{
 	transform: rotate(0)
 }
+
+.genre-dropdown-active,.genre-dropdown-inactive{
+	transform-origin: center;
+}
+.genre-dropdown-active .btn svg{
+	transform: rotate(180deg);
+	transition: all 0.3s;
+}
+.genre-dropdown-inactive .btn svg{
+	transform: rotate(0deg);
+	transition: all 0.3s;	
+}
+
   
 
 
