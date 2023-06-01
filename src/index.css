@@ -4,8 +4,12 @@
 
 @font-face {
 	font-family: "Circular";
-	src: url("./assets/fonts/CircularStd-Black.woff2") format("truetype");
+	src: url('./assets/fonts/CircularSp-Book.woff2') format('woff2');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
 }
+
 
 :root {
 	margin: 0;
@@ -13,7 +17,7 @@
 	box-sizing: border-box;
 	font-weight: 500;
 	color: #fff;
-	/* font-size: 62.5%; */
+	user-select: none;
 
 	font-family: "Circular", sans-serif;
 	--primary-black: #111111;

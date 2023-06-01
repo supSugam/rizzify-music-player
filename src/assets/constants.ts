@@ -43,3 +43,5 @@ export const links: Link[] = [
 	{ name: "Top Artists", to: "/top-artists", icon: HiOutlineUserGroup },
 	{ name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
 ];
+
+export default Genre;

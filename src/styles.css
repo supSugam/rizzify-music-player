@@ -59,7 +59,7 @@ absolute top-20 right-0 w-80 h-80  rounded-md overflow-hidden
     
 
 .genre-item{
-    transition: all 0.3s ease-out;
+    transition: all 0.1s ease-out;
     -webkit-tap-highlight-color: transparent;
 }
 .genre-item:hover{

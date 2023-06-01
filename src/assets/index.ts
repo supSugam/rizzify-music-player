@@ -1,7 +1,9 @@
-// import loader from './loader.svg';
-// import logo from './logo.svg';
+import loader from "./loader.svg";
+import wentWrong from './wentWrong.svg';
+import wentWrongMini from './wentWrongMini.svg';
 
-// export {
-//   logo,
-//   loader,
-// };
+export {
+  wentWrong,
+  loader,
+  wentWrongMini
+};

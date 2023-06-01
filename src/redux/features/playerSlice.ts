@@ -1,6 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
+// import {Song} from '../services/types';
 
-const initialState = {
+interface Song {
+  // Define the properties of a song
+}
+
+interface PlayerState {
+  currentSongs: Song[];
+  currentIndex: number;
+  isActive: boolean;
+  isPlaying: boolean;
+  activeSong: Song;
+  genreListId: string;
+}
+
+const initialState: PlayerState = {
   currentSongs: [],
   currentIndex: 0,
   isActive: false,
@@ -60,6 +74,13 @@ const playerSlice = createSlice({
   },
 });
 
-export const { setActiveSong, nextSong, prevSong, playPause, selectGenreListId } = playerSlice.actions;
+export const {
+  setActiveSong,
+  nextSong,
+  prevSong,
+  playPause,
+  selectGenreListId,
+} = playerSlice.actions;
 
 export default playerSlice.reducer;
+
