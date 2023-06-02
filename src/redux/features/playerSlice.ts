@@ -6,12 +6,13 @@ interface Song {
 }
 
 interface PlayerState {
-  currentSongs: Song[];
+  currentSongs: [];
   currentIndex: number;
   isActive: boolean;
   isPlaying: boolean;
   activeSong: Song;
   genreListId: string;
+
 }
 
 const initialState: PlayerState = {
@@ -81,6 +82,8 @@ export const {
   playPause,
   selectGenreListId,
 } = playerSlice.actions;
+
+console.log(playerSlice.actions);
 
 export default playerSlice.reducer;
 

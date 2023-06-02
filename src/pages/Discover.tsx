@@ -1,10 +1,12 @@
 import {Error,SongCard,MiniError} from '../components';
+import { useDispatch,useSelector } from 'react-redux';
 
 import { genres } from "../assets/constants";
 import React,{useRef,useState} from "react";
 import {FiChevronDown} from 'react-icons/fi'
 import testData from '../redux/services/testData'
 import Skeleton from 'react-loading-skeleton'
+import Tilt from "react-parallax-tilt"
 import 'react-loading-skeleton/dist/skeleton.css'
 
 // import { useState,useMemo,useEffect,useCallback } from "react";
@@ -12,6 +14,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 // import SongCard from "../components/SongCard";
 
 const Discover: React.FC = () => {
+	const dispatch = useDispatch();
+	const {activeSong,isPlaying} = useSelector((state:any) => state.player);
 	const genreContainer = useRef<HTMLDivElement>(null);
 	const [isLoading,setIsLoading] = useState<boolean>(true);
 	// const [genre, setGenre] = useState<string>('');
@@ -51,21 +55,23 @@ const Discover: React.FC = () => {
 					<ul className="bg-gray-950 bg-opacity-60 rounded-lg genre-list z-10">
 						{
 							genres.map((genre) => (
-								<li key={genre.value} /*>onClick={() => setGenre(genre.value)}*/ className={`bg-gray-950 p-2 rounded-2xl pl-3 border-white border-2 border-opacity-10 bg-opacity-70 genre-item cursor-pointer hover:border-opacity-20 hover:bg-opacity-40 select-none active:bg-black active:border-opacity-70 ${
+								<Tilt glarePosition="all" glareEnable={true} key={genre.value}>
+								<li /*>onClick={() => setGenre(genre.value)}*/ className={`bg-gray-950 p-2 rounded-2xl pl-3 border-white border-2 border-opacity-10 bg-opacity-70 genre-item cursor-pointer hover:border-opacity-20 hover:bg-opacity-40 select-none active:bg-black active:border-opacity-70 ${
 									genre.value === '' ? 'bg-primary-gradient border-opacity-30' : ''
 								}`}>{genre.title}<span>{genre.emoji}</span>
 								</li>
+								</Tilt>
 							))
 						}
 						</ul>
 
 				</div>
 			</div>
-			<div className="flex w-96 flex-nowrap overflow-x-scroll justify-start gap-8 overflow-y-hidden sm:w-full sm:flex-wrap">
+			<div className="flex w-96 flex-nowrap overflow-x-scroll justify-start gap-10 overflow-y-hidden sm:w-full sm:flex-wrap">
 
 				{
 					testData.map((song,i) => (
-						<SongCard key={song.key} song={song} i={i} />
+						<SongCard key={song.key} isPlaying={isPlaying} activeSong={activeSong} song={song} data={testData} i={i} />
 						))
 					}
 			</div>

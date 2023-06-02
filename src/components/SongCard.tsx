@@ -1,41 +1,62 @@
 import React from 'react'
+import Tilt from "react-parallax-tilt"
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 
-// import {PlayPause} from './PlayPause';
+import PlayPause from './PlayPause';
 import {playPause,setActiveSong} from "../redux/features/playerSlice"
 
+import {Song} from '../redux/services/types'
+
 interface SongCardProps{
-  song:{
-    key: string,
-    title: string,
-    subtitle: string,
-    images: {
-      coverart: string,
-      coverarthq: string,
-      background: string
-    }
-  },
-  i:number
+  song:Song,
+  i:number,
+  isPlaying:boolean,
+  activeSong: Song,
+  data:Song[]
+
 }
-const SongCard:React.FC<SongCardProps> = ({song,i}) => {
-  const activeSong = {
-    key: 2,
+const SongCard:React.FC<SongCardProps> = ({song,data,isPlaying,activeSong,i}) => {
+
+  const dispatch = useDispatch();
+
+  const handlePlayClick = ():void => {
+    dispatch(setActiveSong({song,data,i}));
+    dispatch(playPause(true));
   };
+
+  const handlePauseClick = ():void => {
+    dispatch(playPause(false));
+  };
+
   return (
     // Aile npm package wala animation use garne
-    <div key={i} className='flex flex-col min-w-[11rem] h-60 p-2 bg-white/10 bg-opacity-80 backdrop-blur-sm shadow-md border-solid border-b-2 border-[--primary-violet] animate-slideup cursor-pointer rounded-lg sm:w-52 sm:h-auto'>
+    <Tilt glareEnable={true} glareMaxOpacity={0.3} glareColor="#845ef7" glarePosition="bottom" tiltMaxAngleX={10} tiltMaxAngleY={10}>
+    <div key={i} className='flex flex-col w-[14rem] h-auto p-3 bg-white/5 bg-opacity-80 backdrop-blur-sm shadow-md border-solid border-b-2 border-[--primary-violet] animate-slideup cursor-pointer rounded-lg sm:w-60 sm:h-auto sm:p-4 group song--card'>
       <div className="relative group w-full h-52">
-        <div className={`absolute inset-0 justify-center items-center bg-opacity-50 group-hover:flex ${activeSong?.key === 1?'flex bg-opacity-70':'hidden'}`}>
-          {/* <PlayPause song={song} /> */}
+        <div className={`absolute inset-0 justify-center items-center bg-opacity-50 group-hover:flex ${activeSong?.key === song.key?'flex bg-opacity-90':'hidden'}`}>
+          <PlayPause isPlaying={isPlaying} activeSong={activeSong} song={song} handlePause={handlePauseClick} handlePlay={handlePlayClick} />
         </div>
-        <img src={song.images?.coverarthq||song.images?.coverart || song.images?.background} alt={song.title} className='w-full h-full rounded-tl-[2rem] rounded-br-[2rem] rounded-tr-sm rounded-bl-sm' />
+        <div className={`w-full h-full rounded-tl-[2rem] rounded-br-[2rem] rounded-tr-sm rounded-bl-sm song--img__wrapper ${activeSong?.key === song.key? 'isPlaying':''}`}>
+          <img src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className='radius' />
+        </div>
+
       </div>
-      <div className='pt-2'>
-        <h3 className='text-lg font-semibold truncate'>{song.title}</h3>
-        <p className='text-sm text-white/80 truncate'>{song.subtitle}</p>
+      <div className='flex flex-col mt-3'>
+        <h3 className='text-lg font-semibold truncate'>
+        <Link to={`songs/${song?.key}`}>
+          
+          {song.title}
+          </Link>
+          </h3>
+        <p className='text-sm text-white/80 truncate'>
+          <Link to={song.artists? `artists/${song.artists[0].adamid}`:'/top-artists'}>
+          {song.subtitle}
+          </Link>
+          </p>
       </div>
     </div>
+    </Tilt>
   )
 }
 

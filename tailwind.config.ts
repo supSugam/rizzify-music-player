@@ -18,6 +18,7 @@ module.exports = {
 				slideright: "slideright 1s ease-in-out",
 				wave: "wave 1.2s linear infinite",
 				slowfade: "slowfade 2.2s ease-in-out",
+				hoverscale: "hoverscale 0.2s ease-out",
 			},
 			keyframes: {
 				slowfade: {
@@ -45,6 +46,10 @@ module.exports = {
 					"50%": { transform: "scale(1)" },
 					"100%": { transform: "scale(0)" },
 				},
+				hoverscale: {
+					"0%": { transform: "scale(0)" },
+					"100%": { transform: "scale(1)" },
+				}
 			},
 		},
 	},

@@ -75,3 +75,33 @@ absolute top-20 right-0 w-80 h-80  rounded-md overflow-hidden
     }
     
 }
+
+
+/* Song Card */
+
+.song--img__wrapper::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, rgba(0, 0, 0, 0.3) 100%);
+    z-index: 5;
+    transition: all 0.3s ease-out;
+    opacity: 0;
+}
+.song--img__wrapper img{
+    border-radius: inherit;
+}
+
+
+.isPlaying::after{
+    opacity: 1;
+}
+.song--card:hover .song--img__wrapper::after{
+    opacity: 1 !important;
+}
+
+
