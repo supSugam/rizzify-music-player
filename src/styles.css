@@ -130,4 +130,74 @@ absolute top-20 right-0 w-80 h-80  rounded-md overflow-hidden
 }
 
 
+/* Seekbar */
+
+input[type=range]{
+    -webkit-appearance: none;
+    background: var(--primary-grey);
+    transition: all 0.2s ease-out;
+
+}
+.control--icons{
+    transition: all 0.2s ease-out;
+}
+.control--icons:hover{
+    fill: #fff;
+}
+
+.control--icons:last-child:hover{
+    fill: none;
+    stroke: #fff;
+}
+
+.song--progress{
+    z-index: 1;
+}
+
+.song--progress::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--progress,0));
+    max-width: 100%;
+    background-color: #FFF;
+    height: 100%;
+    z-index: -1;
+    transition: all 0.2s ease-out;
+}
+
+.song--progress:hover::before{
+    background-color: var(--primary-violet);
+}
+
+
+/* Styling the thumb */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Safari and Chrome */
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background: #FFF;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+    z-index:9;
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    height: 1rem;
+    width: 1rem;
+    border-radius: 50%;
+    background: #FFF;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.1s ease-in-out;
+    z-index:9;
+  }
+  input[type="range"]:hover::-webkit-slider-thumb {
+    opacity: 1;
+  }
+
+
 
