@@ -7,9 +7,11 @@ module.exports = {
 				black: "#111111",
 				indigo: "#3730a3",
 				violet: "#845ef7",
+				darkblue: "#0f172a",
 			},
 			backgroundImage: {
-				"primary-gradient": "linear-gradient(30deg,rgba(55, 48, 163, 1)0%,rgba(132, 94, 247, 1) 100%)",
+				// "primary-gradient": "linear-gradient(30deg,rgba(55, 48, 163, 1)0%,rgba(132, 94, 247, 1) 100%)",
+				"primary-gradient": "linear-gradient(0deg, rgba(14,25,42,1) 0%, rgba(46,16,101,1) 100%)",
 			},
 			animation: {
 				slideup: "slideup 1s ease-in-out",
@@ -19,6 +21,7 @@ module.exports = {
 				wave: "wave 1.2s linear infinite",
 				slowfade: "slowfade 2.2s ease-in-out",
 				hoverscale: "hoverscale 0.2s ease-out",
+				musicwaves: "musicwaves 1.2s linear infinite",
 			},
 			keyframes: {
 				slowfade: {
@@ -49,6 +52,14 @@ module.exports = {
 				hoverscale: {
 					"0%": { transform: "scale(0)" },
 					"100%": { transform: "scale(1)" },
+				},
+				musicwaves:{
+					"50%":{
+						height: "0.70rem",
+					},
+					"100%":{
+						height: "1.75rem",
+					}
 				}
 			},
 		},

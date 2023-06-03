@@ -105,3 +105,29 @@ absolute top-20 right-0 w-80 h-80  rounded-md overflow-hidden
 }
 
 
+/* Music Player // Controls */
+
+.song-img__player::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.6) 100%);
+    z-index: 3;
+    transition: all 0.3s ease-out;
+    opacity: 0;
+}
+
+.songPlaying.song-img__player::after{
+    opacity: 1;
+}
+
+.songPlaying .music--waves{
+    opacity: 1;
+}
+
+
+
