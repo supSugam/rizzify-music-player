@@ -21,7 +21,9 @@ module.exports = {
 				wave: "wave 1.2s linear infinite",
 				slowfade: "slowfade 2.2s ease-in-out",
 				hoverscale: "hoverscale 0.2s ease-out",
-				musicwaves: "musicwaves 1.2s linear infinite",
+				musicwavesLg: "musicwavesLg 1.2s linear infinite",
+				musicwavesPh: "musicwavesPh 1.2s linear infinite",
+				textreveal: "textreveal 8s linear infinite",
 			},
 			keyframes: {
 				slowfade: {
@@ -53,12 +55,31 @@ module.exports = {
 					"0%": { transform: "scale(0)" },
 					"100%": { transform: "scale(1)" },
 				},
-				musicwaves:{
+				musicwavesLg:{
 					"50%":{
 						height: "0.70rem",
 					},
 					"100%":{
 						height: "1.75rem",
+					}
+				},
+				musicwavesPh:{
+					"50%":{
+						height: "0.30rem",
+					},
+					"100%":{
+						height: "0.75rem",
+					},
+				},
+				textreveal: {
+					"0%": {
+						transform: "translateX(0)",
+					},
+					"20%": {
+						transform: "translateX(0)", // Wow, I'm smart 😎
+					},
+					"100%": {
+						transform: "translateX(-50%)",
 					}
 				}
 			},

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useRef,useState,useLayoutEffect} from 'react'
 import Tilt from "react-parallax-tilt"
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -14,11 +14,21 @@ interface SongCardProps{
   isPlaying:boolean,
   activeSong: Song,
   data:Song[]
-
 }
+
 const SongCard:React.FC<SongCardProps> = ({song,data,isPlaying,activeSong,i}) => {
 
   const dispatch = useDispatch();
+
+  const textRef = useRef<HTMLHeadingElement>(null);
+
+  const [textWidth,setTextWidth] = useState<number>(0);
+
+  useLayoutEffect(() => {
+    if(textRef.current){
+      setTextWidth(textRef.current.getBoundingClientRect().width-8); // 8px Padding
+    }
+  },[textWidth]);
 
   const handlePlayClick = ():void => {
     dispatch(setActiveSong({song,data,i}));
@@ -42,8 +52,8 @@ const SongCard:React.FC<SongCardProps> = ({song,data,isPlaying,activeSong,i}) =>
         </div>
 
       </div>
-      <div className='flex flex-col mt-3'>
-        <h3 className='text-lg font-semibold truncate'>
+      <div className='flex flex-col mt-3 overflow-hidden pr-2'>
+        <h3 ref={textRef} className={`text-lg font-semibold w-max ${textWidth>192?'animate-textreveal':'overflow-hidden whitespace-nowrap'}`}>
         <Link to={`songs/${song?.key}`}>
           
           {song.title}
