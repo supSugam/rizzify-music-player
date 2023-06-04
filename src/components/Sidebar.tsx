@@ -58,12 +58,12 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile}) => {
   }
   if(forMobile){
     return (
-      <div className='flex items-center w-full h-full justify-center gap-10'>
+      <div className='flex items-center w-full h-full justify-center gap-8'>
         {links.map((item) =>(
           <NavLink
             key={item.name}
             to={item.to}
-            className='flex flex-col items-center gap-2 text-[var(--primary-grey)] text-[0.6rem] hover:text-white group'
+            className='flex flex-col flex-auto items-center gap-[0.35rem] text-[var(--primary-grey)] text-[0.8rem] hover:text-white group truncate'
           >
               <ReactSVG className="text-[1.6rem] text-[var(--primary-grey)] group-hover:text-white transition-all duration-150" src={item.icon}/>
               {item.name}
@@ -88,7 +88,7 @@ const Sidebar:React.FC = () => {
 
     {/* Mobile Menu */}
 
-    <div className="absolute md:hidden bottom-0 left-0 bg-[#09090b] w-full h-[4.2rem] px-8 flex items-center justify-between">
+    <div className="absolute md:hidden bottom-0 left-0 bg-[#09090b] w-full h-[4.5rem] px-8 py-2 flex items-center justify-between">
     <NavLinks forMobile={true}/>
 
     </div>

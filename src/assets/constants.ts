@@ -9,7 +9,8 @@ interface Genre {
 interface Link {
 	name: string;
 	to: string;
-	icon:any
+	icon:any;
+	nameSm:string
 }
 
 export const genres: Genre[] = [
@@ -31,7 +32,7 @@ export const genres: Genre[] = [
   ];
   
 export const links: Link[] = [
-	{ name: "Home", to: "/", icon:Home },
+	{ name: "Home", nameSm:"Home", to: "/", icon:Home },
 	{ name: "Around You", to: "/around-you", icon:Globe },
 	{ name: "Top Artists", to: "/top-artists", icon:Stairs },
 	{ name: "Popular Now", to: "/top-charts", icon:Spotify },
