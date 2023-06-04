@@ -12,6 +12,20 @@ export interface Song{
           adamid: string,
         }
         ]
+        hub:{
+          actions: [
+            {
+              name:string,
+              type:string,
+              id:string,
+            },
+            {
+              name:string,
+              type:string,
+              uri:string,
+            }
+          ],
+        }
 }
 
 // export interface RootObject {

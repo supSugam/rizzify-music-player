@@ -129,15 +129,6 @@ absolute top-20 right-0 w-80 h-80  rounded-md overflow-hidden
     opacity: 1;
 }
 
-
-/* Seekbar */
-
-input[type=range]{
-    -webkit-appearance: none;
-    background: var(--primary-grey);
-    transition: all 0.2s ease-out;
-
-}
 .control--icons{
     transition: all 0.2s ease-out;
 }
@@ -150,27 +141,66 @@ input[type=range]{
     stroke: #fff;
 }
 
-.song--progress{
+.loop--icon__wrapper::before, .loop--icon__wrapper::after{
+    content: "";
+    top: 1%;
+    right: 1%;
+    width: 0.6rem;
+    height: 0.6rem;
+    position: absolute;
+    border-radius: 50%;
+    background: var(--primary-violet);
+    transition: all 0.3s ease-out;
+    visibility: hidden;
+}
+.loop--icon__wrapper::before{
+    opacity: 0.6;
+    transform: scale(1.2);
+    z-index: 2;
+    @apply animate-ping;
+}
+.loop--icon__wrapper::after{
+    opacity: 1;
+    z-index: 3;
+}
+
+.isOnLoop.loop--icon__wrapper::before, .isOnLoop.loop--icon__wrapper::after{
+    visibility: visible;
+}
+
+
+
+
+/* Seekbar (Song Progress and Volume)  */
+
+input[type=range]{
+    -webkit-appearance: none;
+    background: var(--primary-grey);
+    transition: all 0.2s ease-out;
+
+}
+
+.song--progress,.volume--progress{
     z-index: 1;
 }
 
-.song--progress::before{
+.song--progress::before,.volume--progress::before{
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: calc(var(--progress,0));
     max-width: 100%;
+    border-radius: inherit;
     background-color: #FFF;
     height: 100%;
     z-index: -1;
     transition: all 0.2s ease-out;
 }
 
-.song--progress:hover::before{
+.song--progress:hover::before,.volume--progress:hover::before{
     background-color: var(--primary-violet);
 }
-
 
 /* Styling the thumb */
 input[type="range"]::-webkit-slider-thumb {

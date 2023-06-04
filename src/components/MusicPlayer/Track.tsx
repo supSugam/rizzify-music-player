@@ -16,7 +16,6 @@ const Track:React.FC<TrackProps> = ({ isPlaying, isActive, activeSong }) =>{
     if(textRef.current){
       setTextWidth(textRef.current.getBoundingClientRect().width-8); // 8px Padding
     }
-    console.log(textWidth);
   },[activeSong]);
 
 return(

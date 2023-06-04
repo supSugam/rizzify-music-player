@@ -8,6 +8,8 @@ import Seekbar from './Seekbar';
 import Track from './Track';
 import VolumeBar from './VolumeBar';
 
+// interface MusicPlayer{}
+
 const MusicPlayer = () => {
   const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
   const [duration, setDuration] = useState(0);
@@ -73,8 +75,10 @@ const MusicPlayer = () => {
           min="0"
           max={duration}
           onInput={(event) => {setSeekTime(event.target.value)}}
+          /*
           setSeekTime={setSeekTime}
           appTime={appTime}
+          */
         />
         <Player
           activeSong={activeSong}
