@@ -13,12 +13,12 @@ import {
 } from "./pages";
 
 const App = () => {
-	const { activeSong,isPlaying } = useSelector((state:object) => state.player);
+	const { activeSong,isPlaying } = useSelector((state:any) => state.player);
 
 	return (
-		<div className="relative flex">
+		<div className="relative block sm:flex h-screen bg-primary-gradient">
 			<Sidebar />
-			<div className="flex-1 flex flex-col bg-primary-gradient">
+			<div className="flex-1 flex flex-col">
 				<Searchbar />
 
 				<div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
@@ -40,7 +40,7 @@ const App = () => {
 			</div>
 
 			{activeSong?.title && (
-				<div className="absolute sm:h-28 h-20 bottom-0 left-0 right-0 flex animate-slideup bg-darkblue bg-opacity-90 backdrop-blur-md w-full z-11">
+				<div className="absolute sm:h-28 h-20 bottom-[4.2rem] sm:bottom-0 left-0 right-0 flex animate-slideup bg-darkblue bg-opacity-90 backdrop-blur-md w-full z-11">
 					<MusicPlayer />
 				</div>
 			)}

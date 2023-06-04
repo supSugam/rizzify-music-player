@@ -12,6 +12,7 @@ module.exports = {
 			backgroundImage: {
 				// "primary-gradient": "linear-gradient(30deg,rgba(55, 48, 163, 1)0%,rgba(132, 94, 247, 1) 100%)",
 				"primary-gradient": "linear-gradient(0deg, rgba(14,25,42,1) 0%, rgba(46,16,101,1) 100%)",
+				"dark-gradient": "linear-gradient(0deg, rgba(14,25,42,1) 0%, rgba(4,7,13,1) 100%)",
 			},
 			animation: {
 				slideup: "slideup 1s ease-in-out",

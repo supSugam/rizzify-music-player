@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: "Circular";
+	font-family: "Sugam";
 	src: url('./assets/fonts/CircularSp-Book.woff2') format('woff2');
 	font-weight: 500;
 	font-style: normal;
@@ -19,7 +19,7 @@
 	color: #fff;
 	user-select: none;
 
-	font-family: "Circular", sans-serif;
+	font-family: "Sugam", sans-serif;
 	--primary-black: #111111;
 	--primary-indigo: #3730a3;
 	--primary-violet: #845ef7;
@@ -30,6 +30,13 @@
 		rgba(55, 48, 163, 1) 0%,
 		rgba(132, 94, 247, 1) 100%
 	);
+}
+
+.gradient--text{
+	background: var(--primary-indigo);
+background: linear-gradient(to top, var(--primary-indigo) 0%, var(--primary-violet) 40%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 
   .btn::after {
@@ -73,11 +80,11 @@
 
 /* Active Navigation Link */
 .active {
-	@apply text-cyan-500;
+	@apply text-white;
 }
 
 .active svg {
-	@apply text-cyan-500;
+	@apply text-white;
 }
 
 .bar:nth-child(2) {

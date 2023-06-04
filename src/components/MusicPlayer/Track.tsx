@@ -19,7 +19,7 @@ const Track:React.FC<TrackProps> = ({ isPlaying, isActive, activeSong }) =>{
   },[activeSong]);
 
 return(
-  <div className="flex-1 flex items-center justify-start">
+  <div className="flex-1 flex items-center justify-start sm:min-w-[26.5rem]">
     <div className={`${isPlaying && isActive ?'songPlaying' : ''} sm:block w-10 h-10 mr-3 sm:h-16 sm:w-16 sm:mr-4 relative song-img__player`}>
       <img src={activeSong?.images?.coverart} alt="cover art" className="rounded-md" />
       <div className="music--waves absolute w-full h-full top-0 left-0 flex items-center justify-center gap-1 sm:gap-2 z-10 opacity-0">

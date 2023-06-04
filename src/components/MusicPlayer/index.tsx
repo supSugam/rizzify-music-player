@@ -1,17 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
 import Controls from './Controls';
 import Player from './Player';
 import Seekbar from './Seekbar';
 import Track from './Track';
 import VolumeBar from './VolumeBar';
+import { Song } from '../../redux/services/types';
 
-// interface MusicPlayer{}
+interface MusicPlayerProps {
+  activeSong: Song;
+  currentSongs: Song[];
+  currentIndex: number;
+  isActive: boolean;
+  isPlaying: boolean;
+  duration: number;
+  state: any;
+  setDuration: React.Dispatch<React.SetStateAction<number>>;
+  seekTime: number;
+  setSeekTime: React.Dispatch<React.SetStateAction<number>>;
+  appTime: number;
+  setAppTime: React.Dispatch<React.SetStateAction<number>>;
+  volume: number;
+  setVolume: React.Dispatch<React.SetStateAction<number>>;
+  repeat: boolean;
+  setRepeat: React.Dispatch<React.SetStateAction<boolean>>;
+  shuffle: boolean;
+  setShuffle: React.Dispatch<React.SetStateAction<boolean>>;
+  dispatch: any;
+  handlePlayPause: () => void;
+  handleNextSong: () => void;
+  handlePrevSong: () => void;
+}
 
-const MusicPlayer = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state) => state.player);
+const MusicPlayer:React.FC<MusicPlayerProps> = () => {
+  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state:any) => state.player);
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
@@ -72,7 +95,7 @@ const MusicPlayer = () => {
         />
         <Seekbar
           value={appTime}
-          min="0"
+          min={0}
           max={duration}
           onInput={(event) => {setSeekTime(event.target.value)}}
           /*
@@ -92,7 +115,7 @@ const MusicPlayer = () => {
           onLoadedData={(event) => setDuration(event.target.duration)}
         />
       </div>
-      <VolumeBar value={volume} min="0" max="1" onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} />
+      <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} />
     </div>
   );
 };

@@ -1,10 +1,4 @@
-import React from "react";
-import {
-	HiOutlineHashtag,
-	HiOutlineHome,
-	HiOutlinePhotograph,
-	HiOutlineUserGroup,
-} from "react-icons/hi";
+import { Home,HomeInactive,Globe,GlobeInactive,Stairs,StairsInactive,Spotify,SpotifyInactive } from "./index";
 
 interface Genre {
 	title: string;
@@ -15,13 +9,12 @@ interface Genre {
 interface Link {
 	name: string;
 	to: string;
-	icon: React.ComponentType;
+	icon:any
 }
 
 export const genres: Genre[] = [
 	{ title: "Pop", value: "POP", emoji: "🎶" },
 	{ title: "Worldwide", value: "WORLDWIDE", emoji: "🌎" },
-	
 	{ title: "Film", value: "FILM_TV", emoji: "🎬" },
 	{ title: "Rock", value: "ROCK", emoji: "🤘" },
 	{ title: "Hip-Hop", value: "HIP_HOP_RAP", emoji: "🎤" },
@@ -38,10 +31,10 @@ export const genres: Genre[] = [
   ];
   
 export const links: Link[] = [
-	{ name: "Discover", to: "/", icon: HiOutlineHome },
-	{ name: "Around You", to: "/around-you", icon: HiOutlinePhotograph },
-	{ name: "Top Artists", to: "/top-artists", icon: HiOutlineUserGroup },
-	{ name: "Top Charts", to: "/top-charts", icon: HiOutlineHashtag },
+	{ name: "Home", to: "/", icon:Home },
+	{ name: "Around You", to: "/around-you", icon:Globe },
+	{ name: "Top Artists", to: "/top-artists", icon:Stairs },
+	{ name: "Popular Now", to: "/top-charts", icon:Spotify },
 ];
 
 export default Genre;
