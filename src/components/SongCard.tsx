@@ -43,8 +43,8 @@ const SongCard:React.FC<SongCardProps> = ({song,data,isPlaying,activeSong,i}) =>
     // Aile npm package wala animation use garne
     <Tilt glareEnable={true} glareMaxOpacity={0.3} glareColor="#845ef7" glarePosition="bottom" tiltMaxAngleX={10} tiltMaxAngleY={10}>
     <div key={i} className='flex flex-col w-[14rem] h-auto p-3 bg-white/5 bg-opacity-80 backdrop-blur-sm shadow-md border-solid border-b-2 border-[--primary-violet] animate-slideup cursor-pointer rounded-lg sm:w-60 sm:h-auto sm:p-4 group song--card'>
-      <div className="relative group w-full h-52">
-        <div className={`absolute inset-0 justify-center items-center bg-opacity-50 group-hover:flex ${activeSong?.key === song.key?'flex bg-opacity-90':'hidden'}`}>
+      <div className="relative group w-full h-52 flex md:block">
+        <div className={`flex md:hidden absolute inset-0 justify-center items-center bg-opacity-50 group-hover:flex ${activeSong?.key === song.key?'flex bg-opacity-90':'md:hidden'}`}>
           <PlayPause isPlaying={isPlaying} activeSong={activeSong} song={song} handlePause={handlePauseClick} handlePlay={handlePlayClick} />
         </div>
         <div className={`w-full h-full rounded-tl-[2rem] rounded-br-[2rem] rounded-tr-sm rounded-bl-sm song--img__wrapper ${activeSong?.key === song.key? 'isPlaying':''}`}>

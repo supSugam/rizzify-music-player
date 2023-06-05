@@ -1,4 +1,4 @@
-import { Home,HomeInactive,Globe,GlobeInactive,Stairs,StairsInactive,Spotify,SpotifyInactive } from "./index";
+import { Home,Globe,Stairs,Spotify } from "./index";
 
 interface Genre {
 	title: string;
@@ -10,7 +10,6 @@ interface Link {
 	name: string;
 	to: string;
 	icon:any;
-	nameSm:string
 }
 
 export const genres: Genre[] = [
@@ -32,7 +31,7 @@ export const genres: Genre[] = [
   ];
   
 export const links: Link[] = [
-	{ name: "Home", nameSm:"Home", to: "/", icon:Home },
+	{ name: "Home", to: "/", icon:Home },
 	{ name: "Around You", to: "/around-you", icon:Globe },
 	{ name: "Top Artists", to: "/top-artists", icon:Stairs },
 	{ name: "Popular Now", to: "/top-charts", icon:Spotify },

@@ -18,6 +18,7 @@
 	font-weight: 500;
 	color: #fff;
 	user-select: none;
+	overflow: hidden;
 
 	font-family: "Sugam", sans-serif;
 	--primary-black: #111111;
@@ -34,7 +35,7 @@
 
 .gradient--text{
 	background: var(--primary-indigo);
-background: linear-gradient(to top, var(--primary-indigo) 0%, var(--primary-violet) 40%);
+background: linear-gradient(to top, var(--primary-indigo) 0%, var(--primary-violet) 20%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 }

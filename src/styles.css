@@ -104,6 +104,12 @@ absolute top-20 right-0 w-80 h-80  rounded-md overflow-hidden
     opacity: 1 !important;
 }
 
+@media screen and (max-width:768px) {
+    .song--img__wrapper::after{
+        opacity: 1 !important;
+    }
+}
+
 
 /* Music Player // Controls */
 

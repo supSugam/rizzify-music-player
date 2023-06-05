@@ -8,6 +8,11 @@ import Track from './Track';
 import VolumeBar from './VolumeBar';
 import { Song } from '../../redux/services/types';
 
+// 
+
+import {FaChevronDown} from 'react-icons/fa'
+import {SlOptionsVertical} from 'react-icons/sl'
+
 interface MusicPlayerProps {
   activeSong: Song;
   currentSongs: Song[];
@@ -41,6 +46,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
   const [volume, setVolume] = useState(0.3);
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
+  const [playerExpanded, setPlayerExpanded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -77,8 +83,16 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
     }
   };
 
+  const handlePlayerExpansion = (e:React.MouseEvent<HTMLDivElement>):void=>{
+    const clickedElement = e.target as HTMLElement;
+    if(clickedElement.classList.contains("mini--player"))
+    setPlayerExpanded(!playerExpanded);
+  }
+
   return (
-    <div className="relative sm:px-12 px-8 w-full flex items-center justify-between">
+    <>
+  <div onClick={(e)=>handlePlayerExpansion(e)} className="absolute sm:h-28 h-20 bottom-[4.5rem] sm:bottom-0 left-0 right-0 flex animate-slideup bg-darkblue bg-opacity-90 backdrop-blur-md w-full z-11">
+    <div className="relative sm:px-12 px-8 w-full flex items-center justify-between mini--player">
       <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
       <div className="flex-1 flex flex-col items-center justify-center gap-2">
         <Controls
@@ -97,7 +111,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
           value={appTime}
           min={0}
           max={duration}
-          onInput={(event) => {setSeekTime(event.target.value)}}
+          onInput={(event) => {setSeekTime(+event.target.value)}}
           /*
           setSeekTime={setSeekTime}
           appTime={appTime}
@@ -115,8 +129,20 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
           onLoadedData={(event) => setDuration(event.target.duration)}
         />
       </div>
-      <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(event.target.value)} setVolume={setVolume} />
+      <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(+event.target.value)} setVolume={setVolume} />
     </div>
+  </div>
+      <div className={`absolute flex-col top-0 left-0 sm:hidden w-full h-[calc(100vh-4.5rem)] px-6 pt-10 pb-4 bg-[#121212] animate-slideup ${playerExpanded? 'flex':'hidden'}`}>
+        <div className='flex justify-between items-center'>
+          <SlOptionsVertical size={21}/>
+          <h3 className='text-sm text-white font-semi uppercase'>From Search</h3>
+          <FaChevronDown size={21}/>
+        </div>
+        {/* <div className='h-[12rem] w-full'/>
+        <img></img>
+        </div> */}
+    </div>
+    </>
   );
 };
 

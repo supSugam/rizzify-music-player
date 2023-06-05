@@ -21,7 +21,7 @@ const App = () => {
 			<div className="flex-1 flex flex-col">
 				<Searchbar />
 
-				<div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+				<div className="px-6 h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
 					<div className="flex-1 h-fit pb-40">
 						<Routes>
 							<Route path="/" element={<Discover />} />
@@ -33,14 +33,14 @@ const App = () => {
 							<Route path="/search/:searchTerm" element={<Search />} />
 						</Routes>
 					</div>
-					<div className="xl:sticky relative top-0 h-fit">
+					{/* <div className="xl:sticky relative top-0 h-fit">
 						<TopPlay />
-					</div>
+					</div> */}
 				</div>
 			</div>
 
 			{activeSong?.title && (
-				<div className="absolute sm:h-28 h-20 bottom-[4.5rem] sm:bottom-0 left-0 right-0 flex animate-slideup bg-darkblue bg-opacity-90 backdrop-blur-md w-full z-11">
+				<div>
 					<MusicPlayer />
 				</div>
 			)}
