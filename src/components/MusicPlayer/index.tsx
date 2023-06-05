@@ -93,10 +93,10 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
 
   return (
     <>
-  <div onClick={(e)=>handlePlayerExpansion(e)} className="absolute sm:h-28 h-20 bottom-[4.5rem] sm:bottom-0 left-0 right-0 flex animate-slideup smooth-transition bg-darkblue bg-opacity-90 backdrop-blur-md w-full z-11">
-    <div className="relative sm:px-12 px-8 w-full flex items-center justify-between mini--player">
+  <div onClick={(e)=>handlePlayerExpansion(e)} className="absolute sm:h-28 h-20 bottom-[4.8rem] sm:bottom-0 left-0 right-0 flex animate-slideup smooth-transition bg-black bg-opacity-90 backdrop-blur-md w-full z-11">
+    <div className="relative sm:px-12 px-6 w-full flex items-center justify-between mini--player">
       <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
-      <div className="flex-1 flex flex-col items-center justify-center gap-2">
+      <div className="sm:flex-1 flex flex-col items-center justify-center gap-2">
         <Controls
           isPlaying={isPlaying}
           isActive={isActive}
@@ -136,7 +136,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
       <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(+event.target.value)} setVolume={setVolume} />
     </div>
   </div>
-      <div className={`absolute overflow-y-scroll flex-col top-0 left-0 sm:hidden w-full h-[calc(100vh-4.5rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] animate-slideup ${playerExpanded? 'flex':'hidden'}`}>
+      <div className={`absolute overflow-y-scroll flex-col top-0 left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] animate-slideup ${playerExpanded? 'flex':'hidden'}`}>
         <div className='flex justify-between items-center sticky fixed'>
           <SlOptionsVertical size={21}/>
           <h3 className='text-sm text-white font-semi uppercase'>From Search</h3>

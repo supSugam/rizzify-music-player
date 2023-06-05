@@ -136,9 +136,9 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
           <NavLink
             key={item.name}
             to={item.to}
-            className='flex flex-col flex-auto items-center gap-[0.35rem] text-[var(--primary-grey)] text-[0.8rem] hover:text-white group truncate'
+            className='flex flex-col flex-auto items-center gap-[0.35rem] text-[var(--primary-grey)] text-[0.9rem] hover:text-white group truncate'
           >
-              <ReactSVG className="text-[1.6rem] text-[var(--primary-grey)] group-hover:text-white transition-all duration-150" src={item.icon}/>
+              <ReactSVG className="text-[1.8rem] text-[var(--primary-grey)] group-hover:text-white transition-all duration-150" src={item.icon}/>
               {item.name}
           </NavLink>
         )
@@ -152,7 +152,7 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
 
 const Sidebar:React.FC = () => {
 
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(true)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <>
     <div className="hidden md:flex flex-col w-[15rem] py-8 px-6 bg-darkblue backdrop-blur-md animate-slideleft">
@@ -170,11 +170,11 @@ const Sidebar:React.FC = () => {
         mobileMenuOpen ? (<AiOutlineClose onClick={()=>setMobileMenuOpen(false)} className="w-6 h-6 text-white"/>):(<AiOutlineMenu onClick={()=>setMobileMenuOpen(true)} className="w-6 h-6 text-white"/>)
       }
       </div>
-      <div className={`absolute top-0 h-[calc(100vh-4.5rem)] w-4/5 bg-[#09090b] backdrop-blur-md md:hidden animate-slideleft flex flex-col gap-6 pl-2 pt-10 z-20 rounded-tr-sm rounded-br-sm smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
+      <div className={`absolute top-0 h-[calc(100vh-4.8rem)] w-4/5 bg-[#09090b] backdrop-blur-md md:hidden animate-slideleft flex flex-col gap-6 pl-2 pt-10 z-20 rounded-tr-sm rounded-br-sm smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
         <Logo forMobile={true}/>
         <NavLinks forMobile={false} forMobileSidebar={true} handleClick={()=>setMobileMenuOpen(!mobileMenuOpen)}/>
       </div>
-    <div className="absolute md:hidden bottom-0 left-0 bg-[#09090b] w-full h-[4.5rem] px-8 py-2 flex items-center justify-between z-20">
+    <div className="absolute md:hidden bottom-0 left-0 bg-[#09090b] w-full h-[4.8rem] px-8 py-2 flex items-center justify-between z-20">
     <NavLinks forMobile={true} forMobileSidebar={false}/>
 
     </div>
