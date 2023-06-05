@@ -108,6 +108,7 @@ absolute top-20 right-0 w-80 h-80  rounded-md overflow-hidden
     .song--img__wrapper::after{
         opacity: 1 !important;
     }
+
 }
 
 
@@ -234,6 +235,10 @@ input[type="range"]::-webkit-slider-thumb {
   input[type="range"]:hover::-webkit-slider-thumb {
     opacity: 1;
   }
+
+#expandedSeekbar::-webkit-slider-thumb{
+    opacity: 1;
+}
 
 
 

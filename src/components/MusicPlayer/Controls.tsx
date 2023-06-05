@@ -11,12 +11,15 @@ interface ControlsProps {
   shuffle: boolean;
   setShuffle: React.Dispatch<React.SetStateAction<boolean>>;
   currentSongs: any;
+  playerExpanded:boolean;
   handlePlayPause: () => void;
   handlePrevSong: () => void;
   handleNextSong: () => void;
 }
 
-const Controls:React.FC<ControlsProps> = ({ isPlaying, repeat, setRepeat, shuffle, setShuffle, currentSongs, handlePlayPause, handlePrevSong, handleNextSong }) => (
+const Controls:React.FC<ControlsProps> = ({ isPlaying, repeat, setRepeat, shuffle, setShuffle, currentSongs, handlePlayPause, handlePrevSong, handleNextSong,playerExpanded }) => {
+  if(!playerExpanded){
+    return(
   <div className="flex items-center justify-around md:w-58 lg:w-60 2xl:w-80 gap-5">
         <BiShuffle size={24} color={shuffle ? 'var(--primary-violet)' : 'var(--primary-grey)'} onClick={() => setShuffle((prev) => !prev)} className="hidden sm:block cursor-pointer control--icons" />
 
@@ -31,8 +34,27 @@ const Controls:React.FC<ControlsProps> = ({ isPlaying, repeat, setRepeat, shuffl
     <FiRepeat size={20} color={repeat ? 'var(--primary-violet)' : 'var(--primary-grey)'} onClick={() => setRepeat((prev) => !prev)} className=" hidden sm:block cursor-pointer control--icons" />
     {/* Pachhi entire playlist loop garne feature halne */}
     </div>
-
   </div>
-);
+)
+}
+if(playerExpanded){
+  return(
+    <div className='flex items-center justify-around w-full h-max'>
+      <BiShuffle size={30} color={shuffle ? 'var(--primary-violet)' : '#FFF'} onClick={() => setShuffle((prev) => !prev)} className=" cursor-pointer control--icons" />
+      {currentSongs?.length && <MdSkipPrevious size={45} color={"#FFF"} className="cursor-pointer control--icons" onClick={handlePrevSong} />}
+      {isPlaying ? (
+        <AiFillPauseCircle size={65} color="#FFF" onClick={handlePlayPause} className="cursor-pointer" />
+      ) : (
+        <AiFillPlayCircle size={65} color="#FFF" onClick={handlePlayPause} className="cursor-pointer" />
+      )}
+          {currentSongs?.length && <MdSkipNext size={45} color={"#FFF"} className="cursor-pointer control--icons" onClick={handleNextSong} />}
+      <div className={`loop--icon__wrapper relative ${repeat?'isOnLoop':''}`}>
+        <FiRepeat size={26} color={repeat ? 'var(--primary-violet)' : '#FFF'} onClick={() => setRepeat((prev) => !prev)} className=" cursor-pointer control--icons" />
+    {/* Pachhi entire playlist loop garne feature halne */}
+      </div>
+    </div>
+  )
+}
+};
 
 export default Controls;
