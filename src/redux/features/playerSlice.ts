@@ -83,7 +83,5 @@ export const {
   selectGenreListId,
 } = playerSlice.actions;
 
-console.log(playerSlice.actions);
-
 export default playerSlice.reducer;
 

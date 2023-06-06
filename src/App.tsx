@@ -19,7 +19,7 @@ const App = () => {
 		<div className="relative block sm:flex h-screen bg-primary-gradient">
 			<Sidebar />
 			<div className="flex-1 flex flex-col">
-				<Searchbar />
+				{/* <Searchbar /> */}
 
 				<div className="px-6 h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
 					<div className="flex-1 h-fit pb-40">
@@ -33,9 +33,9 @@ const App = () => {
 							<Route path="/search/:searchTerm" element={<Search />} />
 						</Routes>
 					</div>
-					{/* <div className="xl:sticky relative top-0 h-fit">
+					<div className="xl:sticky relative top-0 h-fit">
 						<TopPlay />
-					</div> */}
+					</div>
 				</div>
 			</div>
 

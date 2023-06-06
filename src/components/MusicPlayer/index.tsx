@@ -45,7 +45,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
-  const [volume, setVolume] = useState(0.3);
+  const [volume, setVolume] = useState(1);
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [playerExpanded, setPlayerExpanded] = useState(false);
@@ -136,8 +136,8 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
       <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(+event.target.value)} setVolume={setVolume} />
     </div>
   </div>
-      <div className={`absolute overflow-y-scroll flex-col top-0 left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] animate-slideup ${playerExpanded? 'flex':'hidden'}`}>
-        <div className='flex justify-between items-center sticky fixed'>
+      <div className={`absolute overflow-y-scroll flex-col top-0 left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] animate-slideup ${playerExpanded? 'flex':'hidden ani'}`}>
+        <div className='flex justify-between items-center sticky'>
           <SlOptionsVertical size={21}/>
           <h3 className='text-sm text-white font-semi uppercase'>From Search</h3>
           <button onClick={()=>setPlayerExpanded(false)}>      
