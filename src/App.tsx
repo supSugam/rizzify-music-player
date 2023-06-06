@@ -20,9 +20,10 @@ const App = () => {
 			<Sidebar />
 			<div className="flex-1 flex flex-col">
 				{/* <Searchbar /> */}
-
-				<div className="px-6 h-[calc(100vh-72px)] overflow-x-hidden overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
-					<div className="flex-1 h-fit pb-40">
+				{/* h-[calc(100vh-72px)] */}
+				<div className="flex px-6 h-screen overflow-x-hidden overflow-y-scroll hide-scrollbar xl:flex-col  flex-col-reverse">
+				{/* xl:flex-row */}
+					<div className="flex-1 h-fit pb-14">
 						<Routes>
 							<Route path="/" element={<Discover />} />
 							<Route path="/top-artists" element={<TopArtists />} />
@@ -33,7 +34,7 @@ const App = () => {
 							<Route path="/search/:searchTerm" element={<Search />} />
 						</Routes>
 					</div>
-					<div className="xl:sticky relative top-0 h-fit">
+					<div className="relative min-h-max flex w-full">
 						<TopPlay />
 					</div>
 				</div>

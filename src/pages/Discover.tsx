@@ -26,6 +26,7 @@ const Discover: React.FC = () => {
 			genreContainer.current.classList.toggle('genre-dropdown-inactive');
 		}
 	};
+	const data = testData.slice(0,5)
 
 	// const fetchGenre = useCallback((): string => {
 	// 	console.log(genre);
@@ -55,22 +56,20 @@ const Discover: React.FC = () => {
 					<ul className="bg-gray-950 bg-opacity-60 rounded-lg genre-list z-10">
 						{
 							genres.map((genre) => (
-								<Tilt glarePosition="all" glareEnable={true} key={genre.value}>
-								<li /*>onClick={() => setGenre(genre.value)}*/ className={`bg-gray-950 p-2 rounded-2xl pl-3 border-white border-2 border-opacity-10 bg-opacity-70 genre-item cursor-pointer hover:border-opacity-20 hover:bg-opacity-40 select-none active:bg-black active:border-opacity-70 ${
+								<li /*>onClick={() => setGenre(genre.value)}*/ key={genre.value} className={`bg-gray-950 p-2 rounded-2xl pl-3 border-white border-2 border-opacity-10 bg-opacity-70 genre-item cursor-pointer hover:border-opacity-20 hover:bg-opacity-40 select-none active:bg-black active:border-opacity-70 ${
 									genre.value === '' ? 'bg-primary-gradient border-opacity-30' : ''
 								}`}>{genre.title}<span>{genre.emoji}</span>
 								</li>
-								</Tilt>
 							))
 						}
 						</ul>
 
 				</div>
 			</div>
-			<div className="flex w-96 flex-nowrap overflow-x-scroll justify-start gap-10 overflow-y-hidden sm:w-full sm:flex-wrap">
+			<div className="flex w-96 flex-nowrap overflow-x-scroll md:overflow-hidden justify-start gap-x-6 gap-y-12 overflow-y-hidden sm:w-full sm:flex-wrap">
 
 				{
-					testData.map((song,i) => (
+					data.map((song,i) => (
 						<SongCard key={song.key} isPlaying={isPlaying} activeSong={activeSong} song={song} data={testData} i={i} />
 						))
 					}

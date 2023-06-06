@@ -241,4 +241,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 
-
+.shaped--border__radius{
+    border-radius: 30% 70% 70% 30% / 80% 29% 71% 70%;
+    transition: all 0.2s ease-out;
+}

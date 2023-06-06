@@ -155,7 +155,7 @@ const Sidebar:React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <>
-    <div className="hidden md:flex flex-col w-[15rem] py-8 px-6 bg-darkblue backdrop-blur-md animate-slideleft">
+    <div className="hidden md:flex flex-col w-[14rem] py-8 px-6 bg-darkblue backdrop-blur-md animate-slideleft">
       <Logo forMobile={false}/>
       <NavLinks forMobile={false} forMobileSidebar={false}/>
     </div>
