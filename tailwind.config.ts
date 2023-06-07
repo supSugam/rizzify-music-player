@@ -12,7 +12,10 @@ module.exports = {
 			backgroundImage: {
 				// "primary-gradient": "linear-gradient(30deg,rgba(55, 48, 163, 1)0%,rgba(132, 94, 247, 1) 100%)",
 				"primary-gradient": "linear-gradient(0deg, rgba(14,25,42,1) 0%, rgba(46,16,101,1) 100%)",
-				"dark-gradient": "linear-gradient(0deg, rgba(14,25,42,1) 0%, rgba(4,7,13,1) 100%)",
+				// "dark-gradient": "linear-gradient(0deg, rgba(14,25,42,1) 0%, rgba(4,7,13,1) 100%)",
+				"dark-linear": "radial-gradient(circle, rgba(38,21,94,1) 0%, rgba(8,6,37,1) 53%, rgba(11,10,18,1) 100%)",
+				"dark-gradient": "linear-gradient(0deg, rgba(38,21,94,1) 0%, rgba(8,6,37,1) 53%, rgba(11,10,18,1) 100%)",
+				"fade-gradient":"linear-gradient(90deg, rgba(8,6,37,1) 0%, rgba(8,6,37,0.7478641114648985) 100%)"
 			},
 			animation: {
 				slideup: "slideup 1s ease-in-out",
@@ -25,6 +28,7 @@ module.exports = {
 				musicwavesLg: "musicwavesLg 1.2s linear infinite",
 				musicwavesPh: "musicwavesPh 1.2s linear infinite",
 				textreveal: "textreveal 8s linear infinite",
+				borderRadius: "borderRadius 2s linear infinite",
 			},
 			keyframes: {
 				slowfade: {
@@ -81,6 +85,20 @@ module.exports = {
 					},
 					"100%": {
 						transform: "translateX(-50%)",
+					}
+				},
+				borderRadius:{
+					"0%": {
+					borderRadius: "57% 42% 40% 100% / 50% 50% 50% 50%"
+					},
+					"25%": {
+						borderRadius: "40% 57% 100% 42% / 50% 50% 50% 50%",
+					},
+					"50%": {
+						borderRadius: "100% 40% 42% 57% / 50% 50% 50% 50%",
+					},
+					"75%": {
+						borderRadius: "42% 100% 57% 40% / 50% 50% 50% 50%",
 					}
 				}
 			},

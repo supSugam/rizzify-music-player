@@ -22,11 +22,11 @@ const SongDetails:React.FC<SongDetailsProps> = () => {
   return (
     <div className='flex flex-col '>
 
-        <DetailsHeader artistData={""} artistId={0} songData={songData}/>
+        <DetailsHeader activeSong={activeSong} isPlaying={isPlaying} artistData={undefined} artistId={undefined} songData={songData}/>
         <div className='my-8 z-10'>
-        <div className='bg-[#111111] p-8 gap-6 rounded-2xl w-1/2 h-[30rem] overflow-y-scroll overflow-x-hidden flex flex-col hide-scrollbar'>
+        <div className='bg-dark-linear p-8 gap-6 rounded-2xl w-full md:w-1/2 h-[28rem] flex flex-col '>
         <h2 className='text-3xl font-bold scroll-smooth'>Lyrics</h2>
-        <div className=''>
+        <div className='overflow-y-auto overflow-x-hidden hide-scrollbar'>
 
             {
                 songData?.sections[1].type === 'LYRICS' ? (

@@ -42,6 +42,12 @@ const playerSlice = createSlice({
       state.currentIndex = action.payload.i;
       state.isActive = true;
     },
+    setSingleActiveSong: (state, action) => {
+      state.activeSong = action.payload.song;
+      state.currentSongs = [action.payload.song];
+      state.currentIndex = action.payload.i;
+      state.isActive = true;
+    },
 
     nextSong: (state, action) => {
       if (state.currentSongs[action.payload]?.track) {
@@ -81,6 +87,7 @@ export const {
   prevSong,
   playPause,
   selectGenreListId,
+  setSingleActiveSong
 } = playerSlice.actions;
 
 export default playerSlice.reducer;
