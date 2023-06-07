@@ -5,6 +5,7 @@ import {Song} from '../redux/services/types'
 // import {SongBar} from '../components'
 
 import PlayPause from './PlayPause'
+import { Link } from 'react-router-dom';
 interface SongBarProps {
   song:any,
   handlePauseClick?:()=>void,
@@ -16,6 +17,7 @@ interface SongBarProps {
 
 const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,isPlaying,activeSong,i}) => {
   return(
+    <Link to={`/songs/${song.key}`} className='w-full'>
     <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
     <div className="flex w-full h-[5.6rem] items-center justify-between cursor-pointer gap-8 py-3 px-2 border-b-2 border-gray-200 border-opacity-5">
       <div className="flex items-center gap-6">
@@ -25,13 +27,14 @@ const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,i
         </div>
 
       </div>
-      <div className='flex flex-col flex-1 max-w-[40%] gap-2 sm:max-w-none'>
+      <div className='flex flex-col flex-1 max-w-[70%] gap-2'>
       <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>
       <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p>
       </div>
-        <PlayPause key={i} handlePause={()=>handlePauseClick} handlePlay={()=>handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} song={song} />
+        <PlayPause key={i} handlePause={handlePauseClick} handlePlay={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} song={song} />
     </div>
     </Tilt>
+    </Link>
   )
 }
 
@@ -40,12 +43,12 @@ interface RelatedSongsProps {
   activeSong:any,
   isPlaying:boolean;
   handlePauseClick:()=>void,
-  handlePlayClick:()=>void
+  handlePlayClick:()=>void,
 }
 const RelatedSongs:React.FC<RelatedSongsProps> = ({relatedSongs,activeSong,isPlaying,handlePauseClick, handlePlayClick}) => {
   return (
     <div className='w-full md:w-1/2 h-full flex flex-col'>
-      <div className="flex h-28 bg-gradient-to-r from-transparent to-[#080625] rounded-l-xl">
+      <div className="flex h-28 bg-gradient-to-l px-8 from-transparent to-[#080625] rounded-l-xl">
           <h1 className='text-3xl font-bold text-left flex items-center '>
           Related Songs You Might Like
         </h1>
