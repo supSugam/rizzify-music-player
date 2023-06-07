@@ -13,8 +13,6 @@ interface DetailsHeaderProps {
 }
 
 const DetailsHeader:React.FC<DetailsHeaderProps> = ({artistId,songData,artistData,isPlaying,activeSong}) => {
-  console.log(songData);
-
   const dispatch = useDispatch();
   const song = songData;
   const handlePlayClick = ():void => {
@@ -25,7 +23,7 @@ const DetailsHeader:React.FC<DetailsHeaderProps> = ({artistId,songData,artistDat
   const handlePauseClick = ():void => {
     dispatch(playPause(false));
   };
-  const artist = artistData?.artists[artistId]?.attributes;
+  const artist = artistData?.data[0].attributes;
   return (
     <div className='w-full flex flex-col details--header__wrapper'>
       <div className='relative flex items-center justify-between w-full h-40 bg-gradient-to-l from-transparent to-[#080625] rounded-l-xl'>
@@ -46,11 +44,11 @@ const DetailsHeader:React.FC<DetailsHeaderProps> = ({artistId,songData,artistDat
           </div>
           <div className='text-base flex-grow flex justify-end'>
           {
-               (isPlaying && activeSong?.key === songData.key) ? (
+               !artistId ? ((isPlaying && activeSong?.key === songData.key) ? (
                 <AiFillPauseCircle size={70} onClick={handlePauseClick} className='z-10 text-white/80 cursor-pointer hover:scale-110 active:scale-125 animate-hoverscale transition-transform animate-pulse delay-200' />
               ) : (
                 <AiFillPlayCircle size={70} onClick={handlePlayClick} className='z-10 text-white/80 cursor-pointer hover:scale-110 active:scale-125 animate-hoverscale transition-transform' />
-              )
+              )):''
           }
           </div>
 

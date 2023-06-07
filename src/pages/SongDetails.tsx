@@ -53,7 +53,7 @@ const SongDetails:React.FC<SongDetailsProps> = () => {
             </div>
         </div>
         </div>
-        <RelatedSongs handlePlayClick={handlePlayClick} handlePauseClick={handlePauseClick}  relatedSongs={songRelatedData} activeSong={activeSong} isPlaying={isPlaying}/>
+        <RelatedSongs forArtistDetails={false} handlePlayClick={handlePlayClick} handlePauseClick={handlePauseClick}  relatedSongs={songRelatedData} activeSong={activeSong} isPlaying={isPlaying}/>
     </div>
   )
 }
