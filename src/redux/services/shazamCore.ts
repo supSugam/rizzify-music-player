@@ -21,7 +21,10 @@ export const shazamApi = createApi({
         getSongDetails: builder.query({
             query:({songid})=>`/tracks/details?track_id=${songid}`,
         }),
+        getSongRelated: builder.query({
+            query:({songid})=>`/tracks/related?track_id=${songid}`,
+        }),
     }),
   });
 
-export const {useGetTopChartsQuery, useGetSongDetailsQuery} = shazamApi;
+export const {useGetTopChartsQuery, useGetSongDetailsQuery, useGetSongRelatedQuery} = shazamApi;

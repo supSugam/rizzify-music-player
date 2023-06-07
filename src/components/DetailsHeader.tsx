@@ -27,7 +27,7 @@ const DetailsHeader:React.FC<DetailsHeaderProps> = ({artistId,songData,artistDat
   };
   const artist = artistData?.artists[artistId]?.attributes;
   return (
-    <div className='w-full md:w-1/2 flex flex-col details--header__wrapper'>
+    <div className='w-full flex flex-col details--header__wrapper'>
       <div className='relative flex items-center justify-between w-full h-28 bg-gradient-to-l from-transparent to-[#080625] rounded-l-xl'>
         <div className='absolute inset-0 flex items-center px-6 gap-5'>
           <img alt='Artist Profile' src={artistId? artist.artwork?.url.replace('{w}','500').replace('{h}','500'): songData?.images.coverart} className={`h-[80%] w-auto shaped--border__radius-2 border-2 border-[#fff] border-opacity-80 shadow-2xl shadow-[var(--primary-violet)] ${isPlaying && activeSong?.key === songData.key && 'animate-borderRadius'}`}/>
