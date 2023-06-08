@@ -13,17 +13,18 @@ import {
 } from "./pages";
 
 const App = () => {
-	const { activeSong,isPlaying } = useSelector((state:any) => state.player);
+	const { activeSong, isPlaying, isModalOpen } = useSelector((state: any) => state.player);
 
 	return (
-		<div className="relative block sm:flex h-screen bg-primary-gradient">
+		<div className="relative block h-screen bg-primary-gradient sm:flex">
+			<div id="overlay" className={`w-screen h-screen z-40 backdrop-blur-sm absolute top-0 left-0 ${isModalOpen ? 'block':'hidden'}`}/>
 			<Sidebar />
-			<div className="flex-1 flex flex-col">
-				{/* <Searchbar /> */}
+			<div className="flex flex-1 flex-col">
+				<Searchbar />
 				{/* h-[calc(100vh-72px)] */}
-				<div className="flex px-6 h-screen overflow-x-hidden overflow-y-scroll hide-scrollbar xl:flex-col  flex-col-reverse">
-				{/* xl:flex-row */}
-					<div className="flex-1 h-fit pb-14">
+				<div className="hide-scrollbar flex h-screen flex-col md:flex-col-reverse overflow-x-hidden overflow-y-scroll px-6 md:mx-10  xl:flex-col">
+					{/* xl:flex-row */}
+					<div className="h-fit flex-1 pb-14">
 						<Routes>
 							<Route path="/" element={<Discover />} />
 							<Route path="/top-artists" element={<TopArtists />} />
@@ -34,7 +35,8 @@ const App = () => {
 							<Route path="/search/:searchTerm" element={<Search />} />
 						</Routes>
 					</div>
-					<div className="relative min-h-max flex w-full">
+					{/* <div className="relative flex min-h-max w-full"> */}
+					<div className="">
 						<TopPlay />
 					</div>
 				</div>

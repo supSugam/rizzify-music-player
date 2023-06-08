@@ -74,7 +74,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
     dispatch(playPause(false))
   }
   return (
-    <div ref={divRef} className="flex flex-col gap-14 w-full lg:flex-row lg:mr-4 mt-24 sm:mt-0">
+    <div ref={divRef} className="flex flex-col gap-14 w-full lg:flex-row lg:mr-4 sm:mt-0">
       {/* Top Songs */}
       <div className="w-full flex flex-col lg:w-1/2">
         <div className="flex w-full justify-between items-end">

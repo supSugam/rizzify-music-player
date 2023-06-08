@@ -54,12 +54,12 @@ const SongCard:React.FC<SongCardProps> = ({song,data,isPlaying,activeSong,i}) =>
       </div>
       <div className='flex flex-col mt-3 overflow-hidden pr-2'>
         <h3 ref={textRef} className={`text-lg font-semibold w-max ${textWidth>192?'animate-textreveal':'overflow-hidden whitespace-nowrap'}`}>
-        <Link to={`songs/${song?.key}`}>
+        <Link to={`/songs/${song?.key}`}>
           
           {song.title}
           </Link>
           </h3>
-        <p className='text-sm text-white/80 truncate'>
+        <p className='text-sm text-white/80 truncate font-semibold'>
           <Link to={song.artists? `artists/${song.artists[0].adamid}`:'/top-artists'}>
           {song.subtitle}
           </Link>

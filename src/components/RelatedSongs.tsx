@@ -55,13 +55,10 @@ const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,i
           </div>
   
         </div>
-        <div className='flex flex-col flex-1 max-w-[50%] md:max-w-[70%] gap-2'>
+        <div className='flex flex-col flex-1 max-w-[70%] md:max-w-[80%] gap-2'>
         <h3 className="text-base font-semibold text-left truncate">{song.attributes.name}</h3>
         <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.attributes.artistName}</p>
         </div>
-        <button disabled={true}>
-          <PlayPause key={i} handlePause={handlePauseClick} handlePlay={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} song={song} />
-          </button>
       </div>
       </Tilt>
       </Link>
@@ -80,34 +77,6 @@ interface RelatedSongsProps {
 }
 
 const RelatedSongs:React.FC<RelatedSongsProps> = ({relatedSongs,activeSong,isPlaying,handlePauseClick, handlePlayClick, forArtistDetails}) => {
-
-  // Skipped this part to avoid UNNECESSARY API CALLS
-
-  // const dispatch = useDispatch();
-
-  // // Continue from here
-  // const handleTopPlayClick = (songKey:number,i:number):void => {
-  //     // const {data:songData,isFetching:isFetchingSongDetails, isSuccess} = useGetSongDetailsQuery({songKey})
-  //     // if(isSuccess){
-  //     //   dispatch(setSingleActiveSong({songData,i}));
-  //     //   dispatch(playPause(true));
-  //     // }
-  //     console.log(songKey);
-  //     setSongId((prevSongId)=>{
-  //       console.log(prevSongId);
-  //       return songKey.toString()
-  //     })
-  //   };
-
-  // const [songId,setSongId] = React.useState<string>('');
-
-  // useEffect(()=>{
-  //   console.log(songId);
-  // },[songId])
-  
-  //   const handleTopPauseClick = ():void => {
-  //     dispatch(playPause(false));
-  //   };
   return (
     <div className='w-full md:w-1/2 h-full flex flex-col mb-8 md:md-2'>
       <div className="flex h-28 bg-gradient-to-l px-8 from-transparent to-[#080625] rounded-l-xl">

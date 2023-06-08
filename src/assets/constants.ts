@@ -27,7 +27,6 @@ export const genres: Genre[] = [
 	{ title: "House", value: "HOUSE", emoji: "🏠" },
 	{ title: "Electronic", value: "ELECTRONIC", emoji: "🎧" },
 	{ title: "Alternative", value: "ALTERNATIVE", emoji: "🎸" },
-	{ title: "For You", value: "", emoji: "❤️" },
   ];
   
 export const links: Link[] = [

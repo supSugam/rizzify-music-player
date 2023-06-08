@@ -1,18 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {FaSearch} from 'react-icons/fa'
+import {IoSearchOutline} from 'react-icons/io5'
 
-const Searchbar:React.FC = () => {
+const SearchBar:React.FC = () => {
   return (
-    <form autoComplete='off' className='p-2 text-[varchar(--primary-grey)] focus-within:text-gray-500'>
+    <form autoComplete='off' className='p-2 m-10 text-[varchar(--primary-grey)] text-gray-400 focus-within:text-white transition-all duration-100 ease-in-out group'>
       <label htmlFor='search' className='sr-only'>Search</label>
-      <div className='flex items-center gap-2'>
-        <FaSearch className='w-5 h-5 ml-4' />
-        <input autoComplete='off' id='search-field' type='text' name='search' placeholder='Search for Songs' className='w-full bg-transparent focus:outline-none' />
+      <div className='flex items-center gap-4'>
+        <IoSearchOutline size={40}/>
+        <input autoComplete='off' id='search-field' type='text' name='search' placeholder='Search for Songs' className='flex-1 bg-transparent py-3 focus:outline-none placeholder-gray-400 text-2xl text-white font-semibold outline-none border-b-2 border-gray-400 border-opacity-10 tracking-wide group-focus-within:border-opacity-60 transition-all duration-150 ease-in ' />
       </div>
     </form>
   )
 }
 
-export default Searchbar
+export default SearchBar

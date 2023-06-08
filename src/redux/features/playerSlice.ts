@@ -12,7 +12,7 @@ interface PlayerState {
   isPlaying: boolean;
   activeSong: Song;
   genreListId: string;
-
+  isModalOpen: boolean;
 }
 
 const initialState: PlayerState = {
@@ -22,6 +22,7 @@ const initialState: PlayerState = {
   isPlaying: false,
   activeSong: {},
   genreListId: '',
+  isModalOpen: false,
 };
 // else if(){
 
@@ -81,6 +82,9 @@ const playerSlice = createSlice({
     selectGenreListId: (state, action) => {
       state.genreListId = action.payload;
     },
+    toggleModal: (state, action) => {
+      state.isModalOpen = action.payload;
+    },
   },
 });
 
@@ -90,7 +94,8 @@ export const {
   prevSong,
   playPause,
   selectGenreListId,
-  setSingleActiveSong
+  setSingleActiveSong,
+  toggleModal,
 } = playerSlice.actions;
 
 export default playerSlice.reducer;
