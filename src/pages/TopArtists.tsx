@@ -21,6 +21,7 @@ const TopArtists: React.FC = () => {
 			<div className="flex w-full h-auto justify-around gap-x-8 gap-y-24 md:gap-x-14 md:gap-y-24 flex-wrap">
 				{songsDataByCountry.map((track, i) => (
 					<ArtistCard
+					forSearch={false}
 					key={track.key}
 					track={track}
 					i={i}
