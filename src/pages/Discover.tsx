@@ -10,8 +10,14 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { toggleModal,selectGenreListId } from '../redux/features/playerSlice';
 import { useGetSongsByGenreQuery } from '../redux/services/shazamCore';
 
-
-// import SongCard from "../components/SongCard";
+const GenreSongsComponent:React.FC<{genreListId:any,isPlaying:boolean,activeSong:any}> = ({ genreListId,isPlaying,activeSong }) => {
+	const { data: genreData, error: genreError, isFetching } = useGetSongsByGenreQuery(genreListId);
+	return (
+	genreData?.map((song:any,i:number) => (
+		<SongCard key={song.key} isPlaying={isPlaying} activeSong={activeSong} song={song} data={genreData} i={i} />
+		))
+	);
+  };
 
 const Discover: React.FC = () => {
 	
@@ -27,29 +33,27 @@ const Discover: React.FC = () => {
 		dispatch(toggleModal(!isModalOpen));
 	};
 	
-	const [activeGenre, setActiveGenre] = useState<string>('POP');
+	const [activeGenre, setActiveGenre] = useState<string>("POP");
 	const [activeGenreText, setActiveGenreText] = useState<string>('Pop🎶');
-	// const {data:genreData,error:genreError,isFetching}=useGetSongsByGenreQuery("POP");
 
-	const fetchGenre = useCallback((): void => {
+	const fetchGenre = useCallback(() => {
 		dispatch(selectGenreListId(activeGenre));
-		console.log(activeGenre);
-		console.log(genreListId);
-	}, [activeGenre]);
-
-	const handleGenreChange = (genre:string,e) => {
+		}, [activeGenre, dispatch]);
+		
+		const handleGenreChange = (genre: string, e) => {
 		handleDropdownBtn();
 		setActiveGenre(genre);
-		if(!e.target.classList.contains('genre--item')){
-			setActiveGenreText(e.target.parentElement.textContent)
-		} else{
-		setActiveGenreText(e?.target?.textContent);
+		if (!e.target.classList.contains('genre--item')) {
+			setActiveGenreText(e.target.parentElement.textContent);
+		} else {
+			setActiveGenreText(e?.target?.textContent);
 		}
-	}
-	useEffect(() => {
+		};
+		
+		useEffect(() => {
 		fetchGenre();
-	},[activeGenre])
-	
+		}, [fetchGenre, genreListId]);
+		
 	return (
 		<div className="flex flex-col">
 			{/* {isLoading ? (<MiniError />): */}
@@ -75,12 +79,9 @@ const Discover: React.FC = () => {
 				</div>
 			</div>
 			<div className="flex w-96 flex-nowrap overflow-x-scroll md:overflow-hidden justify-start gap-x-8 gap-y-12 overflow-y-hidden sm:w-full sm:flex-wrap md:justify-around hide-scrollbar">
-
 				{
-					// genreData.map((song,i) => (
-					// 	<SongCard key={song.key} isPlaying={isPlaying} activeSong={activeSong} song={song} data={testData} i={i} />
-					// 	))
-					}
+					// genreListId !=="" && <GenreSongsComponent genreListId={genreListId} isPlaying={isPlaying} activeSong={activeSong}/>
+				}
 			</div>
 		</div>
 	);
