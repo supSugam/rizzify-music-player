@@ -7,6 +7,7 @@ import Seekbar from './Seekbar';
 import Track from './Track';
 import VolumeBar from './VolumeBar';
 import { Song } from '../../redux/services/types';
+import {Link} from 'react-router-dom'
 
 // 
 import{SlVolumeOff,SlVolume2} from 'react-icons/sl';
@@ -192,9 +193,19 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
             <HiShare size={25} color="#FFF"/>
           </button>
         </div>
-          <div className='w-full h-56 bg-[#191919] rounded-xl p-6 flex flex-col gap-6 overflow-scroll'>
-            <h3 className='font-semibold text-3xl'>Lyrics</h3>
-            <p className=' text-2xl font-semibold text-[var(--primary-grey)]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia, omnis porro. Laboriosam nemo distinctio perferendis mollitia exercitationem tempora animi. Blanditiis exercitationem laboriosam asperiores cum laborum sequi rem, natus rerum in..</p>
+          <div onClick={(prevPlayerExpanded)=>setPlayerExpanded(!prevPlayerExpanded)} className='w-full h-24 bg-[#191919] rounded-xl p-6 flex items-center justify-center'>
+            <Link to={`/songs/${activeSong?.key}`}>
+                <h3 className='font-semibold underline text-2xl'>View Song Details and Lyrics</h3>
+            </Link>
+            <div>
+              {
+                // activeSong && isPlaying && (activeSong?.sections[1].type === 'LYRICS' ? (
+                //   activeSong?.sections[1].text.map((line:string,i:number)=>() => {
+                //   <p key={i} className='text-2xl font-semibold text-[var(--primary-grey)]'>{line}</p>
+                // })
+                // ): (<p className=''>No Lyrics found.</p>))
+              }
+            </div>
           </div>
         </div>
     </div>

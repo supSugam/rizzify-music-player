@@ -20,9 +20,18 @@ const ArtistDetails:React.FC<ArtistDetailsProps> = () => {
     const {id:artistId} = useParams<{id:string}>();
 
     // const {data:artistData,isFetching:isFetchingArtistDetails} = useGetArtistDetailsQuery(artistId);
-    const artistData = artistDetailsTestData;
+    const artistData = artistDetailsTestDataSOLO;
     const artistAttributes = artistData?.data[0].attributes;
     const topSongs =Object.values(artistData?.data[0].views['top-songs'].data).slice(0,8);
+
+    const handlePlayClick = (song:any,data:any[],i:number):void => {
+      dispatch(setActiveSong({song,data,i}));
+      dispatch(playPause(true));
+    };
+  
+    const handlePauseClick = ():void => {
+      dispatch(playPause(false));
+    };
   return (
     <div className='flex flex-col md:flex-row gap-8 md:mt-16'>
         <div className='w-full md:w-1/2'>
@@ -34,11 +43,13 @@ const ArtistDetails:React.FC<ArtistDetailsProps> = () => {
 
              {
               artistAttributes.hasOwnProperty('artistBio') ?(
-                <>
+                <div className='flex flex-col w-full h-full gap-6'>
+                <div>
                 <p className='text-xl font-semibold'>Debut at: {artistAttributes.bornOrFormed}</p>
                 <p className='text-xl font-semibold'>Country of Origin: {artistAttributes.origin}</p>
-                <div className='text-2xl' dangerouslySetInnerHTML={{ __html: `${artistAttributes?.artistBio}` }}></div>
-                </>
+                </div>
+                <div className='text-2xl font-semibold text-[var(--primary-grey)]' dangerouslySetInnerHTML={{ __html: `${artistAttributes?.artistBio}` }}></div>
+                </div>
                 
               ): (
                 <div className='text-3xl w-full h-full flex flex-col gap-6 items-center justify-center'>
@@ -52,7 +63,7 @@ const ArtistDetails:React.FC<ArtistDetailsProps> = () => {
         </div>
 
         </div>
-        <RelatedSongs forArtistDetails={true}  relatedSongs={topSongs} activeSong={activeSong} isPlaying={isPlaying}/>
+        <RelatedSongs forArtistDetails={true} handlePlayClick={handlePlayClick} handlePauseClick={handlePauseClick}  relatedSongs={topSongs} activeSong={activeSong} isPlaying={isPlaying}/>
     </div>
   )
 }

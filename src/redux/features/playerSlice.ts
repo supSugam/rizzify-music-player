@@ -23,6 +23,9 @@ const initialState: PlayerState = {
   activeSong: {},
   genreListId: '',
 };
+// else if(){
+
+// }
 
 const playerSlice = createSlice({
   name: 'player',
