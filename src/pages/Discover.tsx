@@ -58,7 +58,7 @@ const Discover: React.FC = () => {
 		<div className="flex flex-col">
 			{/* {isLoading ? (<MiniError />): */}
 			<div className="m-1 mb-12 flex w-full items-center sm:flex-row justify-between ">
-				<h2 className="text-center text-3xl font-bold sm:text-left">Find your taste</h2>
+				<h2 className="text-center text-[1.6rem] md:text-3xl font-bold sm:text-left">Find your taste</h2>
 				<div ref={genreContainer} className="relative md:m-4 flex items-center genre-dropdown-inactive">
 
 					<button onClick={handleDropdownBtn}  className={`flex justify-between gap-2 items-center btn rounded-md bg-[black] bg-opacity-40 p-2 text-xl border-none select-none md:w-48 ${isModalOpen && 'z-50'}`}>

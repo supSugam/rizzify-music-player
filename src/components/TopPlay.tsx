@@ -33,8 +33,8 @@ const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,han
   return (
     <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
 
-    <div className="flex w-full h-[5.6rem] items-center justify-between cursor-pointer gap-8 py-3 px-2 border-b-2 border-gray-200 border-opacity-5">
-      <div className="flex items-center gap-6">
+    <div className="flex w-full h-[5.6rem] items-center justify-between cursor-pointer md:gap-8 py-3 px-2 border-b-2 border-gray-200 border-opacity-5">
+      <div className="flex items-center gap-4 md:gap-6">
         <p className="text-[var(--primary-grey)] text-sm font-bold">{i+1}</p>
         <div className='w-16 h-auto'>
           <img src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className='rounded-md' />
@@ -42,10 +42,13 @@ const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,han
 
       </div>
       <div className='flex flex-col flex-1 max-w-[40%] gap-2 sm:max-w-none'>
-      <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>
-      <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p>
+        <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>
+        <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p>
       </div>
+      <div className='min-[10%]'>
         <PlayPause key={i} handlePause={handlePauseClick} handlePlay={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} song={song} />
+      </div>
+
     </div>
 
     </Tilt>
@@ -90,7 +93,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
         </div>
       </div>
       {/* Top Artists */}
-      <div className="w-full flex flex-col lg:w-1/2 mb-8">
+      <div className="w-full min-h-[60vh] md:min-h-full flex flex-col lg:w-1/2 mb-8">
       <div className="flex w-full justify-between items-end">
           <h2 className='text-center text-2xl font-bold sm:text-left'>Top Artists - {new Date().toLocaleString('default', { month: 'long' })}</h2>
           <Link to='/top-artists'>
