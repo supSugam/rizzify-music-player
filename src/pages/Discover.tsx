@@ -22,7 +22,7 @@ const GenreSongsComponent:React.FC<{genreListId:any,isPlaying:boolean,activeSong
 const Discover: React.FC = () => {
 	
 	const dispatch = useDispatch();
-	const {activeSong,isPlaying,isModalOpen,genreListId} = useSelector((state:any) => state.player);
+	const {activeSong,isPlaying,isModalOpen,genreListId,isInfoModalOpen} = useSelector((state:any) => state.player);
 	const genreContainer = useRef<HTMLDivElement>(null);
 
 	const handleDropdownBtn = (): void => {
@@ -61,13 +61,13 @@ const Discover: React.FC = () => {
 				<h2 className="text-center text-[1.6rem] md:text-3xl font-bold sm:text-left">Find your taste</h2>
 				<div ref={genreContainer} className="relative md:m-4 flex items-center genre-dropdown-inactive">
 
-					<button onClick={handleDropdownBtn}  className={`flex justify-between gap-2 items-center btn rounded-md bg-[black] bg-opacity-40 p-2 text-xl border-none select-none md:w-48 ${isModalOpen && 'z-50'}`}>
+					<button onClick={handleDropdownBtn}  className={`flex justify-between gap-2 items-center btn rounded-md bg-[black] bg-opacity-40 p-2 text-xl border-none select-none md:w-48 ${isModalOpen && !isInfoModalOpen && 'z-50'}`}>
 						<p className='hidden md:block'>{activeGenreText}</p>
 						<p className='block md:hidden'>{activeGenreText.slice(-2)}</p>
 						<FiChevronDown/>
 					</button>
 
-					<ul className={`bg-gray-950 bg-opacity-80 rounded-lg genre-list ${isModalOpen && 'z-50'}`}>
+					<ul className={`bg-gray-950 bg-opacity-80 rounded-lg genre-list ${isModalOpen && !isInfoModalOpen && 'z-50'}`}>
 						{
 							genres.map((genre) => (
 								<li onClick={(e) => handleGenreChange(genre.value,e)} key={genre.value} className='bg-gray-950 p-2 rounded-2xl pl-3 border-white border-2 border-opacity-10 bg-opacity-70 genre-item cursor-pointer hover:border-opacity-20 hover:bg-opacity-40 select-none active:bg-black active:border-opacity-70 genre--item'>{genre.title}<span>{genre.emoji}</span>

@@ -40,7 +40,9 @@ const LikedSongs:React.FC = () => {
     const {likedSongs} = useSelector((state:any) => state.player);
   return (
     <div className='w-full flex flex-col gap-8'>
+      <div className='flex items-center px-6 bg-gradient-to-l h-20 from-transparent to-[#080625]'>
         <h2 className='text-white text-2xl font-bold'>Your Liked Songs</h2>
+      </div>
         <div className='flex w-full flex-col'>
         {
             likedSongs.length === 0 ? (

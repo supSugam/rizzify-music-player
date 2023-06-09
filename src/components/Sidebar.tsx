@@ -1,12 +1,17 @@
 import React,{useEffect, useState} from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink,Link } from 'react-router-dom'
 import Logo from './Logo'
 import {links} from '../assets/constants'
 import { ReactSVG } from 'react-svg'
 import Tilt from "react-parallax-tilt"
+import { useDispatch } from 'react-redux'
+import { toggleInfoModal, toggleModal } from '../redux/features/playerSlice'
 
 import {AiOutlineClose,AiOutlineMenu,AiOutlinePlus,AiFillHeart} from 'react-icons/ai'
 import {IoLibrary} from 'react-icons/io5'
+import Sky from '../assets/skyy.jpg'
+import zZz from '../assets/zZz.jpeg'
 
 // interface NavBarIconProps{
 //   icons:{
@@ -29,6 +34,15 @@ interface NavLinksProps{
   handleClick?:()=>void;
 }
 const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClick}) => {
+
+  const {likedSongs, isModalOpen,isInfoModalOpen } = useSelector((state: any) => state.player);
+
+	const dispatch = useDispatch();
+
+	const handleInfoModal = ():void => {
+		dispatch(toggleInfoModal(!isInfoModalOpen));
+		dispatch(toggleModal(!isModalOpen));
+	};
   // For Differnt Icons (Depcrecated for now)
   // const navLinksRef = React.useRef<HTMLDivElement>(null);
   // const [activeLink, setActiveLink] = useState<HTMLAnchorElement|undefined>();
@@ -80,7 +94,10 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
         <div className='flex gap-4 items-center text-[var(--primary-grey)]'>
           <IoLibrary className=' text-[1.6rem]'/>
           <h3 className='text-[1.3rem] pt-[0.3rem] font-semibold'>Your Library</h3>
+          <button onClick={handleInfoModal}>
+
           <AiOutlinePlus className='ml-auto mt-auto text-[1.6rem]'/>
+          </button>
         </div>
         {/*  */}
         <div className='mt-5 flex flex-col gap-4  overflow-y-scroll hide-scrollbar'>
@@ -88,41 +105,49 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
             <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
               <AiFillHeart/>
             </div>
-            <div className='flex flex-col gap-1 text-sm font-semibold'>
+            <Link to={'/liked-songs'} className='flex flex-col gap-1 text-sm font-semibold'>
               <h3>Liked Songs</h3>
-              <p className='text-[var(--primary-grey)]'>Playlist • 315 Songs ♪</p>
-            </div>
+              {
+                likedSongs.length === 1 && <p className='text-[var(--primary-grey)]'>Playlist • 1 Song ♪</p>
+              }
+              {
+              likedSongs.length !== 1 &&<p className='text-[var(--primary-grey)]'>Playlist • {
+                likedSongs.length > 0 ? `${likedSongs.length} Song` : 'No Songs'
+                } ♪</p>
+              }
+
+            </Link>
           </Link>
 
-          <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
+          <div onClick={handleInfoModal} className='flex gap-5 items-center active:bg-opacity-20'>
             <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
-              <AiFillHeart/>
+            <img src={Sky} alt='Sky COTL' className='w-full h-full rounded-md'/>
             </div>
             <div className='flex flex-col gap-1 text-sm font-semibold'>
               <h3 className='truncate'>Sky: Children of the Light</h3>
               <p className='text-[var(--primary-grey)]'>Playlist • Ace Tails ♪</p>
             </div>
-          </NavLink>
+          </div>
 
-          <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
-            <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
-              <AiFillHeart/>
-            </div>
+          <div onClick={handleInfoModal} className='flex gap-5 items-center active:bg-opacity-20'>
+          <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
+          <span>🌦️</span>
+          </div>
             <div className='flex flex-col gap-1 text-sm font-semibold'>
-              <h3 className='truncate'>90s Pop</h3>
+              <h3 className='truncate'>Rain Sounds</h3>
               <p className='text-[var(--primary-grey)]'>Playlist • sugarr ♪</p>
             </div>
-          </NavLink>
+          </div>
 
-          <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
+          <div onClick={handleInfoModal} className='flex gap-5 items-center active:bg-opacity-20'>
             <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
-              <AiFillHeart/>
+              <img src={zZz} alt='Rain' className='w-full h-full rounded-md'/>
             </div>
             <div className='flex flex-col gap-1 text-sm font-semibold'>
-              <h3 className='truncate'>paint me as your villain</h3>
+              <h3 className='truncate'>zZz</h3>
               <p className='text-[var(--primary-grey)]'>Playlist • zyeraxu ♪</p>
             </div>
-          </NavLink>
+          </div>
         </div>
         </div>
       </>
@@ -152,6 +177,15 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
 
 const Sidebar:React.FC = () => {
 
+  const {likedSongs, isModalOpen,isInfoModalOpen } = useSelector((state: any) => state.player);
+
+	const dispatch = useDispatch();
+
+	const handleInfoModal = ():void => {
+		dispatch(toggleInfoModal(!isInfoModalOpen));
+		dispatch(toggleModal(!isModalOpen));
+	};
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <>
@@ -162,31 +196,67 @@ const Sidebar:React.FC = () => {
         <div className='flex gap-4 items-center text-[var(--primary-grey)]  ml-2'>
         <IoLibrary className=' text-[1.5rem]'/>
           <h3 className='text-[1.3rem] font-semibold'>Your Library</h3>
+          <button onClick={handleInfoModal}>
           <AiOutlinePlus className='ml-auto mt-auto text-[1.5rem]'/>
+          </button>
         </div>
         <div>
         <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
-        <Link to={"/"} className='flex gap-3 items-center active:bg-opacity-20 p-2'>
+        <Link to={"/liked-songs"} className='flex gap-3 items-center active:bg-opacity-20 p-2'>
             <div className='w-[3rem] h-[3rem] flex items-center justify-center rounded-md bg-primary-gradient'>
               <AiFillHeart/>
             </div>
             <div className='flex flex-col gap-1 text-sm font-semibold'>
+            <Link to={'/liked-songs'} className='flex flex-col gap-1 text-sm font-semibold'>
               <h3>Liked Songs</h3>
-              <p className='text-[var(--primary-grey)]'>Playlist • 315 Songs ♪</p>
+              {
+                likedSongs.length === 1 && <p className='text-[var(--primary-grey)]'>Playlist • 1 Song ♪</p>
+              }
+              {
+              likedSongs.length !== 1 &&<p className='text-[var(--primary-grey)]'>Playlist • {
+                likedSongs.length > 0 ? `${likedSongs.length} Song` : 'No Songs'
+                } ♪</p>
+              }
+
+            </Link>
             </div>
           </Link>
           </Tilt>
 
       <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
-        <Link to={"/"} className='flex gap-3 items-center active:bg-opacity-20 p-2'>
+        <div onClick={handleInfoModal} className='flex gap-3 items-center active:bg-opacity-20 p-2'>
             <div className='w-[3rem] h-[3rem] flex items-center justify-center rounded-md bg-primary-gradient'>
-              <AiFillHeart/>
+              <img src={Sky} alt='Sky COTL' className='w-full h-full rounded-md'/>
             </div>
             <div className='flex flex-col gap-1 text-sm font-semibold'>
-              <h3>Liked Songs</h3>
-              <p className='text-[var(--primary-grey)]'>Playlist • 315 Songs ♪</p>
+              <h3>Sky: COTL</h3>
+              <p className='text-[var(--primary-grey)]'>Playlist • Ace Tails ♪</p>
             </div>
-          </Link>
+          </div>
+          </Tilt>
+
+        <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
+        <div onClick={handleInfoModal} className='flex gap-3 items-center active:bg-opacity-20 p-2'>
+            <div className='w-[3rem] h-[3rem] flex items-center justify-center rounded-md bg-primary-gradient'>
+              <span>🌦️</span>
+            </div>
+            <div className='flex flex-col gap-1 text-sm font-semibold'>
+              <h3>Rain Sounds</h3>
+              <p className='text-[var(--primary-grey)]'>Playlist • sugarr ♪</p>
+            </div>
+          </div>
+          </Tilt>
+
+          <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
+        <div onClick={handleInfoModal} className='flex gap-3 items-center active:bg-opacity-20 p-2'>
+            <div className='w-[3rem] h-[3rem] flex items-center justify-center rounded-md bg-primary-gradient'>
+              <img src={zZz} alt='zZz' className='w-full h-full rounded-md'/>
+            </div>
+            <div className='flex flex-col gap-1 text-sm font-semibold'>
+              <h3>zZz</h3>
+              <p className='text-[var(--primary-grey)]'>Playlist • zyeraxu ♪</p>
+            </div>
+          </div>
           </Tilt>
           
         </div>

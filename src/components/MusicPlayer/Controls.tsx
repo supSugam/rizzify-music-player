@@ -25,9 +25,9 @@ const Controls:React.FC<ControlsProps> = ({ isPlaying, repeat, setRepeat, shuffl
 
     {currentSongs?.length && <MdSkipPrevious size={30} color="var(--primary-grey)" className="hidden sm:block cursor-pointer control--icons" onClick={handlePrevSong} />}
     {isPlaying ? (
-      <AiFillPauseCircle size={50} color="#FFF" onClick={handlePlayPause} className=" cursor-pointer" />
+      <AiFillPauseCircle size={50} color="#FFF" onClick={handlePlayPause} className="z-10 text-white/80 cursor-pointer hover:scale-110 active:scale-125 animate-hoverscale transition-transform animate-pulse delay-200" />
     ) : (
-      <AiFillPlayCircle size={50} color="#FFF" onClick={handlePlayPause} className=" cursor-pointer" />
+      <AiFillPlayCircle size={50} color="#FFF" onClick={handlePlayPause} className="z-10 text-white/80 cursor-pointer hover:scale-110 active:scale-125 animate-hoverscale transition-transform" />
     )}
     {currentSongs?.length && <MdSkipNext size={30} color="var(--primary-grey)" className="hidden sm:block cursor-pointer control--icons" onClick={handleNextSong} />}
     <div className={`loop--icon__wrapper relative ${repeat?'isOnLoop':''}`}>

@@ -17,6 +17,7 @@ interface PlayerState {
   isModalOpen: boolean;
   likedSongs: [];
   isLiked: boolean;
+  isInfoModalOpen: boolean;
 }
 
 const initialState: PlayerState = {
@@ -27,6 +28,7 @@ const initialState: PlayerState = {
   // activeSong: {},
   genreListId: '',
   isModalOpen: false,
+  isInfoModalOpen: false,
   isLiked: false,
   currentSongs: Cookies.get('currentSongs') !== undefined ? JSON.parse(Cookies.get('currentSongs')) :[],
   currentIndex: Cookies.get('currentIndex') !== undefined ? +Cookies.get('currentIndex'): 0,
@@ -133,6 +135,11 @@ const playerSlice = createSlice({
     toggleModal: (state, action) => {
       state.isModalOpen = action.payload;
     },
+    toggleInfoModal: (state, action) => {
+      state.isInfoModalOpen = action.payload;
+      state.isModalOpen = !action.payload.isModalOpen;
+    },
+
   },
 });
 
@@ -146,6 +153,8 @@ export const {
   toggleModal,
   setLikedSongs,
   likeUnlike,
+  toggleInfoModal
+
 } = playerSlice.actions;
 
 export default playerSlice.reducer;

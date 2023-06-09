@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextSong, prevSong, playPause,likeUnlike, setLikedSongs} from '../../redux/features/playerSlice';
+import { nextSong, prevSong, playPause,likeUnlike, setLikedSongs,toggleInfoModal,toggleModal} from '../../redux/features/playerSlice';
 import Controls from './Controls';
 import Player from './Player';
 import Seekbar from './Seekbar';
@@ -43,7 +43,7 @@ interface MusicPlayerProps {
 }
 
 const MusicPlayer:React.FC<MusicPlayerProps> = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying,isLiked,likedSongs } = useSelector((state:any) => state.player);
+  const { activeSong, currentSongs, currentIndex, isActive, isPlaying,isLiked,likedSongs,isModalOpen,isInfoModalOpen } = useSelector((state:any) => state.player);
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
@@ -52,6 +52,11 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
   const [shuffle, setShuffle] = useState(false);
   const [playerExpanded, setPlayerExpanded] = useState(false);
   const dispatch = useDispatch();
+
+	const handleInfoModal = ():void => {
+		dispatch(toggleInfoModal(!isInfoModalOpen));
+		dispatch(toggleModal(!isModalOpen));
+	};
 
   // useEffect(() => {
     
@@ -91,9 +96,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
     }
   };
 
-  const handlePlayerExpansion = (e:React.MouseEvent<HTMLDivElement>):void=>{
-    const clickedElement = e.target as HTMLElement;
-    if(clickedElement.classList.contains("mini--player"))
+  const handlePlayerExpansion = ():void=>{
     setPlayerExpanded(!playerExpanded);
   }
   const handleLikeSong = () => {
@@ -106,11 +109,12 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
       dispatch(setLikedSongs({activeSong}));
     }
   };
+
   return (
     <>
-  <div onClick={(e)=>handlePlayerExpansion(e)} className="absolute sm:h-28 h-20 bottom-[4.8rem] sm:bottom-0 left-0 right-0 flex animate-slideup smooth-transition bg-black bg-opacity-90 backdrop-blur-md w-full z-20">
+  <div className="absolute sm:h-28 h-20 bottom-[4.8rem] sm:bottom-0 left-0 right-0 flex animate-slideup smooth-transition bg-black bg-opacity-90 backdrop-blur-md w-full z-20">
     <div className="relative sm:px-12 px-6 w-full flex items-center justify-between mini--player">
-      <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
+      <Track handlePlayerExpansion={()=>handlePlayerExpansion()} isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
       <div className="sm:flex-1 flex flex-col items-center justify-center gap-2">
       <button onClick={handleLikeSong} className='absolute top-40% right-[21%] hover:scale-110 md:hidden'>
         {/* Add like animation here later  */}
@@ -160,10 +164,13 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
       <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(+event.target.value)} setVolume={setVolume} />
     </div>
   </div>
-      <div className={`absolute overflow-y-scroll flex-col top-0 left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] animate-slideup z-30 ${playerExpanded? 'flex':'hidden'}`}>
+      <div className={`absolute overflow-y-scroll flex-col left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] z-30 ${playerExpanded? 'flex animate-slideup top-0':'animate-slidedown'}`}>
         <div className='flex justify-between items-center sticky'>
+          <button onClick={handleInfoModal}>
           <SlOptionsVertical size={21}/>
-          <h3 className='text-sm text-white font-semi uppercase'>From Search</h3>
+          </button>
+
+          <h3 className='text-sm text-white font-semibold uppercase'>RIZZIFY</h3>
           <button onClick={()=>setPlayerExpanded(false)}>      
             <FaChevronDown size={21}/>
           </button>
@@ -177,7 +184,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
               <h3 className='text-white truncate font-bold text-xl'>{activeSong?.title}</h3>
               <p className='text-gray-300 truncate text-base'>{activeSong?.subtitle}</p>
             </div>
-                <button onClick={handleLikeSong} >
+                <button onClick={handleLikeSong} className='hover:scale-110'>
             {/* Add like animation here later  */}
             {
               likedSongs.some((song:any)=>song.key===activeSong?.key) ?
@@ -217,7 +224,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
             {volume <= 0.9  && <SlVolumeOff className='cursor-pointer hover:scale-105 transition-all duration-75' size={25} color="#FFF" onClick={() => setVolume(1)} />}
           {volume >= 0.9  && <SlVolume2 className='cursor-pointer hover:scale-105 transition-all duration-75' size={25} color="#FFF" onClick={() => setVolume(0)} />}
           </button>
-          <button>
+          <button onClick={handleInfoModal}>
             <HiShare size={25} color="#FFF"/>
           </button>
         </div>

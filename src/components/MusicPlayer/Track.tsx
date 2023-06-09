@@ -10,8 +10,9 @@ interface TrackProps {
   isPlaying: boolean;
   isActive: boolean;
   activeSong: Song;
+  handlePlayerExpansion: ()=>void;
 }
-const Track:React.FC<TrackProps> = ({ isPlaying, isActive, activeSong }) =>{
+const Track:React.FC<TrackProps> = ({ isPlaying, isActive, activeSong,handlePlayerExpansion }) =>{
 
   const {isLiked,likedSongs} = useSelector((state:any) => state.player);
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ const Track:React.FC<TrackProps> = ({ isPlaying, isActive, activeSong }) =>{
   },[activeSong]);
 
 return(
-  <div className=" flex items-center w-2/3 justify-start sm:flex-1 sm:min-w-[26.5rem]">
+  <div onClick={handlePlayerExpansion} className=" flex items-center w-2/3 justify-start sm:flex-1 sm:min-w-[26.5rem]">
     <div className={`${isPlaying && isActive ?'songPlaying' : ''} sm:block w-14 h-14 mr-3 sm:h-16 sm:w-16 sm:mr-4 relative song-img__player`}>
       <img src={activeSong?.images?.coverart} alt="cover art" className="rounded-md" />
       <div className="music--waves absolute w-full h-full top-0 left-0 flex items-center justify-center gap-1 sm:gap-2 z-10 opacity-0">
