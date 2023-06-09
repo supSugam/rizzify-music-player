@@ -1,5 +1,10 @@
 import React,{useLayoutEffect,useRef,useState} from 'react';
 import {Song} from '../../redux/services/types';
+import {AiFillHeart} from 'react-icons/ai';
+import {RiHeartFill,RiHeartLine} from 'react-icons/ri';
+
+import{likeUnlike, setLikedSongs} from '../../redux/features/playerSlice';
+import {useDispatch,useSelector} from 'react-redux';
 
 interface TrackProps {
   isPlaying: boolean;
@@ -7,6 +12,20 @@ interface TrackProps {
   activeSong: Song;
 }
 const Track:React.FC<TrackProps> = ({ isPlaying, isActive, activeSong }) =>{
+
+  const {isLiked,likedSongs} = useSelector((state:any) => state.player);
+  const dispatch = useDispatch();
+
+  const handleLikeSong = () => {
+    if (!isActive) return;
+    if (isLiked) {
+      dispatch(likeUnlike(false));
+      dispatch(setLikedSongs({activeSong}));
+    } else {
+      dispatch(likeUnlike(true));
+      dispatch(setLikedSongs({activeSong}));
+    }
+  };
 
   const textRef = useRef<HTMLHeadingElement>(null);
 
@@ -28,13 +47,21 @@ return(
         <div style={{animationDelay:"0.6s"}} className='bg-white w-1 h-7 animate-musicwavesPh rounded-md sm:animate-musicwavesLg'></div>
       </div>
     </div>
-    <div className="w-[60%] sm:w-[50%] overflow-hidden gap-2 flex flex-col">
+    <div className="w-[60%] sm:w-[50%] overflow-hidden gap-2 flex flex-col relative">
       <p ref={textRef} className={`truncate text-white font-bold text-base w-max overflow-hidden ${textWidth>190?'animate-textreveal':'whitespace-nowrap'}`}>
         {activeSong?.title ? activeSong?.title : 'No active Song'}
       </p>
       <p className="truncate text-gray-300">
         {activeSong?.subtitle ? activeSong?.subtitle : 'No active Song'}
       </p>
+      <button onClick={handleLikeSong} className='absolute hidden md:block top-0 right-0 mt-1 mr-1 sm:mt-2 sm:mr-2'>
+        {/* Add like animation here later  */}
+        {
+          likedSongs.some((song:any)=>song.key===activeSong?.key) ?
+          <RiHeartFill size={20} color='#845ef7'/>
+          : <RiHeartLine size={20} color='#845ef7'/>
+        }
+      </button>
     </div>
   </div>
 );

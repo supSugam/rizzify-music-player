@@ -1,8 +1,9 @@
 import React,{useEffect, useState} from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink,Link } from 'react-router-dom'
 import Logo from './Logo'
 import {links} from '../assets/constants'
 import { ReactSVG } from 'react-svg'
+import Tilt from "react-parallax-tilt"
 
 import {AiOutlineClose,AiOutlineMenu,AiOutlinePlus,AiFillHeart} from 'react-icons/ai'
 import {IoLibrary} from 'react-icons/io5'
@@ -83,7 +84,7 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
         </div>
         {/*  */}
         <div className='mt-5 flex flex-col gap-4  overflow-y-scroll hide-scrollbar'>
-          <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
+          <Link to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
             <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
               <AiFillHeart/>
             </div>
@@ -91,7 +92,7 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
               <h3>Liked Songs</h3>
               <p className='text-[var(--primary-grey)]'>Playlist • 315 Songs ♪</p>
             </div>
-          </NavLink>
+          </Link>
 
           <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
             <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
@@ -154,58 +155,40 @@ const Sidebar:React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <>
-    <div className="hidden md:flex flex-col w-[16rem] py-8 px-6 bg-dark-gradient backdrop-blur-md animate-slideleft">
+    <div className="hidden md:flex flex-col w-[16rem] py-8 px-4 bg-dark-gradient backdrop-blur-md animate-slideleft">
       <Logo forMobile={false}/>
       <NavLinks forMobile={false} forMobileSidebar={false}/>
-      <div>
-      <div className='w-full p-6 flex flex-col gap-2 text-lg rounded-lg bg-[#121212] overflow-hidden'>
-        <div className='flex gap-4 items-center text-[var(--primary-grey)]'>
-          <IoLibrary className=' text-[1.6rem]'/>
-          <h3 className='text-[1.3rem] pt-[0.3rem] font-semibold'>Your Library</h3>
-          <AiOutlinePlus className='ml-auto mt-auto text-[1.6rem]'/>
+      <div className='flex flex-col gap-8 mt-10'>
+        <div className='flex gap-4 items-center text-[var(--primary-grey)]  ml-2'>
+        <IoLibrary className=' text-[1.5rem]'/>
+          <h3 className='text-[1.3rem] font-semibold'>Your Library</h3>
+          <AiOutlinePlus className='ml-auto mt-auto text-[1.5rem]'/>
         </div>
-        {/*  */}
-        <div className='mt-5 flex flex-col gap-4  overflow-y-scroll hide-scrollbar'>
-          <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
-            <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
+        <div>
+        <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
+        <Link to={"/"} className='flex gap-3 items-center active:bg-opacity-20 p-2'>
+            <div className='w-[3rem] h-[3rem] flex items-center justify-center rounded-md bg-primary-gradient'>
               <AiFillHeart/>
             </div>
             <div className='flex flex-col gap-1 text-sm font-semibold'>
               <h3>Liked Songs</h3>
               <p className='text-[var(--primary-grey)]'>Playlist • 315 Songs ♪</p>
             </div>
-          </NavLink>
+          </Link>
+          </Tilt>
 
-          <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
-            <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
+      <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
+        <Link to={"/"} className='flex gap-3 items-center active:bg-opacity-20 p-2'>
+            <div className='w-[3rem] h-[3rem] flex items-center justify-center rounded-md bg-primary-gradient'>
               <AiFillHeart/>
             </div>
             <div className='flex flex-col gap-1 text-sm font-semibold'>
-              <h3 className='truncate'>Sky: Children of the Light</h3>
-              <p className='text-[var(--primary-grey)]'>Playlist • Ace Tails ♪</p>
+              <h3>Liked Songs</h3>
+              <p className='text-[var(--primary-grey)]'>Playlist • 315 Songs ♪</p>
             </div>
-          </NavLink>
-
-          <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
-            <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
-              <AiFillHeart/>
-            </div>
-            <div className='flex flex-col gap-1 text-sm font-semibold'>
-              <h3 className='truncate'>90s Pop</h3>
-              <p className='text-[var(--primary-grey)]'>Playlist • sugarr ♪</p>
-            </div>
-          </NavLink>
-
-          <NavLink to={"/"} className='flex gap-5 items-center active:bg-opacity-20'>
-            <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
-              <AiFillHeart/>
-            </div>
-            <div className='flex flex-col gap-1 text-sm font-semibold'>
-              <h3 className='truncate'>paint me as your villain</h3>
-              <p className='text-[var(--primary-grey)]'>Playlist • zyeraxu ♪</p>
-            </div>
-          </NavLink>
-        </div>
+          </Link>
+          </Tilt>
+          
         </div>
       </div>
     </div>

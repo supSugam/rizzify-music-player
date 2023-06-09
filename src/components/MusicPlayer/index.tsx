@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
+import { nextSong, prevSong, playPause} from '../../redux/features/playerSlice';
 import Controls from './Controls';
 import Player from './Player';
 import Seekbar from './Seekbar';
@@ -39,6 +39,7 @@ interface MusicPlayerProps {
   handlePlayPause: () => void;
   handleNextSong: () => void;
   handlePrevSong: () => void;
+  handlePlayerExpansion: (e:React.MouseEvent<HTMLDivElement>)=>void;
 }
 
 const MusicPlayer:React.FC<MusicPlayerProps> = () => {
