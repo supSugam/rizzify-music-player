@@ -54,12 +54,12 @@ return(
       <p className="truncate text-gray-300">
         {activeSong?.subtitle ? activeSong?.subtitle : 'No active Song'}
       </p>
-      <button onClick={handleLikeSong} className='absolute hidden md:block top-0 right-0 mt-1 mr-1 sm:mt-2 sm:mr-2'>
+      <button onClick={handleLikeSong} className='absolute hidden md:block top-[30%] right-0 hover:scale-110 active:scale-90'>
         {/* Add like animation here later  */}
         {
           likedSongs.some((song:any)=>song.key===activeSong?.key) ?
-          <RiHeartFill size={20} color='#845ef7'/>
-          : <RiHeartLine size={20} color='#845ef7'/>
+          <RiHeartFill size={30} color='#845ef7'/>
+          : <RiHeartLine size={30} color='#6b7280'/>
         }
       </button>
     </div>

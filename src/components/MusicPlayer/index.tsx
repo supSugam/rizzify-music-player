@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextSong, prevSong, playPause} from '../../redux/features/playerSlice';
+import { nextSong, prevSong, playPause,likeUnlike, setLikedSongs} from '../../redux/features/playerSlice';
 import Controls from './Controls';
 import Player from './Player';
 import Seekbar from './Seekbar';
@@ -13,7 +13,7 @@ import {Link} from 'react-router-dom'
 import{SlVolumeOff,SlVolume2} from 'react-icons/sl';
 import {FaChevronDown} from 'react-icons/fa'
 import {SlOptionsVertical} from 'react-icons/sl'
-import {AiFillHeart} from 'react-icons/ai'
+import {RiHeartFill,RiHeartLine} from 'react-icons/ri';
 import {HiShare} from 'react-icons/hi'
 
 interface MusicPlayerProps {
@@ -43,7 +43,7 @@ interface MusicPlayerProps {
 }
 
 const MusicPlayer:React.FC<MusicPlayerProps> = () => {
-  const { activeSong, currentSongs, currentIndex, isActive, isPlaying } = useSelector((state:any) => state.player);
+  const { activeSong, currentSongs, currentIndex, isActive, isPlaying,isLiked,likedSongs } = useSelector((state:any) => state.player);
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
   const [appTime, setAppTime] = useState(0);
@@ -52,6 +52,10 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
   const [shuffle, setShuffle] = useState(false);
   const [playerExpanded, setPlayerExpanded] = useState(false);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+    
+  // }, []);
 
   useEffect(() => {
     if (currentSongs.length) dispatch(playPause(true));
@@ -92,13 +96,30 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
     if(clickedElement.classList.contains("mini--player"))
     setPlayerExpanded(!playerExpanded);
   }
-
+  const handleLikeSong = () => {
+    if (!isActive) return;
+    if (isLiked) {
+      dispatch(likeUnlike(false));
+      dispatch(setLikedSongs({activeSong}));
+    } else {
+      dispatch(likeUnlike(true));
+      dispatch(setLikedSongs({activeSong}));
+    }
+  };
   return (
     <>
   <div onClick={(e)=>handlePlayerExpansion(e)} className="absolute sm:h-28 h-20 bottom-[4.8rem] sm:bottom-0 left-0 right-0 flex animate-slideup smooth-transition bg-black bg-opacity-90 backdrop-blur-md w-full z-20">
     <div className="relative sm:px-12 px-6 w-full flex items-center justify-between mini--player">
       <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
       <div className="sm:flex-1 flex flex-col items-center justify-center gap-2">
+      <button onClick={handleLikeSong} className='absolute top-40% right-[21%] hover:scale-110 md:hidden'>
+        {/* Add like animation here later  */}
+        {
+          likedSongs.some((song:any)=>song.key===activeSong?.key) ?
+          <RiHeartFill size={30} color='#845ef7'/>
+          : <RiHeartLine size={30} color='#6b7280'/>
+        }
+      </button>
         <Controls
           isPlaying={isPlaying}
           isActive={isActive}
@@ -112,6 +133,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
           handleNextSong={handleNextSong}
           playerExpanded={false}
         />
+
         <Seekbar
           value={appTime}
           min={0}
@@ -155,9 +177,14 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
               <h3 className='text-white truncate font-bold text-xl'>{activeSong?.title}</h3>
               <p className='text-gray-300 truncate text-base'>{activeSong?.subtitle}</p>
             </div>
-            <button>
-              <AiFillHeart size={28}/>
-            </button>
+                <button onClick={handleLikeSong} >
+            {/* Add like animation here later  */}
+            {
+              likedSongs.some((song:any)=>song.key===activeSong?.key) ?
+              <RiHeartFill size={30} color='#845ef7'/>
+              : <RiHeartLine size={30} color='#6b7280'/>
+            }
+          </button>
         </div>
         <Seekbar
           value={appTime}
