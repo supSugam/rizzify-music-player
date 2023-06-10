@@ -9,5 +9,6 @@
       "noUnusedParameters": false,
       "lib": ["dom", "es5", "es6", "dom.iterable", "scripthost"],
       "allowJs": true,
+      "esModuleInterop": true,
   }
 }
