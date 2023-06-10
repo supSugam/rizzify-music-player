@@ -254,3 +254,45 @@ input[type="range"]::-webkit-slider-thumb {
 .details--header__wrapper:hover .shaped--border__radius-2{
     border-radius:  15%;
 }
+
+
+/* First Screen */
+
+.circleSvg circle {
+    stroke-dashoffset: 127;
+    animation: circleAnimation 1.2s linear 1s;
+}
+
+
+@keyframes circleAnimation{
+    0%{
+        stroke-dasharray: 127;
+    }
+    40%{
+        stroke-dasharray: 140;
+    }
+    90%{
+        stroke: var(--primary-violet);
+    }
+    100%{
+        stroke-dasharray: 254;
+    }
+}
+
+.typewriter-text{
+    animation: typewriter 1.4s steps(7) forwards;
+    overflow: hidden;
+}
+.typewriter-text_mb{
+    animation: typewriterMb 1.4s steps(7) forwards;
+    overflow: hidden;
+}
+
+@keyframes typewriter{
+    from{width: 0;}
+    to{width: 150px;}
+  }
+  @keyframes typewriterMb{
+    from{width: 0;}
+    to{width: 96px;}
+  }

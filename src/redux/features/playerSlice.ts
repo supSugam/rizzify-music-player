@@ -20,6 +20,7 @@ interface PlayerState {
   isInfoModalOpen: boolean;
 }
 
+
 const initialState: PlayerState = {
   // currentSongs: [],
   // currentIndex: 0,
@@ -39,6 +40,7 @@ const initialState: PlayerState = {
   // genreListId: '',
   // isModalOpen: false,
 };
+
 // else if(){
 
 // }

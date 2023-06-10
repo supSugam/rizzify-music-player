@@ -11,10 +11,14 @@ import songsByCountryTestData from "../redux/services/songsByCountryTestData";
 const TopArtists: React.FC = () => {
 	// const {data:topChartsGlobal, isFetching} = useGetTopChartsQuery()
 
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	const songsDataByCountry = songsByCountryTestData.filter((track)=> track.hasOwnProperty('artists')).slice(0, 20)
 
 	return (
-		<div className="flex flex-col gap-8 mt-12 mb-8">
+		<div className="flex flex-col gap-8 md:mt-12 mt-2 mb-8">
 			<h2 className="text-3xl font-bold">
 				Discover Top Artists
 			</h2>

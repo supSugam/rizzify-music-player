@@ -42,7 +42,7 @@ const App = () => {
 				{/* h-[calc(100vh-72px)] */}
 				<div className="hide-scrollbar flex h-screen flex-col md:flex-col-reverse overflow-x-hidden overflow-y-scroll px-6 md:mx-10  xl:flex-col">
 					{/* xl:flex-row */}
-					<div className="h-fit flex-1 pb-14">
+					<div className="h-fit flex-1 pb-10">
 						<Routes>
 							<Route path="/" element={<Discover />} />
 							<Route path="/top-artists" element={<TopArtists />} />

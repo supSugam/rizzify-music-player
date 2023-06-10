@@ -40,6 +40,7 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
 	const dispatch = useDispatch();
 
 	const handleInfoModal = ():void => {
+    handleClick && handleClick()
 		dispatch(toggleInfoModal(!isInfoModalOpen));
 		dispatch(toggleModal(!isModalOpen));
 	};
@@ -105,7 +106,7 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
             <div className='w-[3.4rem] h-[3.4rem] flex items-center justify-center rounded-md bg-primary-gradient'>
               <AiFillHeart/>
             </div>
-            <Link to={'/liked-songs'} className='flex flex-col gap-1 text-sm font-semibold'>
+            <Link onClick={()=> handleClick && handleClick()} to={'/liked-songs'} className='flex flex-col gap-1 text-sm font-semibold'>
               <h3>Liked Songs</h3>
               {
                 likedSongs.length === 1 && <p className='text-[var(--primary-grey)]'>Playlist • 1 Song ♪</p>
@@ -189,7 +190,7 @@ const Sidebar:React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <>
-    <div className="hidden md:flex flex-col w-[16rem] py-8 px-4 bg-dark-gradient backdrop-blur-md animate-slideleft">
+    <div style={{minWidth:"15rem"}} className="hidden md:flex flex-col w-[16rem] py-8 px-4 bg-dark-gradient backdrop-blur-md animate-slideleft">
       <Logo forMobile={false}/>
       <NavLinks forMobile={false} forMobileSidebar={false}/>
       <div className='flex flex-col gap-8 mt-10'>

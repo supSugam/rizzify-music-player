@@ -7,8 +7,11 @@ import {FiChevronDown} from 'react-icons/fi'
 import testData from '../redux/services/testData'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { toggleModal,selectGenreListId } from '../redux/features/playerSlice';
+import { toggleModal,selectGenreListId, playPause } from '../redux/features/playerSlice';
 import { useGetSongsByGenreQuery } from '../redux/services/shazamCore';
+import {logo,logo_compressed,logo_compressed_1} from '../assets'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const GenreSongsComponent:React.FC<{genreListId:any,isPlaying:boolean,activeSong:any}> = ({ genreListId,isPlaying,activeSong }) => {
 	const { data: genreData, error: genreError, isFetching } = useGetSongsByGenreQuery(genreListId);
@@ -53,8 +56,37 @@ const Discover: React.FC = () => {
 		useEffect(() => {
 		fetchGenre();
 		}, [fetchGenre, genreListId]);
-		
+
+		const [animating, setAnimating] = useState(true);
+		useEffect(() => {
+			dispatch(playPause(false));
+			setTimeout(() => {
+				setAnimating(false);
+			}, 3000);
+		}, []);
+
 	return (
+		<>
+		<div className={`${animating? 'animate-slideup flex':'hidden'} absolute top-0 left-0 z-[99] min-h-screen min-w-full bg-dark-linear items-center justify-center"`}>
+
+			<div className={'hidden md:flex flex-col w-full h-full items-center justify-center relative mb-20'}>
+				<LazyLoadImage width={280} effect="blur" className='bg-cover' src={logo_compressed} alt="Rizzify" />
+				<h1  className='text-[3rem] font-bold absolute translate-y-[200%] typewriter-text'>Rizzify</h1>
+				<svg viewBox='0 0 180 180' className='circleSvg absolute'>
+					<circle cx={89.5} cy={93} r={20} fill="transparent" stroke="#fff" strokeWidth={0.1} className='md:on-anim' />
+					{/* <circle cx="100" cy="100" r="15%" fill="transparent" stroke="#fff" strokeWidth="0.5" className='' /> */}
+				</svg>
+			</div>
+
+			<div className='flex md:hidden flex-col w-full h-full items-center justify-center relative mb-20'>
+			<LazyLoadImage width={195} effect="blur" className='bg-cover' src={logo_compressed} alt="Rizzify" />
+				<h1 className='text-[2rem] font-bold absolute translate-y-[195%] typewriter-text_mb'>Rizzify</h1>
+				<svg viewBox='0 0 180 180' className='circleSvg absolute'>
+					<circle cx={89.5} cy={97} r={57} fill="transparent" stroke="#fff" strokeWidth={0.3} className='' />
+					{/* <circle cx="100" cy="100" r="15%" fill="transparent" stroke="#fff" strokeWidth="0.5" className='' /> */}
+				</svg>
+			</div>
+		</div>
 		<div className="flex flex-col">
 			{/* {isLoading ? (<MiniError />): */}
 			<div className="m-1 mb-12 flex w-full items-center sm:flex-row justify-between ">
@@ -84,6 +116,7 @@ const Discover: React.FC = () => {
 				}
 			</div>
 		</div>
+		</>
 	);
 };
 
