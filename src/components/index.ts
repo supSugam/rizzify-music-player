@@ -7,7 +7,7 @@ import DetailsHeader from "./DetailsHeader";
 import SongBar from "./SongBar";
 import RelatedSongs from "./RelatedSongs";
 import MusicPlayer from "./MusicPlayer";
-import Loader from "./Loader";
+// import Loader from "./Loader";
 import {Error,MiniError} from "./Error";
 
 export {
@@ -20,7 +20,7 @@ export {
 	SongBar,
 	RelatedSongs,
 	MusicPlayer,
-	Loader,
+	// Loader,
 	Error,
 	MiniError
 };

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { useSelector } from "react-redux";
 
-import { Error, SongCard } from "../components";
+import { SongCard } from "../components";
 import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
 
 interface AroundYouProps {}

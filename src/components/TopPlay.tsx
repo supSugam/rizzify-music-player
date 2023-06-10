@@ -14,13 +14,12 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 // 
-import testData from '../redux/services/testData'
 import {Song} from '../redux/services/types'
 // 
 
 import PlayPause from './PlayPause'
 import {playPause,setActiveSong} from '../redux/features/playerSlice'
-import {useGetTopChartsQuery} from '../redux/services/shazamCore'
+// import {useGetTopChartsQuery} from '../redux/services/shazamCore'
 
 interface TopPlayProps {
 

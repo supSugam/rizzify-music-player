@@ -7,7 +7,7 @@ import { useGetArtistDetailsQuery } from '../redux/services/shazamCore';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { DetailsHeader,Error,RelatedSongs } from '../components';
+import { DetailsHeader,RelatedSongs } from '../components';
 // import {artistDetailsTestData,artistDetailsTestDataSOLO} from '../redux/services/artistDetailsTestData';
 
 const ArtistDetails:React.FC<{}> = () => {
@@ -33,7 +33,7 @@ const ArtistDetails:React.FC<{}> = () => {
         console.log(!isFetching && artistData);
     }
   return (
-    <div className='flex flex-col md:flex-row gap-8 md:mt-16'>
+    <div className='flex flex-col md:flex-row gap-8'>
         <div className='w-full md:w-1/2'>
           {
             isSuccess && <DetailsHeader activeSong={activeSong} isPlaying={isPlaying} artistData={artistData} artistId={artistId}/>
