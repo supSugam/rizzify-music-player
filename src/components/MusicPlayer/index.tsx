@@ -164,7 +164,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
       <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(+event.target.value)} setVolume={setVolume} />
     </div>
   </div>
-      <div className={`flex absolute overflow-y-scroll flex-col left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] z-30 ${playerExpanded? 'top-0 animate-slideup':'animate-slidedown -bottom-full'}`}>
+      <div className={`flex absolute overflow-y-scroll flex-col left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] z-30 ${playerExpanded? 'top-0 animate-slideup':'animate-slidedown -bottom-full -z-50'}`}>
         <div className='flex justify-between items-center sticky'>
           <button onClick={handleInfoModal}>
           <SlOptionsVertical size={21}/>
@@ -184,7 +184,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
               <h3 className='text-white truncate font-bold text-xl'>{activeSong?.title}</h3>
               <Link to={activeSong.artists? `artists/${activeSong.artists[0].adamid}`:'/top-artists'} className='text-gray-300 truncate text-base'>{activeSong?.subtitle}</Link>
             </div>
-                <button onClick={handleLikeSong} className='hover:scale-110 active:scale-90'>
+                <button onClick={()=>handleLikeSong()} className='hover:scale-110 active:scale-90'>
             {/* Add like animation here later  */}
             {
               likedSongs.some((song:any)=>song.key===activeSong?.key) ?

@@ -7,25 +7,13 @@ import { useSelector } from "react-redux";
 import { Error, SongCard } from "../components";
 import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
 
-import songsByCountryTestData from "../redux/services/songsByCountryTestData";
-
 interface AroundYouProps {}
 
 const AroundYou: React.FC<AroundYouProps> = () => {
 	const [country, setCountry] = useState<string>("");
+	const [countryCode, setCountryCode] = useState<string>("");
 	const [isValidCountry, setIsValidCountry] = useState<boolean>(false);
-	const [loading, setLoading] = useState<boolean>(true);
 	const { activeSong, isPlaying } = useSelector((state: any) => state.player);
-
-	// const {data:songsDataByCountry, isFetching:isFetchingSongsByCountry} = useGetSongsByCountryQuery(country)
-
-	// useEffect(()=>{
-	// axios.get('https://geo.ipify.org/api/v2/country?apiKey=at_S9U5BOX152LEJZckYF8uPpKX39TBb')
-	// .then((res)=>setCountry(res?.data?.location?.country))
-	// .catch((err)=> console.log(err))
-	// .finally(()=> setLoading(false))
-	// console.log(country)
-	// },[country])
 
 	const validCountries: string[] = [
 		"DZ",
@@ -107,28 +95,27 @@ const AroundYou: React.FC<AroundYouProps> = () => {
 			)
 			.then((res) => {
 				if (validCountries.includes(res?.data?.country_code2)) {
-					setCountry(res?.data?.country_code2);
+					setCountry(res?.data?.country_name);
+					setCountryCode(res?.data?.country_code2);
 					setIsValidCountry(true);
 				} else {
-					setCountry("US");
+					setCountryCode("US");
 					setIsValidCountry(false);
 				}
-				setCountry(res?.data?.country_name);
-				console.log(res?.data);
+
 			})
 			.catch((err) => console.log(err))
-			.finally(() => setLoading(false));
-	}, [country]);
+	}, []);
 
-	const songsDataByCountry = songsByCountryTestData.slice(0, 10);
+	const { data:songsDataByCountry} = useGetSongsByCountryQuery(countryCode);
 
 	return (
-		<div className="flex flex-col gap-8 mt-12 mb-8">
+		<div className="flex flex-col gap-8 mb-8">
 			<h2 className="text-3xl font-bold">
 				{isValidCountry ? `Top Songs in ${country}` : "Top Songs Around You"}
 			</h2>
-			<div className="flex w-96 flex-nowrap justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
-				{songsDataByCountry.map((song, i) => (
+			<div className="flex w-96 h-full flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
+				{songsDataByCountry?.map((song:any, i:number) => (
 					<SongCard
 						key={song.key}
 						isPlaying={isPlaying}

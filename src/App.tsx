@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { toggleInfoModal, toggleModal } from "./redux/features/playerSlice";
+import { playPause, toggleInfoModal, toggleModal } from "./redux/features/playerSlice";
 import { Link } from "react-router-dom";
 
 import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
@@ -15,6 +15,7 @@ import {
 	TopCharts,
 	LikedSongs
 } from "./pages";
+import { useEffect } from "react";
 
 const App = () => {
 	const { activeSong, isPlaying, isModalOpen,isInfoModalOpen } = useSelector((state: any) => state.player);
@@ -25,6 +26,9 @@ const App = () => {
 		dispatch(toggleInfoModal(!isInfoModalOpen));
 		dispatch(toggleModal(!isModalOpen));
 	};
+	useEffect(() => {
+		dispatch(playPause(false))
+	}, []);
 
 	return (
 		<div className="relative block h-screen bg-primary-gradient sm:flex">

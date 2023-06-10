@@ -10,13 +10,13 @@ import App from "./App";
 import { store } from "./redux/store";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-	<React.StrictMode>
+	// <React.StrictMode>
 		<Provider store={store}>
 			<Router>
-			<SkeletonTheme baseColor="#313131" highlightColor="#525252">
+			<SkeletonTheme baseColor="#374151" highlightColor="#6b7280">
 				<App />
 			</SkeletonTheme>
 			</Router>
 		</Provider>
-	</React.StrictMode>
+	// {/* </React.StrictMode> */}
 );

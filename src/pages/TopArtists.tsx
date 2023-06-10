@@ -1,21 +1,34 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from 'axios';
+import {  useEffect,useState } from "react";
 
-
-import { ArtistCard, Error, SongCard } from "../components";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
-
-import songsByCountryTestData from "../redux/services/songsByCountryTestData";
+import { ArtistCard, Error } from "../components";
+// import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
 const TopArtists: React.FC = () => {
-	// const {data:topChartsGlobal, isFetching} = useGetTopChartsQuery()
+	const options = {
+		method: 'GET',
+		url: 'https://shazam-core.p.rapidapi.com/v1/charts/world',
+		headers: {
+		'X-RapidAPI-Key': '91410e5a11msh65b992a9150ca2ep1c78ebjsn2feeb0f104b0',
+		'X-RapidAPI-Host': 'shazam-core.p.rapidapi.com'
+		}
+	};
+
+	const [topArtistsGlobal,setTopArtistsGlobal] = useState<[]>([]);
 
 	useEffect(() => {
-		window.scrollTo(0, 0);
+	const getTopArtistsQuery = async () => {
+		try {
+			const response = await axios.request(options);
+			setTopArtistsGlobal(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+		};
+	getTopArtistsQuery();
+	window.scrollTo(0, 0);
 	}, []);
-
-	const songsDataByCountry = songsByCountryTestData.filter((track)=> track.hasOwnProperty('artists')).slice(0, 20)
 
 	return (
 		<div className="flex flex-col gap-8 md:mt-12 mt-2 mb-8">
@@ -23,7 +36,8 @@ const TopArtists: React.FC = () => {
 				Discover Top Artists
 			</h2>
 			<div className="flex w-full h-auto justify-around gap-x-8 gap-y-24 md:gap-x-14 md:gap-y-24 flex-wrap">
-				{songsDataByCountry.map((track, i) => (
+				{topArtistsGlobal?.map((track, i) => (
+					track.hasOwnProperty('artists')&&
 					<ArtistCard
 					forSearch={false}
 					key={track.key}

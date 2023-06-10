@@ -21,11 +21,11 @@ const Search: React.FC = () => {
   console.log(artists);
 
 	return (
-		<div className="flex flex-col gap-8 mt-12 mb-8">
+		<div className="flex flex-col gap-8 mt-6 md:mt-0 mb-8">
 			<h2 className="text-3xl font-bold">
 				Search Results for <span className="italic">{`'${searchTerm}'`}</span>
 			</h2>
-			<div className="flex w-96 flex-nowrap justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
+			<div className="flex w-96 flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
 				{songs?.map((song:any, i:number) => (
 					<SongCard
 						key={song.key}

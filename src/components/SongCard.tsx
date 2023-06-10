@@ -8,6 +8,9 @@ import {playPause,setActiveSong} from "../redux/features/playerSlice"
 
 import {Song} from '../redux/services/types'
 
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 interface SongCardProps{
   song:Song,
   i:number,
@@ -39,6 +42,8 @@ const SongCard:React.FC<SongCardProps> = ({song,data,isPlaying,activeSong,i}) =>
     dispatch(playPause(false));
   };
 
+  const [contentLoaded,setContentLoaded] = useState<boolean>(false);
+
   return (
     // Aile npm package wala animation use garne
     song?.images &&(<Tilt glareEnable={true} glareMaxOpacity={0.3} glareColor="#845ef7" glarePosition="bottom" tiltMaxAngleX={10} tiltMaxAngleY={10}>
@@ -48,22 +53,38 @@ const SongCard:React.FC<SongCardProps> = ({song,data,isPlaying,activeSong,i}) =>
           <PlayPause isPlaying={isPlaying} activeSong={activeSong} song={song} handlePause={handlePauseClick} handlePlay={handlePlayClick} />
         </div>
         <div className={`w-full h-full rounded-tl-[2rem] rounded-br-[2rem] rounded-tr-sm rounded-bl-sm song--img__wrapper ${activeSong?.key === song.key? 'isPlaying':''}`}>
-          <img src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className='radius' />
+          {
+            !contentLoaded && <Skeleton className='w-full h-full min-h-[12rem]' />
+          }
+          {
+             <img onLoad={()=>setContentLoaded(!contentLoaded)} src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className={`${contentLoaded?'block':'hidden'}`}/>
+          }
+
         </div>
 
       </div>
       <div className='flex flex-col mt-3 overflow-hidden pr-2'>
-        <h3 ref={textRef} className={`text-lg font-semibold w-max ${textWidth>192?'animate-textreveal':'overflow-hidden whitespace-nowrap'}`}>
-        <Link to={`/songs/${song?.key}`}>
-          
-          {song.title}
+        {
+          !contentLoaded && <Skeleton width={"80%"} />
+        }
+        {
+          contentLoaded && (<h3 ref={textRef} className={`text-lg font-semibold w-max ${textWidth>192?'animate-textreveal':'overflow-hidden whitespace-nowrap'}`}>
+          <Link to={`/songs/${song?.key}`}>
+            {song.title}
           </Link>
-          </h3>
-        <p className='text-sm text-white/80 truncate font-semibold'>
+            </h3>)
+        }
+        {
+          !contentLoaded && <Skeleton width={"60%"} />
+        }
+        {
+          contentLoaded && (<p className='text-sm text-white/80 truncate font-semibold'>
           <Link to={song.artists? `artists/${song.artists[0].adamid}`:'/top-artists'}>
           {song.subtitle}
           </Link>
-          </p>
+          </p>)
+        }
+
       </div>
     </div>
     </Tilt>)

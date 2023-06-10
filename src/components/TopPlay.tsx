@@ -1,5 +1,5 @@
 import React from 'react'
-import {useEffect,useRef} from 'react'
+import {useEffect,useRef,useState} from 'react'
 import {Link} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import {Swiper, SwiperSlide} from 'swiper/react'
@@ -7,6 +7,11 @@ import {FreeMode} from 'swiper'
 import Tilt from "react-parallax-tilt"
 import 'swiper/css'
 import 'swiper/css/free-mode'
+
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 // 
 import testData from '../redux/services/testData'
@@ -30,6 +35,8 @@ interface TopPlayCardProps{
 
 }
 const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,handlePauseClick, handlePlayClick}) => {
+
+  const [contentLoaded,setContentLoaded] = useState<boolean>(false);
   return (
     <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
 
@@ -37,17 +44,28 @@ const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,han
       <div className="flex items-center gap-4 md:gap-6">
         <p className="text-[var(--primary-grey)] text-sm font-bold">{i+1}</p>
         <div className='w-16 h-auto'>
-          <img src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className='rounded-md' />
+          {
+            !contentLoaded && <Skeleton width={"100%"} className='min-h-[4rem]'/>
+          }
+          {
+            <img onLoad={()=>setContentLoaded(!contentLoaded)} src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className={`${contentLoaded?'block':'hidden' }`} />
+          }
         </div>
 
       </div>
       <div className='flex flex-col flex-1 max-w-[40%] gap-2 sm:max-w-none'>
-        <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>
-        <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p>
+        {
+          contentLoaded ? <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>:<Skeleton width={"100%"} />
+        }
+        {
+          contentLoaded ? <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p>:<Skeleton width={"50%"} />
+        }
+        {/* <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>
+        <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p> */}
       </div>
-      <div className='min-[10%]'>
+      <button className='min-[10%]'>
         <PlayPause key={i} handlePause={handlePauseClick} handlePlay={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} song={song} />
-      </div>
+      </button>
 
     </div>
 
@@ -64,6 +82,9 @@ const TopPlay:React.FC<TopPlayProps> = () => {
       // divRef.current.scrollIntoView({behavior:'smooth'})
     }
   })
+
+  const [contentLoaded,setContentLoaded] = useState<boolean>(false);
+
   // const {data} = useGetTopChartsQuery()
   const data = testData;
   const topSongs = data?.slice(0,5)
@@ -105,10 +126,17 @@ const TopPlay:React.FC<TopPlayProps> = () => {
             artists?.map((song:any,i:number)=>(
             <SwiperSlide data-artist={song?.subtitle} key={i} style={{width:"21%",height:"h-full"}} className='relative group'>
                 <Link to={`/artists/${song?.artists[0].adamid}`}>
-                    <img src={song?.images?.background} alt={song?.title} className='shaped--border__radius group-hover:rounded-3xl' />
+                  {
+                    // !contentLoaded && <Skeleton className='min-h-[8rem] shaped--border__radius' />
+                  }
+                  {
+                    <LazyLoadImage onLoad={()=>setContentLoaded(true)} effect='blur' src={song?.images?.coverarthq || song?.images?.coverart || song?.images?.background} alt={song?.title} className='shaped--border__radius group-hover:rounded-3xl'/>
+                  }
                 </Link>
                 <Link className='absolute bottom-[2rem] left-0 w-[7.875rem] text-base text-center truncate artist--name' to={`/artists/${song?.artists[0].adamid}`}>
-              {song?.subtitle}
+              {
+              contentLoaded ? <p>{song?.subtitle}</p>:<Skeleton width={"100%"} className='min-h-[1.2rem]' />
+              }
               </Link>
             </SwiperSlide>
             ))

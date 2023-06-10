@@ -44,7 +44,6 @@ const initialState: PlayerState = {
 // else if(){
 
 // }
-console.log(initialState);
 
 const playerSlice = createSlice({
   name: 'player',

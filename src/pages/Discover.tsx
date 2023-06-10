@@ -2,14 +2,12 @@ import {Error,SongCard,MiniError} from '../components';
 import { useDispatch,useSelector } from 'react-redux';
 
 import { genres } from "../assets/constants";
-import React,{useRef,useState,useEffect,useCallback,useMemo} from "react";
+import React,{useRef,useState,useEffect,useCallback} from "react";
 import {FiChevronDown} from 'react-icons/fi'
-import testData from '../redux/services/testData'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import { toggleModal,selectGenreListId, playPause } from '../redux/features/playerSlice';
+
+import { toggleModal,selectGenreListId } from '../redux/features/playerSlice';
 import { useGetSongsByGenreQuery } from '../redux/services/shazamCore';
-import {logo,logo_compressed,logo_compressed_1} from '../assets'
+import {logo_compressed} from '../assets'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -59,7 +57,6 @@ const Discover: React.FC = () => {
 
 		const [animating, setAnimating] = useState(true);
 		useEffect(() => {
-			dispatch(playPause(false));
 			setTimeout(() => {
 				setAnimating(false);
 			}, 3000);
@@ -112,7 +109,7 @@ const Discover: React.FC = () => {
 			</div>
 			<div className="flex w-96 flex-nowrap overflow-x-scroll md:overflow-hidden justify-start gap-x-8 gap-y-12 overflow-y-hidden sm:w-full sm:flex-wrap md:justify-around hide-scrollbar">
 				{
-					// genreListId !=="" && <GenreSongsComponent genreListId={genreListId} isPlaying={isPlaying} activeSong={activeSong}/>
+					genreListId !=="" && <GenreSongsComponent genreListId={genreListId} isPlaying={isPlaying} activeSong={activeSong}/>
 				}
 			</div>
 		</div>
