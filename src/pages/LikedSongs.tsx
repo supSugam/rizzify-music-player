@@ -47,7 +47,7 @@ const LikedSongs:React.FC = () => {
         {
             likedSongs.length === 0 ? (
                 <div className='flex flex-col items-center justify-center w-full h-64 gap-8 bg-black bg-opacity-60 rounded-lg'>
-                    <div className='flex flex-col items-center justify-center w-full gap-2 text-2xl font-bold'>
+                    <div className='flex flex-col items-center justify-center w-full gap-2 text-[1.3rem] sm:text-2xl font-bold'>
                     <p className=''>You haven't liked any songs yet</p>
                     <span className=''>ಥ_ಥ</span>
                     </div>

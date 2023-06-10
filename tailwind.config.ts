@@ -40,9 +40,13 @@ module.exports = {
 					to: { opacity: 1, transform: "none" },
 				},
 				slidedown: {
-					from: { opacity: 0, transform: "translateY(-25%)" },
-					to: { opacity: 1, transform: "none" },
+					from: { opacity: 1, top: "0" },
+					to: { opacity: 0, top: "100%" },
 				},
+				// slidedown: {
+				// 	from: { opacity: 0, transform: "translateY(-25%)" },
+				// 	to: { opacity: 1, transform: "none" },
+				// },
 				slideleft: {
 					from: { opacity: 0, transform: "translateX(-20px)" },
 					to: { opacity: 1, transform: "translateX(0)" },

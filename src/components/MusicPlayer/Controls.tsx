@@ -44,9 +44,9 @@ if(playerExpanded){
       <BiShuffle size={30} color={shuffle ? 'var(--primary-violet)' : '#FFF'} onClick={() => setShuffle((prev) => !prev)} className=" cursor-pointer control--icons" />
       {currentSongs?.length && <MdSkipPrevious size={45} color={"#FFF"} className="cursor-pointer control--icons" onClick={handlePrevSong} />}
       {isPlaying ? (
-        <AiFillPauseCircle size={65} color="#FFF" onClick={handlePlayPause} className="cursor-pointer" />
+        <AiFillPauseCircle size={65} color="#FFF" onClick={handlePlayPause} className="z-10 text-white/80 cursor-pointer hover:scale-110 active:scale-125 animate-hoverscale transition-transform animate-pulse delay-200" />
       ) : (
-        <AiFillPlayCircle size={65} color="#FFF" onClick={handlePlayPause} className="cursor-pointer" />
+        <AiFillPlayCircle size={65} color="#FFF" onClick={handlePlayPause} className="z-10 text-white/80 cursor-pointer hover:scale-110 active:scale-125 animate-hoverscale transition-transform" />
       )}
           {currentSongs?.length && <MdSkipNext size={45} color={"#FFF"} className="cursor-pointer control--icons" onClick={handleNextSong} />}
       <div className={`loop--icon__wrapper relative ${repeat?'isOnLoop':''}`}>

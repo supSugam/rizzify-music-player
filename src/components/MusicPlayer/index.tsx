@@ -164,7 +164,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
       <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(+event.target.value)} setVolume={setVolume} />
     </div>
   </div>
-      <div className={`absolute overflow-y-scroll flex-col left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] z-30 ${playerExpanded? 'flex animate-slideup top-0':'animate-slidedown'}`}>
+      <div className={`flex absolute overflow-y-scroll flex-col left-0 sm:hidden w-full h-[calc(100vh-4.8rem)] hide-scrollbar px-6 pt-10 pb-4 gap-8 bg-[#121212] z-30 ${playerExpanded? 'top-0 animate-slideup':'animate-slidedown -bottom-full'}`}>
         <div className='flex justify-between items-center sticky'>
           <button onClick={handleInfoModal}>
           <SlOptionsVertical size={21}/>
@@ -176,15 +176,15 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
           </button>
         </div>
         <div className='h-min w-auto px-3 mt-8'>
-          <img className='w-full h-full rounded-xl' src={activeSong?.images.coverart} alt='Cover Image'/>
+          <img className='w-full h-full rounded-xl' src={activeSong?.images?.coverart} alt='Cover Image'/>
         </div>
         <div className='flex flex-col gap-4'>
         <div className='flex justify-between items-center px-3 mt-6'>
             <div className='w-2/3'>
               <h3 className='text-white truncate font-bold text-xl'>{activeSong?.title}</h3>
-              <p className='text-gray-300 truncate text-base'>{activeSong?.subtitle}</p>
+              <Link to={activeSong.artists? `artists/${activeSong.artists[0].adamid}`:'/top-artists'} className='text-gray-300 truncate text-base'>{activeSong?.subtitle}</Link>
             </div>
-                <button onClick={handleLikeSong} className='hover:scale-110'>
+                <button onClick={handleLikeSong} className='hover:scale-110 active:scale-90'>
             {/* Add like animation here later  */}
             {
               likedSongs.some((song:any)=>song.key===activeSong?.key) ?
@@ -228,7 +228,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
             <HiShare size={25} color="#FFF"/>
           </button>
         </div>
-          <div onClick={(prevPlayerExpanded)=>setPlayerExpanded(!prevPlayerExpanded)} className='w-full h-24 bg-[#191919] rounded-xl p-6 flex items-center justify-center'>
+          <div onClick={()=>setPlayerExpanded(!playerExpanded)} className='w-full h-24 bg-[#191919] rounded-xl p-6 flex items-center justify-center'>
             <Link to={`/songs/${activeSong?.key}`}>
                 <h3 className='font-semibold underline text-2xl'>View Song Details and Lyrics</h3>
             </Link>

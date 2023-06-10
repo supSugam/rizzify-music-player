@@ -21,7 +21,7 @@ const TopCharts: React.FC = () => {
 			<h2 className="text-3xl font-bold">
 				Discover What Everyone is Listening to
 			</h2>
-			<div className="flex w-96 flex-nowrap justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden">
+			<div className="flex w-96 flex-nowrap justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
 				{songsDataByCountry.map((song, i) => (
 					<SongCard
 						key={song.key}

@@ -48,7 +48,7 @@ return(
         <div style={{animationDelay:"0.6s"}} className='bg-white w-1 h-7 animate-musicwavesPh rounded-md sm:animate-musicwavesLg'></div>
       </div>
     </div>
-    <div className="w-[60%] sm:w-[50%] overflow-hidden gap-2 flex flex-col relative">
+    <div className="w-[60%] sm:w-[50%] overflow-hidden gap-1 flex flex-col relative">
       <p ref={textRef} className={`truncate text-white font-bold text-base w-max overflow-hidden ${textWidth>190?'animate-textreveal':'whitespace-nowrap'}`}>
         {activeSong?.title ? activeSong?.title : 'No active Song'}
       </p>
