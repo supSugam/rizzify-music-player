@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { useSelector } from "react-redux";
 
-import { Error, SongCard } from "../components";
+import {SongCard } from "../components";
 
 // import songsByCountryTestData from "../redux/services/songsByCountryTestData";
 // import { useGetTopChartsQuery } from "../redux/services/shazamCore";
@@ -21,7 +21,7 @@ const TopCharts: React.FC = () => {
 		}
 	};
 
-		const topChartsGlobalRef = useRef(null);
+		const topChartsGlobalRef = useRef<any>(null);
 
 		useEffect(() => {
 			const getTopChartsQuery = async () => {
@@ -42,16 +42,18 @@ const TopCharts: React.FC = () => {
 				Discover What Everyone is Listening to
 			</h2>
 			<div className="flex w-96 flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
-				{topChartsGlobalRef?.current?.map((song:any, i:number) => (
+				{
+				topChartsGlobalRef.current && (topChartsGlobalRef?.current?.map((song:any, i:number) => (
 					<SongCard
 						key={song.key}
 						isPlaying={isPlaying}
 						activeSong={activeSong}
 						song={song}
-						data={topChartsGlobalRef.current}
+						data={topChartsGlobalRef.current || []}
 						i={i}
 					/>
-				))}
+				)))
+				}
 			</div>
 		</div>
 	);

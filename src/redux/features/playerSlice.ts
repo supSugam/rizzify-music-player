@@ -8,18 +8,17 @@ interface Song {
 // console.log(JSON.parse(Cookies.get('currentSongs')));
 
 interface PlayerState {
-  currentSongs: [];
+  currentSongs: any[];
   currentIndex: number;
   isActive: boolean;
   isPlaying: boolean;
   activeSong: Song;
   genreListId: string;
   isModalOpen: boolean;
-  likedSongs: [];
+  likedSongs: any[];
   isLiked: boolean;
   isInfoModalOpen: boolean;
 }
-
 
 const initialState: PlayerState = {
   // currentSongs: [],
@@ -31,12 +30,12 @@ const initialState: PlayerState = {
   isModalOpen: false,
   isInfoModalOpen: false,
   isLiked: false,
-  currentSongs: Cookies.get('currentSongs') !== undefined ? JSON.parse(Cookies.get('currentSongs')) :[],
-  currentIndex: Cookies.get('currentIndex') !== undefined ? +Cookies.get('currentIndex'): 0,
+  currentSongs: Cookies.get('currentSongs') !== undefined ? JSON.parse(Cookies.get('currentSongs')!) :[],
+  currentIndex: Cookies.get('currentIndex') !== undefined ? +Cookies.get('currentIndex')!: 0,
   isActive: Cookies.get('isActive') === 'true' ?? false,
   isPlaying: false,
-  activeSong: Cookies.get('activeSong') !==undefined ? JSON.parse(Cookies.get('activeSong')) : {},
-  likedSongs: Cookies.get('likedSongs') !== undefined ? JSON.parse(Cookies.get('likedSongs')) : [],
+  activeSong: Cookies.get('activeSong') !==undefined ? JSON.parse(Cookies.get('activeSong')!) : {},
+  likedSongs: Cookies.get('likedSongs') !== undefined ? JSON.parse(Cookies.get('likedSongs')!) : [],
   // genreListId: '',
   // isModalOpen: false,
 };
@@ -66,7 +65,7 @@ const playerSlice = createSlice({
       Cookies.set('currentSongs', JSON.stringify(state.currentSongs.slice(state.currentIndex,state.currentIndex+1)), { expires: 3});
 
       state.currentIndex = action.payload.i;
-      Cookies.set('currentIndex', +action.payload.i);
+      Cookies.set('currentIndex', action.payload.i);
 
       state.isActive = true;
       Cookies.set('isActive', 'true');

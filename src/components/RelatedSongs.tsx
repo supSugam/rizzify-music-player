@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Tilt from "react-parallax-tilt"
-import {Song} from '../redux/services/types'
+// import {Song} from '../redux/services/types'
 
 // import {SongBar} from '../components'
 
 import PlayPause from './PlayPause'
-import { useDispatch } from 'react-redux';
-import { useGetSongDetailsQuery } from '../redux/services/shazamCore';
-import { setSingleActiveSong,playPause } from '../redux/features/playerSlice';
+// import { useDispatch } from 'react-redux';
+// import { useGetSongDetailsQuery } from '../redux/services/shazamCore';
+// import { setSingleActiveSong,playPause } from '../redux/features/playerSlice';
 import { Link } from 'react-router-dom';
 interface SongBarProps {
   song:any;
-  handlePauseClick?:()=>void;
-  handlePlayClick?:()=>void;
+  handlePauseClick:()=>void;
+  handlePlayClick:()=>void;
   forArtistDetails:boolean;
   isPlaying:boolean;
   activeSong:any;
@@ -72,8 +72,8 @@ interface RelatedSongsProps {
   activeSong:any,
   isPlaying:boolean;
   forArtistDetails:boolean;
-  handlePauseClick:()=>void,
-  handlePlayClick:()=>void,
+  handlePauseClick:()=>void;
+  handlePlayClick:(song:any,relatedSongs:any[],i:number)=>void;
 }
 
 const RelatedSongs:React.FC<RelatedSongsProps> = ({relatedSongs,activeSong,isPlaying,handlePauseClick, handlePlayClick, forArtistDetails}) => {
@@ -92,7 +92,7 @@ const RelatedSongs:React.FC<RelatedSongsProps> = ({relatedSongs,activeSong,isPla
         }
         {
           forArtistDetails && relatedSongs?.map((song:any,i:number)=>(
-          <SongBar activeSong={activeSong} forArtistDetails={forArtistDetails} isPlaying={isPlaying} handlePlayClick={()=>handleTopPlayClick(song,i)} handlePauseClick={handlePauseClick} key={i} song={song} i={i} />))
+          <SongBar activeSong={activeSong} forArtistDetails={forArtistDetails} isPlaying={isPlaying} handlePlayClick={()=>handlePlayClick(song,relatedSongs,i)} handlePauseClick={handlePauseClick} key={i} song={song} i={i} />))
         }
       </div>
       </div>

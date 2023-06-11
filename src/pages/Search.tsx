@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-import { Error, SongCard,ArtistCard } from "../components";
+import { SongCard,ArtistCard } from "../components";
 import { useGetSongsBySearchQuery } from "../redux/services/shazamCore";
 
 // import songsByCountryTestData from "../redux/services/songsByCountryTestData";

@@ -1,4 +1,4 @@
-import {Error,SongCard,MiniError} from '../components';
+import {SongCard} from '../components';
 import { useDispatch,useSelector } from 'react-redux';
 
 import { genres } from "../assets/constants";
@@ -41,13 +41,14 @@ const Discover: React.FC = () => {
 		dispatch(selectGenreListId(activeGenre));
 		}, [activeGenre, dispatch]);
 		
-		const handleGenreChange = (genre: string, e) => {
+		const handleGenreChange = (genre: string, e:React.MouseEvent<HTMLLIElement,MouseEvent>) => {
 		handleDropdownBtn();
 		setActiveGenre(genre);
-		if (!e.target.classList.contains('genre--item')) {
-			setActiveGenreText(e.target.parentElement.textContent);
+		const target = e.target as HTMLLIElement;
+		if (target.classList?.contains('genre--item')) {
+			setActiveGenreText(target.parentElement?.textContent || '');
 		} else {
-			setActiveGenreText(e?.target?.textContent);
+			setActiveGenreText(target.textContent || '');
 		}
 		};
 		

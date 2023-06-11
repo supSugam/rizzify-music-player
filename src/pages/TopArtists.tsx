@@ -2,7 +2,7 @@ import React from "react";
 import axios from 'axios';
 import {  useEffect,useState } from "react";
 
-import { ArtistCard, Error } from "../components";
+import { ArtistCard } from "../components";
 // import { useGetTopChartsQuery } from "../redux/services/shazamCore";
 
 const TopArtists: React.FC = () => {
@@ -36,11 +36,11 @@ const TopArtists: React.FC = () => {
 				Discover Top Artists
 			</h2>
 			<div className="flex w-full h-auto justify-around gap-x-8 gap-y-24 md:gap-x-14 md:gap-y-24 flex-wrap">
-				{topArtistsGlobal?.map((track, i) => (
+				{topArtistsGlobal?.map((track:any, i:number) => (
 					track.hasOwnProperty('artists')&&
 					<ArtistCard
 					forSearch={false}
-					key={track.key}
+					key={track.key }
 					track={track}
 					i={i}
 					/>

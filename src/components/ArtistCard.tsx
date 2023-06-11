@@ -18,7 +18,7 @@ const ArtistCard:React.FC<ArtistCardProps> = ({track,i,forSearch}) => {
     return (
       <div key={i} style={{width:"100%",height:"h-auto"}} className='relative group max-w-[40%] md:max-w-[14rem] flex-wrap'>
               <Link to={`/artists/${track?.artists[0]?.adamid}`}>
-                  <LazyLoadImage onLoad={()=>setContentLoaded(true)} effect='blur' src={track?.images?.background} alt={track?.title} className='shaped--border__radius group-hover:rounded-3xl' />
+                  <LazyLoadImage afterLoad={()=>setContentLoaded(true)} effect='blur' src={track?.images?.background} alt={track?.title} className='shaped--border__radius group-hover:rounded-3xl' />
               </Link>
               <Link className='absolute bottom-[-3rem] left-0 w-full text-xl font-semibold text-center truncate artist--name' to={`/artists/${track?.artists[0].adamid}`}>
             {
@@ -33,7 +33,7 @@ const ArtistCard:React.FC<ArtistCardProps> = ({track,i,forSearch}) => {
     return (
       <div key={i} style={{width:"100%",height:"h-auto"}} className='relative group max-w-[40%] md:max-w-[14rem] flex-wrap'>
               <Link to={`/artists/${track?.adamid}`}>
-                  <LazyLoadImage onLoad={()=>setContentLoaded(true)} effect='blur' src={track?.avatar} className='shaped--border__radius group-hover:rounded-3xl' />
+                  <LazyLoadImage afterLoad={()=>setContentLoaded(true)} effect='blur' src={track?.avatar} className='shaped--border__radius group-hover:rounded-3xl' />
               </Link>
               <Link className='absolute bottom-[-3rem] left-0 w-full text-xl font-semibold text-center truncate artist--name' to={`/artists/${track?.adamid}`}>
             {

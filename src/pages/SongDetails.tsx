@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setActiveSong,playPause } from '../redux/features/playerSlice';
 import { useGetSongDetailsQuery,useGetSongRelatedQuery } from '../redux/services/shazamCore';
 
-import { DetailsHeader,Error,RelatedSongs } from '../components';
+import { DetailsHeader,RelatedSongs } from '../components';
 
 import {Song} from '../redux/services/types'
 import Skeleton from 'react-loading-skeleton';

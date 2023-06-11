@@ -17,29 +17,29 @@ import {RiHeartFill,RiHeartLine} from 'react-icons/ri';
 import {HiShare} from 'react-icons/hi'
 
 interface MusicPlayerProps {
-  activeSong: Song;
-  currentSongs: Song[];
-  currentIndex: number;
-  isActive: boolean;
-  isPlaying: boolean;
-  duration: number;
-  state: any;
-  setDuration: React.Dispatch<React.SetStateAction<number>>;
-  seekTime: number;
-  setSeekTime: React.Dispatch<React.SetStateAction<number>>;
-  appTime: number;
-  setAppTime: React.Dispatch<React.SetStateAction<number>>;
-  volume: number;
-  setVolume: React.Dispatch<React.SetStateAction<number>>;
-  repeat: boolean;
-  setRepeat: React.Dispatch<React.SetStateAction<boolean>>;
-  shuffle: boolean;
-  setShuffle: React.Dispatch<React.SetStateAction<boolean>>;
-  dispatch: any;
-  handlePlayPause: () => void;
-  handleNextSong: () => void;
-  handlePrevSong: () => void;
-  handlePlayerExpansion: (e:React.MouseEvent<HTMLDivElement>)=>void;
+  activeSong?: Song;
+  currentSongs?: Song[];
+  currentIndex?: number;
+  isActive?: boolean;
+  isPlaying?: boolean;
+  duration?: number;
+  state?: any;
+  setDuration?: React.Dispatch<React.SetStateAction<number>>;
+  seekTime?: number;
+  setSeekTime?: React.Dispatch<React.SetStateAction<number>>;
+  appTime?: number;
+  setAppTime?: React.Dispatch<React.SetStateAction<number>>;
+  volume?: number;
+  setVolume?: React.Dispatch<React.SetStateAction<number>>;
+  repeat?: boolean;
+  setRepeat?: React.Dispatch<React.SetStateAction<boolean>>;
+  shuffle?: boolean;
+  setShuffle?: React.Dispatch<React.SetStateAction<boolean>>;
+  dispatch?: any;
+  handlePlayPause?: () => void;
+  handleNextSong?: () => void;
+  handlePrevSong?: () => void;
+  handlePlayerExpansion?: ()=>void;
 }
 
 const MusicPlayer:React.FC<MusicPlayerProps> = () => {
@@ -157,8 +157,13 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
           repeat={repeat}
           currentIndex={currentIndex}
           onEnded={handleNextSong}
-          onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
-          onLoadedData={(event) => setDuration(event.target.duration)}
+          onTimeUpdate={(event) => {
+            const target = event.target as HTMLAudioElement;
+            setAppTime(target.currentTime)
+          }}
+          onLoadedData={(event) => {
+            const target = event.target as HTMLAudioElement;
+            setDuration(target.duration)}}
         />
       </div>
       <VolumeBar value={volume} min={0} max={1} onChange={(event) => setVolume(+event.target.value)} setVolume={setVolume} />

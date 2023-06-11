@@ -6,17 +6,17 @@ import {useDispatch} from 'react-redux';
 import PlayPause from './PlayPause';
 import {playPause,setActiveSong} from "../redux/features/playerSlice"
 
-import {Song} from '../redux/services/types'
+// import {Song} from '../redux/services/types'
 
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 interface SongCardProps{
-  song:Song,
+  song:any,
   i:number,
   isPlaying:boolean,
-  activeSong: Song,
-  data:Song[]
+  activeSong: any,
+  data:any[]
 }
 
 const SongCard:React.FC<SongCardProps> = ({song,data,isPlaying,activeSong,i}) => {

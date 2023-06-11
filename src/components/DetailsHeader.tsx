@@ -8,7 +8,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import Skeleton from 'react-loading-skeleton';
 
 interface DetailsHeaderProps {
-  artistId:string;
+  artistId:string | undefined;
   songData:any;
   artistData:any;
   isPlaying:boolean;
@@ -32,7 +32,7 @@ const DetailsHeader:React.FC<DetailsHeaderProps> = ({artistId,songData,artistDat
     <div className='w-full flex flex-col details--header__wrapper'>
       <div className='relative flex items-center justify-between w-full h-32 md:h-40 bg-gradient-to-l from-transparent to-[#080625] rounded-l-xl'>
         <div className='absolute inset-0 flex items-center px-6 gap-5'>
-          <LazyLoadImage onLoad={()=>setContentLoaded(true)} alt='Artist Profile' src={artistId? artist.artwork?.url.replace('{w}','500').replace('{h}','500'): songData?.images.coverart} className={`h-[50%] md:h-[80%] w-auto shaped--border__radius-2 border-2 border-[#fff] border-opacity-80 shadow-2xl shadow-[var(--primary-violet)] ${isPlaying && (activeSong && !artistId &&(activeSong?.key === songData?.id || activeSong?.id === songData?.id)) && 'animate-borderRadius'}`}/>
+          <LazyLoadImage afterLoad={()=>setContentLoaded(true)} alt='Artist Profile' src={artistId? artist.artwork?.url.replace('{w}','500').replace('{h}','500'): songData?.images.coverart} className={`h-[50%] md:h-[80%] w-auto shaped--border__radius-2 border-2 border-[#fff] border-opacity-80 shadow-2xl shadow-[var(--primary-violet)] ${isPlaying && (activeSong && !artistId &&(activeSong?.key === songData?.id || activeSong?.id === songData?.id)) && 'animate-borderRadius'}`}/>
           <div className='flex flex-col gap-2 max-w-[60%] truncate'>
             {
               contentLoaded ? (

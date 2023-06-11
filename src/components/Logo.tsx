@@ -4,11 +4,7 @@ import { logo_compressed } from '../assets';
 import {Link} from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-interface LogoProps{
-  forMobile:boolean;
-}
-
-const Logo:React.FC<LogoProps> = ({forMobile}) => {
+const Logo:React.FC<{forMobile:boolean}> = ({forMobile}) => {
   if(!forMobile){
     return (
       <Link to={'/'} className='flex items-center gap-1'>

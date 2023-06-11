@@ -19,7 +19,7 @@ import {Song} from '../redux/services/types'
 
 import PlayPause from './PlayPause'
 import {playPause,setActiveSong} from '../redux/features/playerSlice'
-// import {useGetTopChartsQuery} from '../redux/services/shazamCore'
+import {useGetTopChartsQuery} from '../redux/services/shazamCore'
 
 interface TopPlayProps {
 
@@ -84,8 +84,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
 
   const [contentLoaded,setContentLoaded] = useState<boolean>(false);
 
-  // const {data} = useGetTopChartsQuery()
-  const data = testData;
+  const {data} = useGetTopChartsQuery()
   const topSongs = data?.slice(0,5)
   const artists = data?.slice(0,20)
 
@@ -129,7 +128,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
                     // !contentLoaded && <Skeleton className='min-h-[8rem] shaped--border__radius' />
                   }
                   {
-                    <LazyLoadImage onLoad={()=>setContentLoaded(true)} effect='blur' src={song?.images?.coverarthq || song?.images?.coverart || song?.images?.background} alt={song?.title} className='shaped--border__radius group-hover:rounded-3xl'/>
+                    <LazyLoadImage afterLoad={()=>setContentLoaded(true)} effect='blur' src={song?.images?.coverarthq || song?.images?.coverart || song?.images?.background} alt={song?.title} className='shaped--border__radius group-hover:rounded-3xl'/>
                   }
                 </Link>
                 <Link className='absolute bottom-[2rem] left-0 w-[7.875rem] text-base text-center truncate artist--name' to={`/artists/${song?.artists[0].adamid}`}>
