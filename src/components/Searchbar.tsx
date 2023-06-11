@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {IoSearchOutline} from 'react-icons/io5'
 
-const SearchBar:React.FC = () => {
+const Searchbar:React.FC = () => {
 
   const navigate = useNavigate();
 
@@ -29,4 +29,4 @@ const SearchBar:React.FC = () => {
   )
 }
 
-export default SearchBar;
+export default Searchbar;
