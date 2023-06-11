@@ -1,5 +1,5 @@
 import Sidebar from "./Sidebar";
-import Searchbar from "./SearchBar";
+import SearchBar from "./SearchBar";
 import SongCard from "./SongCard";
 import TopPlay from "./TopPlay";
 import ArtistCard from "./ArtistCard";
@@ -14,7 +14,7 @@ export {
 	TopPlay,
 	Sidebar,
 	SongCard,
-	Searchbar,
+	SearchBar,
 	ArtistCard,
 	DetailsHeader,
 	SongBar,
