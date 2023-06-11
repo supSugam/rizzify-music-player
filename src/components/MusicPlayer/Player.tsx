@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from 'react';
-import { Song } from '../../redux/services/types';
 
 interface PlayerProps {
-  activeSong: Song | null;
+  activeSong: any | null;
   isPlaying: boolean;
   volume: number;
   seekTime: number;
@@ -36,7 +35,7 @@ const Player:React.FC<PlayerProps> = ({ activeSong, isPlaying, volume, seekTime,
 
   return (
     <audio
-      src={activeSong?.hub?.actions[1]?.uri}
+      src={activeSong?.hub?.actions[1]?.uri || activeSong?.hub?.options[0]?.actions[0].uri || activeSong?.hub?.options[0]?.actions[1].uri}
       ref={audioSrcRef}
       loop={repeat}
       onEnded={onEnded}

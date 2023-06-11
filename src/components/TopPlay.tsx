@@ -36,6 +36,7 @@ interface TopPlayCardProps{
 const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,handlePauseClick, handlePlayClick}) => {
 
   const [contentLoaded,setContentLoaded] = useState<boolean>(false);
+
   return (
     <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
 
@@ -54,10 +55,10 @@ const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,han
       </div>
       <div className='flex flex-col flex-1 max-w-[40%] gap-2 sm:max-w-none'>
         {
-          contentLoaded ? <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>:<Skeleton width={"100%"} />
+          contentLoaded ? <Link to={`songs/${song.key}`} className="text-base font-semibold text-left truncate">{song.title}</Link>:<Skeleton width={"100%"} />
         }
         {
-          contentLoaded ? <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p>:<Skeleton width={"50%"} />
+          contentLoaded ? <Link to={song.artists? `artists/${song.artists[0].adamid}`:'/top-artists'} className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</Link>:<Skeleton width={"50%"} />
         }
         {/* <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>
         <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p> */}
@@ -96,7 +97,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
     dispatch(playPause(false))
   }
   return (
-    <div ref={divRef} className="flex flex-col gap-14 w-full lg:flex-row lg:mr-4 sm:mt-0">
+    <div ref={divRef} className="flex flex-col gap-14 w-full lg:flex-row lg:mr-4 sm:mt-0 mb-16 md:mb-32">
       {/* Top Songs */}
       <div className="w-full flex flex-col lg:w-1/2">
         <div className="flex w-full justify-between items-end">

@@ -1,0 +1,97 @@
+{
+    "layout": "5",
+    "type": "MUSIC",
+    "key": "646659264",
+    "title": "All Eyez On Me (Dj Belite Remix) [feat. Big Syke]",
+    "subtitle": "2Pac",
+    "images": {
+        "background": "https://is3-ssl.mzstatic.com/image/thumb/AMCArtistImages122/v4/89/42/a5/8942a55d-4acc-c713-bf51-cf6eef8079a8/b74c1174-8d01-4c11-8bbc-9dfbc12c6b9f_file_cropped.png/800x800cc.jpg",
+        "coverart": "https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/78/0d/30/780d3010-5432-2491-8dcd-aecce03ead04/859768642065_cover.jpg/400x400cc.jpg",
+        "coverarthq": "https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/78/0d/30/780d3010-5432-2491-8dcd-aecce03ead04/859768642065_cover.jpg/400x400cc.jpg"
+    },
+    "share": {
+        "subject": "All Eyez On Me (Dj Belite Remix) [feat. Big Syke] - 2Pac",
+        "text": "All Eyez On Me (Dj Belite Remix) [feat. Big Syke] by 2Pac",
+        "href": "https://www.shazam.com/track/646659264/all-eyez-on-me-dj-belite-remix-feat-big-syke",
+        "image": "https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/78/0d/30/780d3010-5432-2491-8dcd-aecce03ead04/859768642065_cover.jpg/400x400cc.jpg",
+        "twitter": "I used @Shazam to discover All Eyez On Me (Dj Belite Remix) [feat. Big Syke] by 2Pac.",
+        "html": "https://www.shazam.com/snippets/email-share/646659264?lang=en&country=GB",
+        "avatar": "https://is3-ssl.mzstatic.com/image/thumb/AMCArtistImages122/v4/89/42/a5/8942a55d-4acc-c713-bf51-cf6eef8079a8/b74c1174-8d01-4c11-8bbc-9dfbc12c6b9f_file_cropped.png/800x800cc.jpg",
+        "snapchat": "https://www.shazam.com/partner/sc/track/646659264"
+    },
+    "hub": {
+        "type": "APPLEMUSIC",
+        "image": "https://images.shazam.com/static/icons/hub/web/v5/applemusic.png",
+        "options": [
+            {
+                "caption": "OPEN",
+                "actions": [
+                    {
+                        "name": "hub:applemusic:subscribe",
+                        "type": "applemusicopen",
+                        "uri": "https://music.apple.com/subscribe?mttnagencyid=s2n&mttnsiteid=125115&mttn3pid=Apple-Shazam&mttnsub1=Shazam_web&mttnsub2=5348615A-616D-3235-3830-44754D6D5973&itscg=30201&app=music&itsct=Shazam_web"
+                    },
+                    {
+                        "name": "hub:applemusic:subscribe",
+                        "type": "uri",
+                        "uri": "https://music.apple.com/subscribe?mttnagencyid=s2n&mttnsiteid=125115&mttn3pid=Apple-Shazam&mttnsub1=Shazam_web&mttnsub2=5348615A-616D-3235-3830-44754D6D5973&itscg=30201&app=music&itsct=Shazam_web"
+                    }
+                ],
+                "beacondata": {
+                    "type": "open",
+                    "providername": "applemusic"
+                },
+                "image": "https://images.shazam.com/static/icons/hub/web/v5/overflow-open-option.png",
+                "type": "open",
+                "listcaption": "Open in Apple Music",
+                "overflowimage": "https://images.shazam.com/static/icons/hub/web/v5/applemusic-overflow.png",
+                "colouroverflowimage": false,
+                "providername": "applemusic"
+            }
+        ],
+        "explicit": false,
+        "displayname": "APPLE MUSIC"
+    },
+    "sections": [
+        {
+            "type": "SONG",
+            "metapages": [
+                {
+                    "image": "https://is3-ssl.mzstatic.com/image/thumb/AMCArtistImages122/v4/89/42/a5/8942a55d-4acc-c713-bf51-cf6eef8079a8/b74c1174-8d01-4c11-8bbc-9dfbc12c6b9f_file_cropped.png/800x800cc.jpg",
+                    "caption": "Dj Belite"
+                },
+                {
+                    "image": "https://is4-ssl.mzstatic.com/image/thumb/Music122/v4/78/0d/30/780d3010-5432-2491-8dcd-aecce03ead04/859768642065_cover.jpg/400x400cc.jpg",
+                    "caption": "All Eyez On Me (Dj Belite Remix) [feat. Big Syke]"
+                }
+            ],
+            "tabname": "Song",
+            "metadata": []
+        },
+        {
+            "type": "VIDEO",
+            "tabname": "Video"
+        },
+        {
+            "type": "RELATED",
+            "tabname": "Related"
+        }
+    ],
+    "url": "https://www.shazam.com/track/646659264/all-eyez-on-me-dj-belite-remix-feat-big-syke",
+    "artists": [
+        {
+            "alias": "dj-belite",
+            "id": "42",
+            "adamid": "1256581980"
+        }
+    ],
+    "alias": "all-eyez-on-me-dj-belite-remix-feat-big-syke",
+    "genres": {
+        "primary": "Dance"
+    },
+    "urlparams": {
+        "{tracktitle}": "All+Eyez+On+Me+%28Dj+Belite+Remix%29+%5Bfeat.+Big+Syke%5D",
+        "{trackartist}": "2Pac"
+    },
+    "highlightsurls": {}
+}

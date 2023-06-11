@@ -10,7 +10,7 @@ const TopArtists: React.FC = () => {
 		method: 'GET',
 		url: 'https://shazam-core.p.rapidapi.com/v1/charts/world',
 		headers: {
-		'X-RapidAPI-Key': '91410e5a11msh65b992a9150ca2ep1c78ebjsn2feeb0f104b0',
+		'X-RapidAPI-Key': '41459ffa84mshedf0d1731254d2ap1a40b7jsnadff3c037d6c',
 		'X-RapidAPI-Host': 'shazam-core.p.rapidapi.com'
 		}
 	};
@@ -18,6 +18,8 @@ const TopArtists: React.FC = () => {
 	const [topArtistsGlobal,setTopArtistsGlobal] = useState<[]>([]);
 
 	useEffect(() => {
+		window.scrollTo({top:0,behavior:'smooth'});
+
 	const getTopArtistsQuery = async () => {
 		try {
 			const response = await axios.request(options);
@@ -27,7 +29,6 @@ const TopArtists: React.FC = () => {
 		}
 		};
 	getTopArtistsQuery();
-	window.scrollTo(0, 0);
 	}, []);
 
 	return (

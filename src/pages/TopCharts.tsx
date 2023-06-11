@@ -1,10 +1,10 @@
 import React from "react";
-import { useEffect,useRef } from "react";
+import { useEffect,useState } from "react";
 import axios from 'axios';
 
 import { useSelector } from "react-redux";
 
-import {SongCard } from "../components";
+import {SongCard,SongCardSkeleton } from "../components";
 
 // import songsByCountryTestData from "../redux/services/songsByCountryTestData";
 // import { useGetTopChartsQuery } from "../redux/services/shazamCore";
@@ -16,18 +16,18 @@ const TopCharts: React.FC = () => {
 		method: 'GET',
 		url: 'https://shazam-core.p.rapidapi.com/v1/charts/world',
 		headers: {
-		'X-RapidAPI-Key': '91410e5a11msh65b992a9150ca2ep1c78ebjsn2feeb0f104b0',
+		'X-RapidAPI-Key': '41459ffa84mshedf0d1731254d2ap1a40b7jsnadff3c037d6c',
 		'X-RapidAPI-Host': 'shazam-core.p.rapidapi.com'
 		}
 	};
 
-		const topChartsGlobalRef = useRef<any>(null);
+		const [topChartsGlobal,setTopChartsGlobal] = useState<any>([]);
 
 		useEffect(() => {
 			const getTopChartsQuery = async () => {
 			try {
 				const response = await axios.request(options);
-				topChartsGlobalRef.current = response.data;
+				setTopChartsGlobal(response.data);
 			} catch (error) {
 				console.error(error);
 			}
@@ -36,6 +36,10 @@ const TopCharts: React.FC = () => {
 			getTopChartsQuery();
 		}, []);
 
+		useEffect(() => {
+			window.scrollTo({top:0,behavior:'smooth'});
+		}, []);	
+
 	return (
 		<div className="flex flex-col gap-8 mt-6 mb-8">
 			<h2 className="text-3xl font-bold">
@@ -43,16 +47,21 @@ const TopCharts: React.FC = () => {
 			</h2>
 			<div className="flex w-96 flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
 				{
-				topChartsGlobalRef.current && (topChartsGlobalRef?.current?.map((song:any, i:number) => (
+				topChartsGlobal && (topChartsGlobal.map((song:any, i:number) => (
 					<SongCard
 						key={song.key}
 						isPlaying={isPlaying}
 						activeSong={activeSong}
 						song={song}
-						data={topChartsGlobalRef.current || []}
+						data={topChartsGlobal}
 						i={i}
 					/>
 				)))
+				}
+				{
+				topChartsGlobal < 30 && [...Array(10)].map((i:number) => (
+					<SongCardSkeleton key={i} i={i} />
+				))
 				}
 			</div>
 		</div>

@@ -33,7 +33,7 @@ interface NavLinksProps{
   forMobileSidebar?:boolean;
   handleClick?:()=>void;
 }
-const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClick}) => {
+const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClick,}) => {
 
   const {likedSongs, isModalOpen,isInfoModalOpen } = useSelector((state: any) => state.player);
 
@@ -160,6 +160,7 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
       <div className='flex items-center w-full h-full justify-around gap-6'>
         {links.map((item) =>(
           <NavLink
+          onClick={()=> handleClick && handleClick()}
             key={item.name}
             to={item.to}
             className='flex flex-col flex-auto items-center gap-[0.35rem] text-[var(--primary-grey)] text-[0.9rem] font-semibold hover:text-white group truncate'
@@ -287,10 +288,10 @@ const Sidebar:React.FC = () => {
 
       <div className={`absolute top-0 h-[calc(100vh-4.8rem)] w-4/5 bg-[#09090b] backdrop-blur-md md:hidden animate-slideleft flex flex-col gap-6 pl-2 pt-10 z-20 rounded-tr-sm rounded-br-sm smooth-transition ${mobileMenuOpen ? 'left-0' : '-left-full'}`}>
         <Logo forMobile={true}/>
-        <NavLinks forMobile={false} forMobileSidebar={true} handleClick={()=>setMobileMenuOpen(!mobileMenuOpen)}/>
+        <NavLinks forMobile={false} forMobileSidebar={true} handleClick={()=>{setMobileMenuOpen(!mobileMenuOpen)}}/>
       </div>
-    <div className="absolute md:hidden bottom-0 left-0 bg-black w-full h-[4.8rem] px-6 py-4 flex items-center justify-around z-20">
-    <NavLinks forMobile={true} forMobileSidebar={false}/>
+    <div className="absolute md:hidden bottom-[0%] left-[0%] bg-black w-full h-[4.8rem] px-6 py-4 flex items-center justify-around z-20">
+    <NavLinks handleClick={()=>setMobileMenuOpen(false)} forMobile={true} forMobileSidebar={false}/>
 
     </div>
     </>

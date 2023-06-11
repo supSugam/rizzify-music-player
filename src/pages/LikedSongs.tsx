@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Tilt from 'react-parallax-tilt';
 import {Link} from 'react-router-dom'
 import {AiFillPlayCircle} from 'react-icons/ai';
@@ -38,6 +38,10 @@ const LikedSongBar:React.FC<LikedSongBarProps> = ({song,i}) => {
 
 const LikedSongs:React.FC = () => {
     const {likedSongs} = useSelector((state:any) => state.player);
+    useEffect(() => {
+      window.scrollTo({top:0,behavior:'smooth'});
+    }, []);
+  
   return (
     <div className='w-full flex flex-col gap-8'>
       <div className='flex items-center px-6 bg-gradient-to-l h-20 from-transparent to-[#080625]'>

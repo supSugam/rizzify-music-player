@@ -103,11 +103,10 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
     if (!isActive) return;
     if (isLiked) {
       dispatch(likeUnlike(false));
-      dispatch(setLikedSongs({activeSong}));
     } else {
       dispatch(likeUnlike(true));
-      dispatch(setLikedSongs({activeSong}));
     }
+    dispatch(setLikedSongs({activeSong}));
   };
 
   return (
@@ -186,8 +185,8 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
         <div className='flex flex-col gap-4'>
         <div className='flex justify-between items-center px-3 mt-6'>
             <div className='w-2/3'>
-              <h3 className='text-white truncate font-bold text-xl'>{activeSong?.title}</h3>
-              <Link to={activeSong.artists? `artists/${activeSong.artists[0].adamid}`:'/top-artists'} className='text-gray-300 truncate text-base'>{activeSong?.subtitle}</Link>
+              <p onClick={()=>setPlayerExpanded(false)}><Link to={`/songs/${activeSong.key}`} className='text-white truncate font-bold text-xl'>{activeSong?.title}</Link></p>
+              <Link onClick={()=>setPlayerExpanded(false)} to={activeSong.artists? `artists/${activeSong.artists[0].adamid}`:'/top-artists'} className='text-gray-300 truncate text-base'>{activeSong?.subtitle}</Link>
             </div>
                 <button onClick={()=>handleLikeSong()} className='hover:scale-110 active:scale-90'>
             {/* Add like animation here later  */}

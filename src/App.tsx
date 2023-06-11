@@ -1,3 +1,4 @@
+import { useState,useRef } from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -30,8 +31,18 @@ const App = () => {
 		dispatch(playPause(false))
 	}, []);
 
+	const [innerHeight, setInnerHeight] = useState<number>(window.innerHeight);
+	const bodyContainerRef = useRef<HTMLDivElement>(null);
+
+	window.addEventListener("resize", () => {
+		setInnerHeight(window.innerHeight);
+	});
+	useEffect(() => {
+		bodyContainerRef.current?.style.setProperty("--vh", `${innerHeight * 0.01}px`);
+	}, [innerHeight]);
+
 	return (
-		<div className="relative block h-screen bg-primary-gradient sm:flex">
+		<div ref={bodyContainerRef} className="relative block h-[calc(var(--vh,1vh)*100)] bg-primary-gradient sm:flex">
 			<div id="overlay" className={`w-screen h-screen z-40 backdrop-blur-sm absolute top-0 left-0 ${isModalOpen ? 'block':'hidden'}`}/>
 			<div id="infoModal" className={`w-[84%] md:w-[25%] h-[40%] z-[60] absolute top-[25%] left-[9%] md:top-[23%] md:left-[37%] bg-black rounded-lg p-8 flex items-center justify-center flex-col gap-10 animate-hoverscale ${isInfoModalOpen ? 'block':'hidden'}`}>
 						<h1 className="text-3xl font-bold gradient--text">Not Working Yet</h1>

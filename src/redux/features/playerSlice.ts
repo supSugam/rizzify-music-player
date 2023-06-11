@@ -71,10 +71,12 @@ const playerSlice = createSlice({
       Cookies.set('isActive', 'true');
     },
     setSingleActiveSong: (state, action) => {
+      console.log(action.payload);
       state.activeSong = action.payload.song;
       state.currentSongs = [action.payload.song];
       state.currentIndex = action.payload.i;
       state.isActive = true;
+
     },
 
     nextSong: (state, action) => {

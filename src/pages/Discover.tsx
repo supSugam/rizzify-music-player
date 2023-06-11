@@ -1,4 +1,4 @@
-import {SongCard} from '../components';
+import {SongCard,SongCardSkeleton} from '../components';
 import { useDispatch,useSelector } from 'react-redux';
 
 import { genres } from "../assets/constants";
@@ -12,12 +12,23 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const GenreSongsComponent:React.FC<{genreListId:any,isPlaying:boolean,activeSong:any}> = ({ genreListId,isPlaying,activeSong }) => {
-	const { data: genreData } = useGetSongsByGenreQuery(genreListId);
+	const { data: genreData,isSuccess } = useGetSongsByGenreQuery(genreListId);
 	// error: genreError, isFetching
 	return (
-	genreData?.map((song:any,i:number) => (
-		<SongCard key={song.key} isPlaying={isPlaying} activeSong={activeSong} song={song} data={genreData} i={i} />
-		))
+		<>
+		{
+			isSuccess &&  genreData?.map((song:any,i:number) => (
+				<SongCard key={song.key} isPlaying={isPlaying} activeSong={activeSong} song={song} data={genreData} i={i} />
+				))
+		}
+		{
+			!isSuccess && [...Array(10)].map((i:number) => (
+				<SongCardSkeleton key={i} i={i} />
+				)
+			)
+		}
+		</>
+
 	);
   };
 
@@ -46,7 +57,7 @@ const Discover: React.FC = () => {
 		handleDropdownBtn();
 		setActiveGenre(genre);
 		const target = e.target as HTMLLIElement;
-		if (target.classList?.contains('genre--item')) {
+		if (!target.classList?.contains('genre--item')) {
 			setActiveGenreText(target.parentElement?.textContent || '');
 		} else {
 			setActiveGenreText(target.textContent || '');
@@ -66,7 +77,7 @@ const Discover: React.FC = () => {
 
 	return (
 		<>
-		<div className={`${animating? 'animate-slideup flex':'hidden'} absolute top-0 left-0 z-[99] min-h-screen min-w-full bg-dark-linear items-center justify-center"`}>
+		<div ref={(div)=> !animating && div?.scrollIntoView({behavior: 'smooth'})} className={`${animating? 'animate-slideup flex':'hidden'} absolute top-0 left-0 z-[99] min-h-screen min-w-full bg-dark-linear items-center justify-center"`}>
 
 			<div className={'hidden md:flex flex-col w-full h-full items-center justify-center relative mb-20'}>
 				<LazyLoadImage width={280} effect="blur" className='bg-cover' src={logo_compressed} alt="Rizzify" />

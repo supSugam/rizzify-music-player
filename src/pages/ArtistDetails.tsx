@@ -7,7 +7,7 @@ import { useGetArtistDetailsQuery } from '../redux/services/shazamCore';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import { DetailsHeader,RelatedSongs } from '../components';
+import { DetailsHeader,DetailsHeaderSkeleton,RelatedSongs } from '../components';
 // import {artistDetailsTestData,artistDetailsTestDataSOLO} from '../redux/services/artistDetailsTestData';
 
 const ArtistDetails:React.FC<{}> = () => {
@@ -30,13 +30,16 @@ const ArtistDetails:React.FC<{}> = () => {
     if(isSuccess){
       artistAttributes = !isFetching && artistData?.data[0]?.attributes;
       topSongs = !isFetching && Object.values(artistData?.data[0]?.views['top-songs']?.data).slice(0,8);
-        console.log(!isFetching && artistData);
+      console.log(!isFetching && artistData);
     }
   return (
-    <div className='flex flex-col md:flex-row gap-8'>
+    <div ref={(div)=> div?.scrollIntoView({behavior: 'smooth'})} className='flex flex-col md:flex-row gap-8'>
         <div className='w-full md:w-1/2'>
           {
             isSuccess && <DetailsHeader songData={undefined} activeSong={activeSong} isPlaying={isPlaying} artistData={artistData} artistId={artistId}/>
+          }
+          {
+            !isSuccess && <DetailsHeaderSkeleton/>
           }
         <div className='my-8 z-10'>
             <div className='bg-dark-linear p-8 gap-6 rounded-2xl w-full h-[32rem] md:h-[41rem] flex flex-col '>

@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { useSelector } from "react-redux";
 
-import { SongCard } from "../components";
+import { SongCard,SongCardSkeleton } from "../components";
 import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
 
 interface AroundYouProps {}
@@ -107,15 +107,15 @@ const AroundYou: React.FC<AroundYouProps> = () => {
 			.catch((err) => console.log(err))
 	}, []);
 
-	const { data:songsDataByCountry} = useGetSongsByCountryQuery(countryCode);
+	const { data:songsDataByCountry,isSuccess} = useGetSongsByCountryQuery(countryCode);
 
 	return (
-		<div className="flex flex-col gap-8 mb-8">
+		<div ref={(div)=> div?.scrollIntoView({behavior: 'smooth',block:'end'})} className="flex flex-col gap-8 mb-8">
 			<h2 className="text-3xl font-bold">
 				{isValidCountry ? `Top Songs in ${country}` : "Top Songs Around You"}
 			</h2>
 			<div className="flex w-96 h-full flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
-				{songsDataByCountry?.map((song:any, i:number) => (
+				{isSuccess && songsDataByCountry?.map((song:any, i:number) => (
 					<SongCard
 						key={song.key}
 						isPlaying={isPlaying}
@@ -125,6 +125,12 @@ const AroundYou: React.FC<AroundYouProps> = () => {
 						i={i}
 					/>
 				))}
+				{
+				!isSuccess && [...Array(10)].map((i:number) => (
+					<SongCardSkeleton key={i} i={i} />
+					)
+				)
+				}
 			</div>
 		</div>
 	);

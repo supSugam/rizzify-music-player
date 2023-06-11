@@ -9,6 +9,8 @@ import RelatedSongs from "./RelatedSongs";
 import MusicPlayer from "./MusicPlayer";
 // import Loader from "./Loader";
 import {Error,MiniError} from "./Error";
+import SongCardSkeleton from "./SongCardSkeleton";
+import DetailsHeaderSkeleton from "./DetailsHeaderSkeleton";
 
 export {
 	TopPlay,
@@ -21,6 +23,8 @@ export {
 	RelatedSongs,
 	MusicPlayer,
 	// Loader,
+	SongCardSkeleton,
+	DetailsHeaderSkeleton,
 	Error,
 	MiniError
 };

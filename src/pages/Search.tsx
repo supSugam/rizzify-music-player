@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useParams } from "react-router-dom";
 // import { useState, useEffect } from "react";
 
@@ -18,7 +18,10 @@ const Search: React.FC = () => {
 
   const songs = data?.tracks.hits?.map((song: any) => song.track);
   const artists = data?.artists.hits?.map((artist: any) => artist.artist);
-  console.log(artists);
+
+  useEffect(() => {
+	window.scrollTo({top:0,behavior:'smooth'});
+}, []);
 
 	return (
 		<div className="flex flex-col gap-8 mt-6 md:mt-0 mb-8">

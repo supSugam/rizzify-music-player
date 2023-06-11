@@ -13,8 +13,12 @@ const Searchbar:React.FC = () => {
     e.preventDefault();
     if(searchTerm) navigate(`/search/${searchTerm}`);
   };
+  const handleBlur = (e: React.FormEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    target.blur();
+  };
   return (
-    <form autoComplete='off' onSubmit={handleSubmit} className='p-2 m-4 mt-24 mb-8 md:m-10 text-[varchar(--primary-grey)] text-gray-400 focus-within:text-white transition-all duration-100 ease-in-out group'>
+    <form autoComplete='off' onSubmit={handleSubmit} className='p-2 m-4 mt-20 mb-4 md:m-10 text-[varchar(--primary-grey)] text-gray-400 focus-within:text-white transition-all duration-100 ease-in-out group'>
       <label htmlFor='search' className='sr-only'>Search</label>
       <div className='flex items-center gap-4'>
         <div className='md:min-w-min'>
@@ -22,6 +26,7 @@ const Searchbar:React.FC = () => {
         <IoSearchOutline className='block md:hidden' size={30}/>
         </div>
         <input
+        onKeyUp={(e)=>e.key === 'Enter' && handleBlur(e)}
         value={searchTerm}
         onChange={(e)=>setSearchTerm(e.target.value)} autoComplete='off' id='search-field' type='text' name='search' placeholder='Search for Songs' className='flex-1 bg-transparent py-3 focus:outline-none placeholder-gray-400 text-[1.4rem] sm:text-2xl text-white font-semibold outline-none border-b-2 border-gray-400 border-opacity-10 tracking-wide group-focus-within:border-opacity-60 transition-all duration-150 ease-in ' />
       </div>
