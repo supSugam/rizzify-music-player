@@ -10,7 +10,7 @@ interface SongBarProps{
   isPlaying:boolean,
   activeSong: any,
   handlePauseClick:()=>void,
-  handlePlayClick:(song:Song,i:number)=>void
+  handlePlayClick:(song:any,i:number)=>void
 }
 
 const SongBar:React.FC<SongBarProps> = ({ song, i, artistId, isPlaying, activeSong, handlePauseClick, handlePlayClick }) => (

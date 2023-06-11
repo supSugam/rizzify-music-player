@@ -57,6 +57,7 @@ if(playerExpanded){
     </div>
   )
 }
+return <></>
 };
 
 export default Controls;

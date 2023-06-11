@@ -29,8 +29,8 @@ import zZz from '../assets/zZz.jpeg'
 //   )
 // }
 interface NavLinksProps{
-  forMobile:boolean;
-  forMobileSidebar:boolean;
+  forMobile?:boolean;
+  forMobileSidebar?:boolean;
   handleClick?:()=>void;
 }
 const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClick}) => {
@@ -174,6 +174,7 @@ const NavLinks:React.FC<NavLinksProps> = ({forMobile,forMobileSidebar,handleClic
     )
   }
 
+  return <></>;
 }
 
 const Sidebar:React.FC = () => {

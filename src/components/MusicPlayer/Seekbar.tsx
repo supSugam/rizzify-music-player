@@ -5,7 +5,7 @@ interface SeekbarProps {
   min: number;
   max: number;
   onInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  playerExpanded: boolean;
+  playerExpanded?: boolean;
 }
 
 const Seekbar:React.FC<SeekbarProps> = ({ value, min, max, onInput,playerExpanded}) => {
@@ -63,6 +63,7 @@ const Seekbar:React.FC<SeekbarProps> = ({ value, min, max, onInput,playerExpande
       </div>
       )
     }
+    return <></>
 };
 
 export default Seekbar;

@@ -64,6 +64,7 @@ const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,i
       </Link>
     )
   }
+  return <></>
 
 }
 
