@@ -10,13 +10,13 @@ import PlayPause from './PlayPause'
 // import { setSingleActiveSong,playPause } from '../redux/features/playerSlice';
 import { Link } from 'react-router-dom';
 interface SongBarProps {
-  song:any;
-  handlePauseClick:()=>void;
-  handlePlayClick:()=>void;
-  forArtistDetails:boolean;
-  isPlaying:boolean;
-  activeSong:any;
-  i:number;
+  song?:any;
+  handlePauseClick?:()=>void;
+  handlePlayClick?:()=>void;
+  forArtistDetails?:boolean;
+  isPlaying?:boolean;
+  activeSong?:any;
+  i?:number;
 }
 
 const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,isPlaying,activeSong,forArtistDetails,i}) => {
@@ -26,7 +26,7 @@ const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,i
       <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
       <div className="flex w-full h-[5.6rem] items-center justify-between cursor-pointer gap-4 md:gap-8 py-3 px-2 border-b-2 border-gray-200 border-opacity-5">
         <div className="flex items-center gap-6">
-          <p className="text-[var(--primary-grey)] text-sm font-bold">{i+1}</p>
+          <p className="text-[var(--primary-grey)] text-sm font-bold">{i && i+1}</p>
           <div className='w-16 h-auto'>
             <img src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className='rounded-md' />
           </div>
@@ -36,7 +36,7 @@ const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,i
         <h3 className="text-base font-semibold text-left truncate">{song.title}</h3>
         <p className="text-sm text-[var(--primary-grey)] text-left truncate">{song.subtitle}</p>
         </div>
-          <PlayPause key={i} handlePause={handlePauseClick} handlePlay={handlePlayClick} isPlaying={isPlaying} activeSong={activeSong} song={song} />
+          <PlayPause key={i} handlePause={handlePauseClick && handlePauseClick} handlePlay={handlePlayClick && handlePlayClick} isPlaying={isPlaying && isPlaying} activeSong={activeSong} song={song} />
       </div>
       </Tilt>
       </Link>
@@ -49,7 +49,7 @@ const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,i
       <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
       <div className="flex w-full h-[5.6rem] items-center justify-between cursor-pointer gap-4 md:gap-8 py-3 px-2 border-b-2 border-gray-200 border-opacity-5">
         <div className="flex items-center gap-6">
-          <p className="text-[var(--primary-grey)] text-sm font-bold">{i+1}</p>
+          <p className="text-[var(--primary-grey)] text-sm font-bold">{i && i+1}</p>
           <div className='w-16 h-auto'>
             <img src={song.attributes?.artwork?.url} alt={song.attributes.name} className='rounded-md' />
           </div>

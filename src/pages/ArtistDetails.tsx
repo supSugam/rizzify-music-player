@@ -36,7 +36,7 @@ const ArtistDetails:React.FC<{}> = () => {
     <div className='flex flex-col md:flex-row gap-8'>
         <div className='w-full md:w-1/2'>
           {
-            isSuccess && <DetailsHeader activeSong={activeSong} isPlaying={isPlaying} artistData={artistData} artistId={artistId}/>
+            isSuccess && <DetailsHeader songData={undefined} activeSong={activeSong} isPlaying={isPlaying} artistData={artistData} artistId={artistId}/>
           }
         <div className='my-8 z-10'>
             <div className='bg-dark-linear p-8 gap-6 rounded-2xl w-full h-[32rem] md:h-[41rem] flex flex-col '>

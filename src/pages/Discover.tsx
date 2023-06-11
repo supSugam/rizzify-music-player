@@ -12,7 +12,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const GenreSongsComponent:React.FC<{genreListId:any,isPlaying:boolean,activeSong:any}> = ({ genreListId,isPlaying,activeSong }) => {
-	const { data: genreData, error: genreError, isFetching } = useGetSongsByGenreQuery(genreListId);
+	const { data: genreData } = useGetSongsByGenreQuery(genreListId);
+	// error: genreError, isFetching
 	return (
 	genreData?.map((song:any,i:number) => (
 		<SongCard key={song.key} isPlaying={isPlaying} activeSong={activeSong} song={song} data={genreData} i={i} />

@@ -29,7 +29,8 @@ const SongDetails:React.FC<SongDetailsProps> = () => {
       };
 
     const {data:songData,isFetching:isFetchingSongDetails,isSuccess:isSuccessSongDetails} = useGetSongDetailsQuery({songid})
-    const {data:relatedSongsData, isFetching:isFetchingRelatedSongs,isSuccess:isSuccessRelated} = useGetSongRelatedQuery({songid})
+    const {data:relatedSongsData,isSuccess:isSuccessRelated} = useGetSongRelatedQuery({songid})
+    // isFetching:isFetchingRelatedSongs
     const relatedSongs = relatedSongsData?.slice(0,8);
     isSuccessSongDetails && console.log(songData);
   return (

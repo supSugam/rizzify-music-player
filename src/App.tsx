@@ -18,7 +18,7 @@ import {
 import { useEffect } from "react";
 
 const App = () => {
-	const { activeSong, isPlaying, isModalOpen,isInfoModalOpen } = useSelector((state: any) => state.player);
+	const { activeSong, isModalOpen,isInfoModalOpen } = useSelector((state: any) => state.player);
 
 	const dispatch = useDispatch();
 

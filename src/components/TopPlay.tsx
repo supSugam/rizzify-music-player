@@ -84,7 +84,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
 
   const [contentLoaded,setContentLoaded] = useState<boolean>(false);
 
-  const {data} = useGetTopChartsQuery()
+  const {data} = useGetTopChartsQuery("")
   const topSongs = data?.slice(0,5)
   const artists = data?.slice(0,20)
 

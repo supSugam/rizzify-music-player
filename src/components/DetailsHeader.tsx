@@ -9,7 +9,7 @@ import Skeleton from 'react-loading-skeleton';
 
 interface DetailsHeaderProps {
   artistId:string | undefined;
-  songData:any;
+  songData?:any;
   artistData:any;
   isPlaying:boolean;
   activeSong:any;

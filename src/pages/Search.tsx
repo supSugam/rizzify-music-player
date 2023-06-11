@@ -14,7 +14,7 @@ const Search: React.FC = () => {
   const { searchTerm } = useParams();
 	const { activeSong, isPlaying } = useSelector((state: any) => state.player);
 
-	const {data, isFetching} = useGetSongsBySearchQuery(searchTerm);
+	const {data} = useGetSongsBySearchQuery(searchTerm);
 
   const songs = data?.tracks.hits?.map((song: any) => song.track);
   const artists = data?.artists.hits?.map((artist: any) => artist.artist);

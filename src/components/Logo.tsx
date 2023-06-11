@@ -24,6 +24,7 @@ const Logo:React.FC<{forMobile:boolean}> = ({forMobile}) => {
       </Link>
     )
   }
+  return <></>
 
 }
 

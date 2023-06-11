@@ -44,6 +44,8 @@ const ArtistCard:React.FC<ArtistCardProps> = ({track,i,forSearch}) => {
 )
   }
 
+  return <></>
+
 }
 
 export default ArtistCard;

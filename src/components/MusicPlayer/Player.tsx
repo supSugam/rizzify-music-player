@@ -7,6 +7,7 @@ interface PlayerProps {
   volume: number;
   seekTime: number;
   onEnded: () => void;
+  currentIndex?: number;
   onTimeUpdate: (event: React.SyntheticEvent<HTMLAudioElement, Event>) => void;
   onLoadedData: (event: React.SyntheticEvent<HTMLAudioElement, Event>) => void;
   repeat: boolean;
