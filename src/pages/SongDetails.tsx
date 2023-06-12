@@ -65,7 +65,7 @@ const SongDetails:React.FC<SongDetailsProps> = () => {
         <div className='my-8 z-10'>
             <div className='bg-dark-linear p-8 gap-6 rounded-2xl w-full h-[28rem] md:h-[41rem] flex flex-col '>
                 <h2 className='text-3xl font-bold scroll-smooth'>Lyrics</h2>
-                <div className='overflow-y-auto overflow-x-hidden hide-scrollbar flex'>
+                <div className='overflow-y-auto overflow-x-hidden hide-scrollbar'>
 
             {
                 isSuccessSongDetails && (songData?.sections[1]?.type === 'LYRICS' ? (
