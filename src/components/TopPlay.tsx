@@ -1,5 +1,5 @@
 import React from 'react'
-import {useEffect,useRef,useState} from 'react'
+import {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import {Swiper, SwiperSlide} from 'swiper/react'
@@ -76,12 +76,12 @@ const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,han
 const TopPlay:React.FC<TopPlayProps> = () => {
   const dispatch = useDispatch();
   const {activeSong,isPlaying} = useSelector((state:any)=>state.player)
-  const divRef = useRef<HTMLDivElement>(null)
-  useEffect(()=>{
-    if(divRef.current){
-      // divRef.current.scrollIntoView({behavior:'smooth'})
-    }
-  })
+  // const divRef = useRef<HTMLDivElement>(null)
+  // useEffect(()=>{
+  //   if(divRef.current){
+  //     // divRef.current.scrollIntoView({behavior:'smooth'})
+  //   }
+  // })
 
   const [contentLoaded,setContentLoaded] = useState<boolean>(false);
 
@@ -97,7 +97,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
     dispatch(playPause(false))
   }
   return (
-    <div ref={divRef} className="flex flex-col gap-14 w-full lg:flex-row lg:mr-4 sm:mt-0 mb-16 md:mb-32">
+    <div className="flex flex-col gap-14 w-full lg:flex-row lg:mr-4 sm:mt-0 mb-16 md:mb-32">
       {/* Top Songs */}
       <div className="w-full flex flex-col lg:w-1/2">
         <div className="flex w-full justify-between items-end">

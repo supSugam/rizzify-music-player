@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from 'react'
+import React,{useEffect} from 'react'
 import {useParams,useNavigate} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveSong,playPause } from '../redux/features/playerSlice';
@@ -40,11 +40,11 @@ const SongDetails:React.FC<SongDetailsProps> = () => {
       window.scrollTo({top:0,behavior:'smooth'})
     }, [songData,relatedSongsData])
 
-    const divRef = useRef<HTMLDivElement>(null);
+    // const divRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-			divRef.current?.scrollIntoView({behavior:'smooth',block:'nearest'});
-		}, [divRef]);	
+    // useEffect(() => {
+		// 	divRef.current?.scrollIntoView({behavior:'smooth',block:'nearest'});
+		// }, [divRef]);	
     const navigate = useNavigate();
 
     useEffect(() => {

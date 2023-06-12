@@ -1,4 +1,4 @@
-import React,{useRef} from "react";
+import React from "react";
 import axios from 'axios';
 import {  useEffect,useState } from "react";
 
@@ -16,7 +16,7 @@ const TopArtists: React.FC = () => {
 	};
 
 	const [topArtistsGlobal,setTopArtistsGlobal] = useState<[]>([]);
-	const divRef = useRef<HTMLDivElement>(null);
+	// const divRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		window.scrollTo({top:0,behavior:'smooth'});
@@ -31,12 +31,12 @@ const TopArtists: React.FC = () => {
 	getTopArtistsQuery();
 	}, []);
 
-	useEffect(() => {
-		divRef.current?.scrollIntoView({behavior:'smooth',block:'nearest'});
-	}, [divRef]);
+	// useEffect(() => {
+	// 	divRef.current?.scrollIntoView({behavior:'smooth',block:'nearest'});
+	// }, [divRef]);
 
 	return (
-		<div ref={divRef} className="flex flex-col gap-8 md:mt-12 mt-2 mb-8">
+		<div className="flex flex-col gap-8 md:mt-12 mt-2 mb-8">
 			<h2 className="text-3xl font-bold">
 				Discover Top Artists
 			</h2>

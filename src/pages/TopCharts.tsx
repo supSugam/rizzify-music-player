@@ -1,4 +1,4 @@
-import React,{useRef} from "react";
+import React from "react";
 import { useEffect,useState } from "react";
 import axios from 'axios';
 
@@ -36,14 +36,14 @@ const TopCharts: React.FC = () => {
 		
 			getTopChartsQuery();
 		}, []);
-		const divRef = useRef<HTMLDivElement>(null);
+		// const divRef = useRef<HTMLDivElement>(null);
 
-		useEffect(() => {
-			divRef.current?.scrollIntoView({behavior:'smooth',block:'nearest'});
-		}, [divRef]);	
+		// useEffect(() => {
+		// 	divRef.current?.scrollIntoView({behavior:'smooth',block:'nearest'});
+		// }, [divRef]);	
 
 	return (
-		<div ref={divRef} className="flex flex-col gap-8 mt-6 mb-8">
+		<div className="flex flex-col gap-8 mt-6 mb-8">
 			<h2 className="text-3xl font-bold">
 				Discover What Everyone is Listening to
 			</h2>

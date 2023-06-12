@@ -1,4 +1,4 @@
-import React,{useEffect,useRef} from 'react'
+import React,{useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { setActiveSong,playPause } from '../redux/features/playerSlice';
@@ -37,13 +37,13 @@ const ArtistDetails:React.FC<{}> = () => {
       window.scrollTo({top:0,behavior:'smooth'})
     }, [])
 
-    const divRef = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-      // divRef.current && divRef.current.scrollTo({top:-200,behavior:'smooth'})
-      window.scrollTo({top:0,behavior:'smooth'})
-		}, [divRef,artistData]);	
+    // const divRef = useRef<HTMLDivElement>(null);
+    // useEffect(() => {
+    //   // divRef.current && divRef.current.scrollTo({top:-200,behavior:'smooth'})
+    //   window.scrollTo({top:0,behavior:'smooth'})
+		// }, [divRef,artistData]);	
   return (
-    <div ref={divRef} className='flex flex-col md:flex-row gap-8'>
+    <div className='flex flex-col md:flex-row gap-8'>
         <div className='w-full md:w-1/2'>
           {
             isSuccess && <DetailsHeader songData={undefined} activeSong={activeSong} isPlaying={isPlaying} artistData={artistData} artistId={artistId}/>
