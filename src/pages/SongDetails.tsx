@@ -67,25 +67,18 @@ const SongDetails:React.FC<SongDetailsProps> = () => {
                 <h2 className='text-3xl font-bold scroll-smooth'>Lyrics</h2>
                 <div className='overflow-y-auto overflow-x-hidden hide-scrollbar flex'>
 
-            {/* {
+            {
                 isSuccessSongDetails && (songData?.sections[1]?.type === 'LYRICS' ? (
                     songData.sections[1]?.text?.map((line:string,i:number)=>(
                         <p key={i} className='text-2xl font-semibold text-[var(--primary-grey)]'>{line}</p>
                     ))
                 ):(
                   <div className='text-3xl w-full h-full flex flex-col gap-6 items-center justify-center'>
-                  <LazyLoadImage style={{transform: "scale(1.3) scaleX(-1)"}} src={NotFound} alt='Not Found Lyrics' className='pl-8 hidden md:block' />
-                  <LazyLoadImage style={{transform: "scale(1.1) scaleX(-1)"}} src={NotFound} alt='Not Found Lyrics' className='pl-4 block md:hiddne' />
-                <p className='text-xl text-center md:text-2xl font-semibold text-[var(--primary-grey)] italic md:translate-y-16'>Uh oh, there's no lyirics for this song! </p>
-                </div>
-                ))
-            } */}
-
-<div className='text-3xl w-full h-full flex flex-col gap-6 items-center justify-center'>
                   <LazyLoadImage src={NotFound} alt='Not Found Lyrics' className='scale-125 md:scale-105 md:w-[80%] mt-10' />
                 <p className='text-xl mt-8 sm:mt-2 text-center md:text-2xl font-semibold text-[var(--primary-grey)] italic'>Uh oh, there's no lyrics for this song! </p>
                 </div>
-
+                ))
+            }
             {
                 !isSuccessSongDetails && isFetching && (
                   <>
