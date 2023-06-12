@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { playPause, toggleInfoModal, toggleModal } from "./redux/features/playerSlice";
 import { Link } from "react-router-dom";
 
-import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
+import { Searchbar, Sidebar, MusicPlayer, TopPlay, ScrollToTop } from "./components";
 import {
 	ArtistDetails,
 	TopArtists,
@@ -33,6 +33,7 @@ const App = () => {
 
 	const [innerHeight, setInnerHeight] = useState<number>(window.innerHeight);
 	const bodyContainerRef = useRef<HTMLDivElement>(null);
+	const divRef = useRef<HTMLDivElement>(null);
 
 	window.addEventListener("resize", () => {
 		setInnerHeight(window.innerHeight);
@@ -40,9 +41,9 @@ const App = () => {
 	useEffect(() => {
 		bodyContainerRef.current?.style.setProperty("--vh", `${innerHeight * 0.01}px`);
 	}, [innerHeight]);
-
 	return (
 		<div ref={bodyContainerRef} className="relative block h-[calc(var(--vh,1vh)*100)] bg-primary-gradient sm:flex">
+		<ScrollToTop divRef={divRef.current} />
 			<div id="overlay" className={`w-screen h-screen z-40 backdrop-blur-sm absolute top-0 left-0 ${isModalOpen ? 'block':'hidden'}`}/>
 			<div id="infoModal" className={`w-[84%] md:w-[25%] h-[40%] z-[60] absolute top-[25%] left-[9%] md:top-[23%] md:left-[37%] bg-black rounded-lg p-8 flex items-center justify-center flex-col gap-10 animate-hoverscale ${isInfoModalOpen ? 'block':'hidden'}`}>
 						<h1 className="text-3xl font-bold gradient--text">Not Working Yet</h1>
@@ -55,7 +56,7 @@ const App = () => {
 			<div className="flex flex-1 flex-col">
 				<Searchbar />
 				{/* h-[calc(100vh-72px)] */}
-				<div className="hide-scrollbar flex h-screen flex-col md:flex-col-reverse overflow-x-hidden overflow-y-scroll px-6 md:mx-10  xl:flex-col">
+				<div ref={divRef} className="hide-scrollbar flex h-screen flex-col md:flex-col-reverse overflow-x-hidden overflow-y-scroll px-6 md:mx-10  xl:flex-col">
 					{/* xl:flex-row */}
 					<div className="h-fit flex-1 pb-10">
 						<Routes>
@@ -70,7 +71,7 @@ const App = () => {
 						</Routes>
 					</div>
 					{/* <div className="relative flex min-h-max w-full"> */}
-					<div className="">
+					<div>
 						<TopPlay />
 					</div>
 				</div>

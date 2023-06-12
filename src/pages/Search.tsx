@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 
-import { SongCard,ArtistCard } from "../components";
+import { SongCard,ArtistCard, SongCardSkeleton } from "../components";
 import { useGetSongsBySearchQuery } from "../redux/services/shazamCore";
 
 // import songsByCountryTestData from "../redux/services/songsByCountryTestData";
@@ -14,7 +14,7 @@ const Search: React.FC = () => {
   const { searchTerm } = useParams();
 	const { activeSong, isPlaying } = useSelector((state: any) => state.player);
 
-	const {data} = useGetSongsBySearchQuery(searchTerm);
+	const {data,isFetching,isSuccess} = useGetSongsBySearchQuery(searchTerm);
 
   const songs = data?.tracks.hits?.map((song: any) => song.track);
   const artists = data?.artists.hits?.map((artist: any) => artist.artist);
@@ -29,7 +29,7 @@ const Search: React.FC = () => {
 				Search Results for <span className="italic">{`'${searchTerm}'`}</span>
 			</h2>
 			<div className="flex w-96 flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
-				{songs?.map((song:any, i:number) => (
+				{isSuccess && songs?.map((song:any, i:number) => (
 					<SongCard
 						key={song.key}
 						isPlaying={isPlaying}
@@ -39,9 +39,12 @@ const Search: React.FC = () => {
 						i={i}
 					/>
 				))}
+				{
+					isFetching && [...Array(10)].map((i)=>(<SongCardSkeleton key={i}/>))
+				}
 			</div>
       <div className="flex mt-10 w-full h-auto justify-around gap-x-8 gap-y-24 md:gap-x-14 md:gap-y-24 flex-wrap">
-				{artists?.map((track:any, i:number) => (
+				{isSuccess && artists?.map((track:any, i:number) => (
 					<ArtistCard
           forSearch={true}
 					key={track.key}

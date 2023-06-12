@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useRef} from "react";
 import { useEffect,useState } from "react";
 import axios from 'axios';
 
@@ -24,6 +24,7 @@ const TopCharts: React.FC = () => {
 		const [topChartsGlobal,setTopChartsGlobal] = useState<any>([]);
 
 		useEffect(() => {
+			window.scrollTo({top:0,behavior:'smooth'});
 			const getTopChartsQuery = async () => {
 			try {
 				const response = await axios.request(options);
@@ -35,13 +36,14 @@ const TopCharts: React.FC = () => {
 		
 			getTopChartsQuery();
 		}, []);
+		const divRef = useRef<HTMLDivElement>(null);
 
 		useEffect(() => {
-			window.scrollTo({top:0,behavior:'smooth'});
-		}, []);	
+			divRef.current?.scrollIntoView({behavior:'smooth',block:'nearest'});
+		}, [divRef]);	
 
 	return (
-		<div className="flex flex-col gap-8 mt-6 mb-8">
+		<div ref={divRef} className="flex flex-col gap-8 mt-6 mb-8">
 			<h2 className="text-3xl font-bold">
 				Discover What Everyone is Listening to
 			</h2>

@@ -1,6 +1,7 @@
 // import loader from "./loader.svg";
 import wentWrong from './wentWrong.svg';
 import wentWrongMini from './wentWrongMini.svg';
+import NotFound from './NotFound.svg';
 // import logo from './rizzify-favicon.png';
 import logo_compressed from './logo_compressed.png';
 // import logo_compressed_1 from './logo_compressed_1.png';
@@ -27,5 +28,6 @@ export {
   Stairs,
   // StairsInactive,
   logo_compressed,
+  NotFound,
   // logo_compressed_1
 };

@@ -100,7 +100,6 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
     setPlayerExpanded(!playerExpanded);
   }
   const handleLikeSong = () => {
-    if (!isActive) return;
     if (isLiked) {
       dispatch(likeUnlike(false));
     } else {
@@ -111,7 +110,7 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
 
   return (
     <>
-  <div className="absolute sm:h-28 h-20 bottom-[4.8rem] sm:bottom-0 left-0 right-0 flex animate-slideup smooth-transition bg-black bg-opacity-90 backdrop-blur-md w-full z-20">
+  <div className="absolute sm:h-28 h-20 bottom-[4.8rem] sm:bottom-0 left-0 right-0 flex animate-slideup smooth-transition bg-black bg-opacity-90 backdrop-blur-md w-full z-[19]">
     <div className="relative sm:px-12 px-6 w-full flex items-center justify-between mini--player">
       <Track handlePlayerExpansion={()=>handlePlayerExpansion()} isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
       <div className="sm:flex-1 flex flex-col items-center justify-center gap-2">

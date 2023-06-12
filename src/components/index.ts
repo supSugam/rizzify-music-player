@@ -11,6 +11,7 @@ import MusicPlayer from "./MusicPlayer";
 import {Error,MiniError} from "./Error";
 import SongCardSkeleton from "./SongCardSkeleton";
 import DetailsHeaderSkeleton from "./DetailsHeaderSkeleton";
+import ScrollToTop from "./ScrollToTop";
 
 export {
 	TopPlay,
@@ -26,5 +27,6 @@ export {
 	SongCardSkeleton,
 	DetailsHeaderSkeleton,
 	Error,
-	MiniError
+	MiniError,
+	ScrollToTop
 };
