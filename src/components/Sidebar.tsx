@@ -192,7 +192,7 @@ const Sidebar:React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   return (
     <>
-    <div style={{minWidth:"15rem"}} className="hidden md:flex flex-col w-[16rem] py-8 px-4 bg-dark-gradient backdrop-blur-md animate-slideleft">
+    <div  className="hidden md:flex flex-col w-[18%] py-8 px-4 bg-dark-gradient backdrop-blur-md animate-slideleft">
       <Logo forMobile={false}/>
       <NavLinks forMobile={false} forMobileSidebar={false}/>
       <div className='flex flex-col gap-8 mt-10'>

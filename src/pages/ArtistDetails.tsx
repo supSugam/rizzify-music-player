@@ -92,7 +92,6 @@ const ArtistDetails:React.FC<{}> = () => {
                 
               ): (
                 <div className='text-3xl w-full h-full flex flex-col gap-6 items-center justify-center'>
-                  <LazyLoadImage style={{transform: "scale(1.3) scaleX(-1)"}} src={wentWrong} alt='went wrong' className='pl-8 hidden md:block' />
                   <LazyLoadImage style={{transform: "scale(1.1) scaleX(-1)"}} src={wentWrong} alt='went wrong' className='pl-4 block md:hiddne' />
                 <p className='text-xl text-center md:text-2xl font-semibold text-[var(--primary-grey)] italic md:translate-y-16'>Uh oh, there's no information on this artist! </p>
                 </div>

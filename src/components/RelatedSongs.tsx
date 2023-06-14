@@ -22,7 +22,7 @@ interface SongBarProps {
 const SongBar:React.FC<SongBarProps> = ({song,handlePauseClick,handlePlayClick,isPlaying,activeSong,forArtistDetails,i}) => {
   if(!forArtistDetails){
     return(
-      <Link to={`/songs/${song.key}`} className='w-full'>
+      <Link to={`/songs/${song.key}`}>
       <Tilt glareEnable={true} glareMaxOpacity={0.2} glareColor="#6156f4" glarePosition="all" tiltMaxAngleX={3} tiltMaxAngleY={3}>
       <div className="flex w-full h-[5.6rem] items-center justify-between cursor-pointer gap-4 md:gap-8 py-3 px-2 border-b-2 border-gray-200 border-opacity-5">
         <div className="flex items-center gap-6">
@@ -79,7 +79,6 @@ interface RelatedSongsProps {
 
 const RelatedSongs:React.FC<RelatedSongsProps> = ({relatedSongs,activeSong,isPlaying,handlePauseClick, handlePlayClick, forArtistDetails}) => {
 
-  console.log(typeof relatedSongs);
   return (
     <div className='w-full md:w-1/2 h-full flex flex-col mb-8 md:md-2'>
       <div className="flex h-28 bg-gradient-to-l px-8 from-transparent to-[#080625] rounded-l-xl">
@@ -88,7 +87,7 @@ const RelatedSongs:React.FC<RelatedSongsProps> = ({relatedSongs,activeSong,isPla
           {forArtistDetails && `${relatedSongs[0]?.attributes?.artistName}'s Top Songs`}
         </h1>
       </div>
-      <div className="w-fullflex flex-col mt-4 gap-2">
+      <div className="flex flex-col mt-4 gap-2">
         {
           !forArtistDetails && relatedSongs?.map((song:any,i:number)=>(
           <SongBar activeSong={activeSong} forArtistDetails={forArtistDetails} isPlaying={isPlaying} handlePlayClick={()=>handlePlayClick(song,relatedSongs,i)} handlePauseClick={handlePauseClick} key={i} song={song} i={i} />))

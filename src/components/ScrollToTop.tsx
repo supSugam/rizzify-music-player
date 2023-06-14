@@ -6,7 +6,7 @@ const ScrollToTop:React.FC<{divRef?:HTMLDivElement|null}> = ({divRef}) => {
     useEffect(() => {
         divRef?.scrollTo({top:0,behavior:'smooth'})
     }, [pathName,divRef])
-  return<></>
+  return null;
 }
 
 export default ScrollToTop;
