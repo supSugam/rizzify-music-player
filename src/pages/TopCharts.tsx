@@ -47,7 +47,7 @@ const TopCharts: React.FC = () => {
 			<h2 className="text-3xl font-bold">
 				Discover What Everyone is Listening to
 			</h2>
-			<div className="flex w-96 flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden overflow-x-scroll sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
+			<div className="flex w-96 flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">
 				{
 				topChartsGlobal && (topChartsGlobal.map((song:any, i:number) => (
 					<SongCard

@@ -107,12 +107,10 @@ const playerSlice = createSlice({
 
     likeUnlike: (state, action) => {
       state.isLiked = action.payload;
-      console.log(state.isLiked);
     }
     ,
     setLikedSongs: (state, action) => {
       console.log(action.payload.activeSong);
-      console.log(state.isLiked);
       if(state.isLiked){
         state.likedSongs = state.likedSongs.filter((song: any) => song.key !== action.payload.activeSong.key);
         Cookies.set('likedSongs', JSON.stringify(state.likedSongs));

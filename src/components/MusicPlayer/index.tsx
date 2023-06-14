@@ -100,12 +100,12 @@ const MusicPlayer:React.FC<MusicPlayerProps> = () => {
     setPlayerExpanded(!playerExpanded);
   }
   const handleLikeSong = () => {
+    dispatch(setLikedSongs({activeSong}));
     if (isLiked) {
       dispatch(likeUnlike(false));
     } else {
       dispatch(likeUnlike(true));
     }
-    dispatch(setLikedSongs({activeSong}));
   };
 
   return (

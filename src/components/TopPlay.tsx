@@ -53,7 +53,7 @@ const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,han
         </div>
 
       </div>
-      <div className='flex flex-col flex-1 max-w-[40%] gap-2 sm:max-w-none'>
+      <div className='flex flex-col flex-1 max-w-[40%] gap-2 sm:max-w-[60%]'>
         {
           contentLoaded ? <Link to={`songs/${song.key}`} className="text-base font-semibold text-left truncate">{song.title}</Link>:<Skeleton width={"100%"} />
         }
@@ -97,7 +97,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
     dispatch(playPause(false))
   }
   return (
-    <div className="flex flex-col gap-14 w-full lg:flex-row lg:mr-4 sm:mt-0 mb-16 md:mb-32">
+    <div className="flex flex-col gap-14 lg:flex-row lg:mr-4 sm:mt-0 mb-16 md:mb-32">
       {/* Top Songs */}
       <div className="w-full flex flex-col lg:w-1/2">
         <div className="flex w-full justify-between items-end">
@@ -113,7 +113,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
         </div>
       </div>
       {/* Top Artists */}
-      <div className="w-full min-h-[60vh] md:min-h-full flex flex-col lg:w-1/2 mb-8">
+      <div className="w-full min-h-[60vh] md:min-h-full flex flex-col lg:max-w-[32rem] overflow-x-hidden mb-8">
       <div className="flex w-full justify-between items-end">
           <h2 className='text-center text-2xl font-bold sm:text-left'>Top Artists - {new Date().toLocaleString('default', { month: 'long' })}</h2>
           <Link to='/top-artists'>

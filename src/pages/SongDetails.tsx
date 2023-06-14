@@ -49,7 +49,7 @@ const SongDetails:React.FC<SongDetailsProps> = () => {
 
     useEffect(() => {
       if(isError){
-        navigate('/')
+        navigate('/top-charts')
       }
     }, [isError,navigate])
     

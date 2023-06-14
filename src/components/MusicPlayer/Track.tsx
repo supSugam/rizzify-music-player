@@ -18,12 +18,11 @@ const Track:React.FC<TrackProps> = ({ isPlaying, isActive, activeSong,handlePlay
   const dispatch = useDispatch();
 
   const handleLikeSong = () => {
+    dispatch(setLikedSongs({activeSong}));
     if (isLiked) {
       dispatch(likeUnlike(false));
-      dispatch(setLikedSongs({activeSong}));
     } else {
       dispatch(likeUnlike(true));
-      dispatch(setLikedSongs({activeSong}));
     }
   };
 

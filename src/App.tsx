@@ -56,7 +56,7 @@ const App = () => {
 			<div className="flex flex-col w-[78%]">
 				<Searchbar />
 				{/* h-[calc(100vh-72px)] */}
-				<div ref={divRef} className="w-full hide-scrollbar flex h-screen flex-col md:flex-col-reverse overflow-x-hidden overflow-y-scroll px-6 md:mx-10  xl:flex-col">
+				<div ref={divRef} className="w-full hide-scrollbar flex h-screen flex-col md:flex-col-reverse overflow-x-hidden overflow-y-scroll px-6 md:mx-6  xl:flex-col">
 					{/* xl:flex-row */}
 					<div className="h-fit flex-1 pb-10">
 						<Routes>

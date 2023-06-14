@@ -46,7 +46,7 @@ const ArtistDetails:React.FC<{}> = () => {
     <div className='flex flex-col md:flex-row gap-8'>
         <div className='w-full md:w-1/2'>
           {
-            isSuccess && <DetailsHeader songData={undefined} activeSong={activeSong} isPlaying={isPlaying} artistData={artistData} artistId={artistId}/>
+            (isSuccess && !isFetching) && <DetailsHeader songData={undefined} activeSong={activeSong} isPlaying={isPlaying} artistData={artistData} artistId={artistId}/>
           }
           {
             isFetching && <DetailsHeaderSkeleton/>
