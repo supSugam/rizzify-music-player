@@ -44,7 +44,7 @@ const TopCharts: React.FC = () => {
 
 	return (
 		<div className="flex flex-col gap-8 mt-6 mb-8">
-			<h2 className="text-3xl font-bold">
+			<h2 className="text-2xl animate-slideleft sm:text-3xl font-bold">
 				Discover What Everyone is Listening to
 			</h2>
 			<div className="flex w-96 flex-nowrap justify-start md:justify-around gap-x-8 gap-y-12 overflow-y-hidden sm:w-full sm:flex-wrap md:overflow-hidden hide-scrollbar">

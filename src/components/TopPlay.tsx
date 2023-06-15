@@ -43,12 +43,12 @@ const TopPlayCard:React.FC<TopPlayCardProps> = ({song,i,isPlaying,activeSong,han
     <div className="flex w-full h-[5.6rem] items-center justify-between cursor-pointer md:gap-8 py-3 px-2 border-b-2 border-gray-200 border-opacity-5">
       <div className="flex items-center gap-4 md:gap-6">
         <p className="text-[var(--primary-grey)] text-sm font-bold">{i+1}</p>
-        <div className='w-16 h-auto'>
+        <div className='w-14 sm:w-16 h-auto'>
           {
             !contentLoaded && <Skeleton width={"100%"} className='min-h-[4rem]'/>
           }
           {
-            <img onLoad={()=>setContentLoaded(!contentLoaded)} src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className={`${contentLoaded?'block':'hidden' }`} />
+            <img onLoad={()=>setContentLoaded(!contentLoaded)} src={song.images?.coverarthq || song.images?.coverart || song.images?.background} alt={song.title} className={`${contentLoaded?'block rounded-md':'hidden' }`} />
           }
         </div>
 
@@ -101,7 +101,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
       {/* Top Songs */}
       <div className="w-full flex flex-col lg:w-1/2">
         <div className="flex w-full justify-between items-end">
-          <h2 className='text-center text-2xl font-bold sm:text-left'>Rizzify's Top 5 this week</h2>
+          <h2 className='text-center text-[1.3rem] sm:text-2xl font-bold sm:text-left'>Rizzify's Top 5 this week</h2>
           <Link to='/top-charts'>
             <p className='text-[var(--primary-grey)] text-sm font-bold underline'>See All</p>
           </Link>
@@ -113,7 +113,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
         </div>
       </div>
       {/* Top Artists */}
-      <div className="w-full min-h-[60vh] md:min-h-full flex flex-col lg:max-w-[32rem] overflow-x-hidden mb-8">
+      <div className="w-full min-h-[60vh] md:min-h-full flex flex-col lg:max-w-[32rem] md:overflow-x-hidden mb-8">
       <div className="flex w-full justify-between items-end">
           <h2 className='text-center text-2xl font-bold sm:text-left'>Top Artists - {new Date().toLocaleString('default', { month: 'long' })}</h2>
           <Link to='/top-artists'>

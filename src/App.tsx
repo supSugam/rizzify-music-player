@@ -53,7 +53,7 @@ const App = () => {
                         </Link>
 				</div>
 			<Sidebar />
-			<div className="flex flex-col w-[78%]">
+			<div className="flex flex-col md:w-[78%]">
 				<Searchbar />
 				{/* h-[calc(100vh-72px)] */}
 				<div ref={divRef} className="w-full hide-scrollbar flex h-screen flex-col md:flex-col-reverse overflow-x-hidden overflow-y-scroll px-6 md:mx-6  xl:flex-col">
