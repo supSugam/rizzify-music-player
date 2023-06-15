@@ -16,7 +16,7 @@ const TopCharts: React.FC = () => {
 		method: 'GET',
 		url: 'https://shazam-core.p.rapidapi.com/v1/charts/world',
 		headers: {
-		'X-RapidAPI-Key': '41459ffa84mshedf0d1731254d2ap1a40b7jsnadff3c037d6c',
+		'X-RapidAPI-Key': import.meta.env.VITE_RIZZIFY_API_KEY_3,
 		'X-RapidAPI-Host': 'shazam-core.p.rapidapi.com'
 		}
 	};
