@@ -72,7 +72,7 @@ const App = () => {
 					</div>
 					{/* <div className="relative flex min-h-max w-full"> */}
 					<div>
-						<TopPlay />
+						{/* <TopPlay /> */}
 					</div>
 				</div>
 			</div>

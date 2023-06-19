@@ -124,7 +124,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
           {
             artists?.map((song:any,i:number)=>(
             <SwiperSlide data-artist={song?.subtitle} key={i} style={{width:"21%",height:"h-full"}} className='relative group'>
-                <Link to={`/artists/${song?.artists[0].adamid}`}>
+                <Link to={`/artists/${song?.artists[0]?.adamid}`}>
                   {
                     // !contentLoaded && <Skeleton className='min-h-[8rem] shaped--border__radius' />
                   }
