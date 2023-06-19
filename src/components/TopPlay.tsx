@@ -97,7 +97,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
     dispatch(playPause(false))
   }
   return (
-    <div className="flex flex-col gap-14 lg:flex-row lg:mr-4 sm:mt-0 mb-16 md:mb-32">
+    <div className="flex flex-col gap-14 lg:flex-row lg:mr-4 sm:mt-6 mb-16 md:mb-32">
       {/* Top Songs */}
       <div className="w-full flex flex-col lg:w-1/2">
         <div className="flex w-full justify-between items-end">
@@ -124,7 +124,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
           {
             artists?.map((song:any,i:number)=>(
             <SwiperSlide data-artist={song?.subtitle} key={i} style={{width:"21%",height:"h-full"}} className='relative group'>
-                <Link to={`/artists/${song?.artists[0]?.adamid}`}>
+                <Link to={`/artists/${song?.artists ? song?.artists[0].adamid :""}`}>
                   {
                     // !contentLoaded && <Skeleton className='min-h-[8rem] shaped--border__radius' />
                   }
@@ -132,7 +132,7 @@ const TopPlay:React.FC<TopPlayProps> = () => {
                     <LazyLoadImage afterLoad={()=>setContentLoaded(true)} effect='blur' src={song?.images?.coverarthq || song?.images?.coverart || song?.images?.background} alt={song?.title} className='shaped--border__radius group-hover:rounded-3xl'/>
                   }
                 </Link>
-                <Link className='absolute bottom-[2rem] left-0 w-[7.875rem] text-base text-center truncate artist--name' to={`/artists/${song?.artists[0].adamid}`}>
+                <Link className='absolute bottom-[1rem] left-0 w-[7.875rem] text-base text-center truncate artist--name' to={`/artists/${song?.artists ? song?.artists[0].adamid :"" }`}>
               {
               contentLoaded ? <p>{song?.subtitle}</p>:<Skeleton width={"100%"} className='min-h-[1.2rem]' />
               }

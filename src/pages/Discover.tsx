@@ -17,7 +17,7 @@ const GenreSongsComponent:React.FC<{genreListId:any,isPlaying:boolean,activeSong
 	return (
 		<>
 		{
-			isSuccess &&  genreData?.map((song:any,i:number) => (
+			isSuccess &&  genreData?.slice(0,24).map((song:any,i:number) => (
 				<SongCard key={song.key} isPlaying={isPlaying} activeSong={activeSong} song={song} data={genreData} i={i} />
 				))
 		}
