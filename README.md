@@ -41,28 +41,28 @@ Never "delay" your rizz with rizzify, rizzify is your go-to music streaming weba
 
 ### Desktop View 🖥️
 
+• Home Page
+
+![HomePage](https://github.com/supSugam/rizzify-music-player/assets/108080917/5556e6d5-e1c9-4f84-b327-f2f70732b717)
+
 • Artist Details Page
 
-![image](https://github.com/supSugam/rizzify-music-player/assets/108080917/d1565f3f-bda1-46fc-ad82-cf9cc11043be)
-
-• Artist Details Page
-
-![image](https://github.com/supSugam/rizzify-music-player/assets/108080917/7a00bae3-9f01-4fbf-84a9-f6c2caec977a)
+![Artist Page](https://github.com/supSugam/rizzify-music-player/assets/108080917/96b7f50d-8d9d-4df6-a607-5bdd70d12fa2)
 
 • Song Details Page
 
-![image](https://github.com/supSugam/rizzify-music-player/assets/108080917/269c2c75-bfc2-4fc1-9c98-4e6a8c8334a7)
+![Song Page](https://github.com/supSugam/rizzify-music-player/assets/108080917/f3594cf9-6532-455b-8ce1-6abf774f4a91)
 
 
 ### Mobile View 📱
 
-### In Order: Song Details Page, Expanded Music Player, Sidebar, Artist Details Page, Top Charts
+### In Order:  Top Charts, Song Details Page,Artist Details Page, Expanded Music Player, Sidebar
 <div style="display:flex; gap:12px">
-  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/186abd05-27dd-4bcb-8243-46797482d41d" width="177" height="400" />
-   <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/970e03da-6872-477c-9f23-527812934fc4" width="177" height="400" />
-  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/32fd39f9-9cac-435f-8dff-538244cd1a2a" width="177" height="400" />
-  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/50b5eac1-a9e5-42a6-afcb-72c838b62c9e" width="177" height="400" />
-  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/179413da-6299-4b11-84d5-ff723d0f5a07" width="177" height="400" />
+  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/9ac7f25c-248c-4ae2-af05-4a9b6e005c3b" width="170" height="400" />
+  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/7e4d2606-6861-4648-bbee-46b5940b56df" width="170" height="400" />
+  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/cf33652c-0325-4856-bea9-43810aa472ce" width="170" height="400" />
+  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/ef5ecd7b-e632-4685-86a7-3574eb68c449" width="170" height="400" />
+  <img src="https://github.com/supSugam/rizzify-music-player/assets/108080917/f0238ed0-1835-4553-8074-07d3c54e195d" width="170" height="400" />
 </div>
 
-## Thankyou, Have a Good Day 🙋‍♂️
+### Thankyou, Have a Good Day 🙋‍♂️
